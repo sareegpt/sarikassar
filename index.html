@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sari Kassar - Senior Strategy Consultant | AI & Innovation Expert | IBM</title>
+    <meta name="description" content="Sari Kassar is a Senior Strategy Consultant at IBM with 7+ years in AI, product strategy, and management consulting. MBA from University of Michigan. Expert in GenAI, cloud analytics, and ADAS systems.">
+    <meta name="keywords" content="Sari Kassar, Strategy Consultant, AI Expert, IBM, Generative AI, Product Strategy, Management Consulting, ADAS, Ford, University of Michigan MBA">
+    <meta name="author" content="Sari Kassar">
+    <meta property="og:title" content="Sari Kassar - Senior Strategy Consultant & AI Expert">
+    <meta property="og:description" content="Strategy and technical consultant with 7+ years experience in AI, innovation, and product strategy. Currently Senior Strategy Consultant at IBM.">
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://sarikassar.com">
+    <link rel="canonical" href="https://sarikassar.com">
+    
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Sari Kassar",
+        "jobTitle": "Senior Strategy Consultant",
+        "worksFor": {
+            "@type": "Organization",
+            "name": "IBM"
+        },
+        "alumniOf": [
+            {
+                "@type": "EducationalOrganization",
+                "name": "University of Michigan",
+                "location": "Ann Arbor, MI"
+            },
+            {
+                "@type": "EducationalOrganization", 
+                "name": "American University of Beirut",
+                "location": "Beirut, Lebanon"
+            }
+        ],
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Miami",
+            "addressRegion": "FL",
+            "addressCountry": "US"
+        },
+        "email": "kassar@umich.edu",
+        "telephone": "+1-313-707-9818",
+        "sameAs": "https://linkedin.com/in/sgkassar",
+        "knowsAbout": ["Artificial Intelligence", "Strategy Consulting", "Product Strategy", "ADAS Systems", "Cloud Computing", "Data Analytics"],
+        "hasCredential": [
+            {
+                "@type": "EducationalOccupationalCredential",
+                "name": "Master of Business Administration",
+                "educationalLevel": "Graduate",
+                "recognizedBy": {
+                    "@type": "EducationalOrganization",
+                    "name": "University of Michigan"
+                }
+            }
+        ]
+    }
+    </script>
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --border-color: #e5e7eb;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-header: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: var(--gradient-primary);
+            min-height: 100vh;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--bg-primary);
+            box-shadow: var(--shadow-lg);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Header Section */
+        .header {
+            background: var(--gradient-header);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(255,255,255,0.05) 0%, transparent 50%);
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Profile Image Styles */
+        .profile-image-container {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+            border-color: rgba(255,255,255,0.4);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+
+        /* Fallback for when no image is provided */
+        .profile-placeholder {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            border: 6px solid rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: rgba(255,255,255,0.7);
+            margin: 0 auto 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        h1.name {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .tagline {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            font-weight: 300;
+            opacity: 0.95;
+            margin-bottom: 2rem;
+            letter-spacing: 0.01em;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            padding: 0.75rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 0.5rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .contact-item a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 0;
+        }
+
+        section {
+            padding: 4rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        section:nth-child(even) {
+            background: var(--bg-secondary);
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4rem;
+            height: 0.25rem;
+            background: var(--gradient-header);
+            border-radius: 0.125rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .highlight-card {
+            background: var(--bg-primary);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .highlight-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-text {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Education & Experience */
+        .timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 2rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 1.25rem;
+            top: 1.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: var(--primary-color);
+            border-radius: 50%;
+            border: 4px solid var(--bg-primary);
+        }
+
+        .timeline-card {
+            background: var(--bg-primary);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+
+        .item-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            flex: 1;
+            line-height: 1.4;
+        }
+
+        .item-date {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            background: rgba(37, 99, 235, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            white-space: nowrap;
+        }
+
+        .item-company {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .item-location {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .achievements {
+            list-style: none;
+            padding: 0;
+        }
+
+        .achievements li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .achievements li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-size: 0.8rem;
+            top: 0.1rem;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--bg-primary);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .skill-category h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-tag {
+            background: var(--gradient-header);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Publications */
+        .publications-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .publication-item {
+            background: var(--bg-primary);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-md);
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .publication-item:hover {
+            transform: translateX(4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .publication-text {
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        /* Languages */
+        .languages-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .languages-grid {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .language-item {
+            background: var(--gradient-header);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 1rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+
+        .language-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Responsive Design */
+                    @media (max-width: 768px) {
+            .container {
+                margin: 0;
+            }
+            
+            .header {
+                padding: 3rem 1rem;
+            }
+            
+            .profile-image,
+            .profile-placeholder {
+                width: 150px;
+                height: 150px;
+            }
+            
+            section {
+                padding: 3rem 1rem;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .timeline::before {
+                left: 1rem;
+            }
+            
+            .timeline-item {
+                padding-left: 3rem;
+            }
+            
+            .timeline-item::before {
+                left: 0.25rem;
+            }
+            
+            .item-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .highlights {
+                grid-template-columns: 1fr;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+                    @media (max-width: 480px) {
+            .profile-image,
+            .profile-placeholder {
+                width: 120px;
+                height: 120px;
+                border-width: 4px;
+            }
+            
+            .timeline-card,
+            .skill-category,
+            .publication-item {
+                padding: 1.5rem;
+            }
+            
+            .languages-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header" role="banner">
+            <div class="header-content">
+                <!-- PROFILE IMAGE SECTION -->
+                <div class="profile-image-container">
+                    <!-- Your actual image -->
+                    <img src="sari-kassar.jpg" alt="Sari Kassar Professional Headshot" class="profile-image" itemprop="image">
+                </div>
+                
+                <h1 class="name" itemprop="name">Sari Kassar</h1>
+                <p class="tagline" itemprop="jobTitle">Senior Strategy Consultant | AI Innovation Expert | Product Strategy Leader</p>
+                <div class="contact-grid">
+                    <div class="contact-item" itemprop="address">
+                        <span>📍</span>
+                        <span>Miami, Florida</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📞</span>
+                        <a href="tel:+13137079818" itemprop="telephone">+1 313 707 9818</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>✉️</span>
+                        <a href="mailto:kassar@umich.edu" itemprop="email">kassar@umich.edu</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>🔗</span>
+                        <a href="https://linkedin.com/in/sgkassar" target="_blank" rel="noopener" itemprop="sameAs">LinkedIn Profile</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content" role="main">
+            <section id="about" aria-labelledby="about-heading">
+                <div class="section-header">
+                    <h2 id="about-heading">About</h2>
+                    <p class="section-subtitle">Strategy and Innovation Leader in the AI Era</p>
+                </div>
+                <div class="about-content">
+                    <p class="about-text" itemprop="description">
+                        Strategy and technical consultant with 7+ years of experience in innovation, product strategy, and management consulting. Combines data science thinking with business and technical expertise to deliver immediate business value. Currently seeking strategic roles to bridge client needs with AI-powered solutions. Certified Generative AI Consultant and Project Manager.
+                    </p>
+                    <div class="highlights">
+                        <div class="highlight-card">
+                            <span class="highlight-number">7+</span>
+                            <span class="highlight-text">Years Experience</span>
+                        </div>
+                        <div class="highlight-card">
+                            <span class="highlight-number">$25M+</span>
+                            <span class="highlight-text">Cost Savings Delivered</span>
+                        </div>
+                        <div class="highlight-card">
+                            <span class="highlight-number">C-Suite</span>
+                            <span class="highlight-text">Executive Advisor</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="education" aria-labelledby="education-heading">
+                <div class="section-header">
+                    <h2 id="education-heading">Education</h2>
+                    <p class="section-subtitle">Academic Excellence in Business and Engineering</p>
+                </div>
+                <div class="timeline">
+                    <article class="timeline-item" itemprop="alumniOf" itemscope itemtype="https://schema.org/EducationalOrganization">
+                        <div class="timeline-card">
+                            <div class="item-header">
+                                <h3 class="item-title" itemprop="name">Master of Business Administration - Strategy & Finance</h3>
+                                <span class="item-date">2023</span>
+                            </div>
+                            <div class="item-company" itemprop="name">University of Michigan</div>
+                            <div class="item-location">Ann Arbor, Michigan • <em>Graduated with Distinction</em></div>
+                        </div>
+                    </article>
+                    <article class="timeline-item" itemprop="alumniOf" itemscope itemtype="https://schema.org/EducationalOrganization">
+                        <div class="timeline-card">
+                            <div class="item-header">
+                                <h3 class="item-title">Master of Science - Mechanical Engineering</h3>
+                                <span class="item-date">2018</span>
+                            </div>
+                            <div class="item-company" itemprop="name">University of Michigan</div>
+                            <div class="item-location">Dearborn, Michigan • <em>High Distinction</em></div>
+                        </div>
+                    </article>
+                    <article class="timeline-item" itemprop="alumniOf" itemscope itemtype="https://schema.org/EducationalOrganization">
+                        <div class="timeline-card">
+                            <div class="item-header">
+                                <h3 class="item-title">Bachelor of Engineering - Mechanical Engineering</h3>
+                                <span class="item-date">2016</span>
+                            </div>
+                            <div class="item-company" itemprop="name">American University of Beirut</div>
+                            <div class="item-location">Beirut, Lebanon</div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section id="experience" aria-labelledby="experience-heading">
+                <div class="section-header">
+                    <h2 id="experience-heading">Professional Experience</h2>
+                    <p class="section-subtitle">Driving Innovation and Strategic Growth</p>
+                </div>
+                <div class="timeline">
+                    <article class="timeline-item" itemprop="worksFor" itemscope itemtype="https://schema.org/Organization">
+                        <div class="timeline-card">
+                            <div class="item-header">
+                                <h3 class="item-title" itemprop="jobTitle">Senior Strategy Consultant - Enterprise Strategy & AI Value</h3>
+                                <span class="item-date">Oct 2023 - Present</span>
+                            </div>
+                            <div class="item-company" itemprop="name">IBM Corporation</div>
+                            <div class="item-location">Miami, Florida</div>
+                            <ul class="achievements">
+                                <li>Developed product strategy for R&D Innovation Center of Excellence at global automotive client, leveraging agile methodologies, data analytics, and AI to launch technical offerings projected to reduce hardware costs by $10M+ annually and generate $4M in new revenue through personalized experiences</li>
+                                <li>Led comprehensive capability gap assessment across technical domains to define minimum viable capabilities for Center of Excellence launch; delivered strategic roadmap, operating model, and change management strategy</li>
+                                <li>Created dynamic offshoring ROI model for electrical manufacturing client, integrating phased FTE movement, scenario-based cost analysis, and sensitivity modeling to inform executive workforce strategy decisions</li>
+                                <li>Conducted GenAI transformation opportunity assessments using Python and IBM CBM.ai frameworks across media, IT, automotive, and utility sectors, identifying high-value use cases with quantifiable cost savings</li>
+                                <li>Interviewed 40+ IBM industry leaders and client executives to identify 150+ tailored AI use cases addressing critical challenges in software-defined vehicles, supply chains, cybersecurity, and agentic AI</li>
+                                <li>Facilitated strategy workshops with 20+ stakeholders, capturing requirements, synthesizing pain points, and co-developing North Star visions with actionable executive alignment outcomes</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="timeline-item">
+                        <div class="timeline-card">
+                            <div class="item-header">
+                                <h3 class="item-title">MBA Marketing Consultant</h3>
+                                <span class="item-date">Jan 2022 - Apr 2022</span>
+                            </div>
+                            <div class="item-company">Microsoft Corporation</div>
+                            <div class="item-location">Remote</div>
+                            <ul class="achievements">
+                                <li>Created strategic data-driven framework and delivered creative executions for sustainability storytelling, contributing to estimated 20% increase in social engagement metrics</li>
+                                <li>Conducted comprehensive ESG market research gathering competitive benchmarks and insights on cloud gaming carbon footprint, delivering actionable recommendations to Microsoft's business strategy</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="timeline-item">
+                        <div class="timeline-card">
+                            <div class="item-header">
+                                <h3 class="item-title">Project & Team Lead - Cloud Data Analytics</h3>
+                                <span class="item-date">Aug 2021 - Oct 2023</span>
+                            </div>
+                            <div class="item-company">Ford Motor Company</div>
+                            <div class="item-location">Dearborn, Michigan</div>
+                            <ul class="achievements">
+                                <li>Launched Ford's first ADAS IT cloud analytics platform for unstructured vehicle sensor data management and driving scenario extraction, developing automated AI labeling tools saving $3M in labeling costs</li>
+                                <li>Led ADAS IT Google Cloud Platform roadmap and directed data science team developing scenario-based deep neural networks for spatiotemporal data labeling, reducing costs by $2M+ through vendor consolidation</li>
+                                <li>Spearheaded Ford-Google business relationship for Project IDRIVES, evaluating emerging tech solutions and deploying Kubernetes-based ADAS simulation framework, boosting simulation scale 10x</li>
+                                <li>Collaborated with Ford's Cavnue subsidiary on smart roads and connected vehicle initiatives, improving road infrastructure-BlueCruise coordination through cloud-based analytics</li>
+                                <li>Led quarterly progress updates and presented directly to Office of the CTO</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="timeline-item">
+                        <div class="timeline-card">
+                            <div class="item-header">
+                                <h3 class="item-title">ADAS Verification & Validation Research Engineer</h3>
+                                <span class="item-date">Mar 2019 - Aug 2021</span>
+                            </div>
+                            <div class="item-company">Ford Motor Company</div>
+                            <div class="item-location">Dearborn, Michigan</div>
+                            <ul class="achievements">
+                                <li>Developed Ford's first scenario-based systems engineering methodology, enabling accurate driving scenario creation for SOTIF verification with traceability to safety requirements, projected to save $10M in physical testing</li>
+                                <li>Supervised multiple university research projects (Carnegie Mellon, University of Michigan) and mentored graduate interns, achieving $2M savings in synthetic edge case scenario generation</li>
+                                <li>Served as liaison between legal, research, and AI teams to enhance data governance framework for ML-based production ADAS assets, estimated $880K cost savings per failure prevention</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="timeline-item">
+                        <div class="timeline-card">
+                            <div class="item-header">
+                                <h3 class="item-title">Systems Functional Safety Research Engineer</h3>
+                                <span class="item-date">Aug 2018 - Mar 2019</span>
+                            </div>
+                            <div class="item-company">Ford Motor Company</div>
+                            <div class="item-location">Dearborn, Michigan</div>
+                            <ul class="achievements">
+                                <li>Piloted MIT-Ford STPA control systems hazard analyses, uncovering 25% additional functional safety requirements for vehicle start-up/shut-down features</li>
+                                <li>Led safety framework improvement study for Ford GPDS quality review process, achieving 20% engineering efficiency gains in model-based ISO26262 compliance</li>
+                                <li>Collaborated with industry working group developing automotive STPA best practices, resulting in publication as SAE J3187 standard</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section id="skills" aria-labelledby="skills-heading">
+                <div class="section-header">
+                    <h2 id="skills-heading">Core Competencies</h2>
+                    <p class="section-subtitle">Technical Excellence Meets Strategic Vision</p>
+                </div>
+                <div class="skills-container">
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3>Business & Strategy</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Business Case Development</span>
+                                <span class="skill-tag">Executive Presentations</span>
+                                <span class="skill-tag">Strategic Storytelling</span>
+                                <span class="skill-tag">Product Strategy</span>
+                                <span class="skill-tag">Client Relations</span>
+                                <span class="skill-tag">Strategy Workshops</span>
+                                <span class="skill-tag">Design Thinking</span>
+                                <span class="skill-tag">Value Orchestration</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Technical & AI</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Python Programming</span>
+                                <span class="skill-tag">Generative AI</span>
+                                <span class="skill-tag">RAG Systems</span>
+                                <span class="skill-tag">Agentic AI Frameworks</span>
+                                <span class="skill-tag">Cloud Computing</span>
+                                <span class="skill-tag">SQL & Databases</span>
+                                <span class="skill-tag">Tableau</span>
+                                <span class="skill-tag">Data Analytics</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Domain Expertise</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Product Development</span>
+                                <span class="skill-tag">ADAS Systems</span>
+                                <span class="skill-tag">Software-Defined Vehicles</span>
+                                <span class="skill-tag">Cloud Simulation</span>
+                                <span class="skill-tag">Cybersecurity</span>
+                                <span class="skill-tag">Digital Twins</span>
+                                <span class="skill-tag">IoT Systems</span>
+                                <span class="skill-tag">Digital Manufacturing</span>
+                                <span class="skill-tag">Safety & Reliability</span>
+                                <span class="skill-tag">Circular Economy</span>
+                                <span class="skill-tag">Material Science</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="publications" aria-labelledby="publications-heading">
+                <div class="section-header">
+                    <h2 id="publications-heading">Publications & Patents</h2>
+                    <p class="section-subtitle">Research Contributions and Intellectual Property</p>
+                </div>
+                <div class="publications-container">
+                    <article class="publication-item" itemprop="citation">
+                        <p class="publication-text">Chehadeh et al. <strong>"Simulating Traffic Scenarios."</strong> U.S. Patent Application Accepted, Patent Pending 18492810, 2025.</p>
+                    </article>
+                    <article class="publication-item" itemprop="citation">
+                        <p class="publication-text">Kassar, Sari, et al. <strong>"Robotic apparatus for vehicle occupant protection."</strong> U.S. Patent No. 11,584,014, 2023.</p>
+                    </article>
+                    <article class="publication-item" itemprop="citation">
+                        <p class="publication-text">Kassar, Sari, et al. <strong>"Anisotropic time dependent and continuum damage coupled plasticity model: an application for Mg AZ31B"</strong>, Materials Science Publication, 2019.</p>
+                    </article>
+                    <article class="publication-item" itemprop="citation">
+                        <p class="publication-text">Kassar, Sari, et al. <strong>"Towards a Safer Design of Helmets: Finite Element and Experimental Assessment"</strong>, Safety Engineering Research, 2016.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section id="languages" aria-labelledby="languages-heading">
+                <div class="section-header">
+                    <h2 id="languages-heading">Languages</h2>
+                    <p class="section-subtitle">Multilingual Communication</p>
+                </div>
+                <div class="languages-container">
+                    <div class="languages-grid">
+                        <div class="language-item" itemprop="knowsLanguage">
+                            <span>English</span>
+                            <small style="display: block; opacity: 0.8; font-weight: 400;">Fluent</small>
+                        </div>
+                        <div class="language-item" itemprop="knowsLanguage">
+                            <span>Arabic</span>
+                            <small style="display: block; opacity: 0.8; font-weight: 400;">Fluent</small>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer style="background: var(--text-primary); color: white; text-align: center; padding: 2rem;">
+            <p>&copy; 2025 Sari Kassar. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; opacity: 0.8; font-size: 0.9rem;">
+                Available for consulting opportunities in AI strategy, product innovation, and digital transformation.
+            </p>
+        </footer>
+    </div>
+
+    <!-- Additional structured data for AI crawlers -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Sari Kassar - Professional Resume",
+        "description": "Professional resume and portfolio of Sari Kassar, Senior Strategy Consultant at IBM specializing in AI, innovation, and product strategy",
+        "url": "https://sarikassar.com",
+        "mainEntity": {
+            "@type": "Person",
+            "name": "Sari Kassar",
+            "jobTitle": "Senior Strategy Consultant",
+            "worksFor": {
+                "@type": "Organization",
+                "name": "IBM",
+                "sameAs": "https://www.ibm.com"
+            },
+            "hasOccupation": {
+                "@type": "Occupation",
+                "name": "Strategy Consultant",
+                "occupationLocation": {
+                    "@type": "City",
+                    "name": "Miami"
+                },
+                "skills": [
+                    "Artificial Intelligence",
+                    "Strategy Consulting", 
+                    "Product Strategy",
+                    "Generative AI",
+                    "Cloud Computing",
+                    "ADAS Systems",
+                    "Data Analytics",
+                    "Business Development"
+                ]
+            },
+            "hasCredential": [
+                {
+                    "@type": "EducationalOccupationalCredential",
+                    "name": "MBA in Strategy and Finance",
+                    "credentialCategory": "degree",
+                    "educationalLevel": "Graduate",
+                    "recognizedBy": {
+                        "@type": "CollegeOrUniversity",
+                        "name": "University of Michigan"
+                    }
+                },
+                {
+                    "@type": "EducationalOccupationalCredential", 
+                    "name": "MS in Mechanical Engineering",
+                    "credentialCategory": "degree",
+                    "educationalLevel": "Graduate",
+                    "recognizedBy": {
+                        "@type": "CollegeOrUniversity",
+                        "name": "University of Michigan"
+                    }
+                }
+            ],
+            "award": [
+                "MBA with Distinction - University of Michigan",
+                "MS with High Distinction - University of Michigan",
+                "U.S. Patent No. 11,584,014",
+                "SAE J3187 Standard Co-Author"
+            ]
+        }
+    }
+    </script>
+</body>
+</html>
