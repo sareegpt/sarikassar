@@ -183,12 +183,47 @@
             margin-bottom: 2rem;
             letter-spacing: 0.01em;
         }
+        
+        /* START: ADDED STYLES FOR RESUME BUTTON */
+        .resume-download-container {
+            margin: 0 auto 2.5rem; /* Spacing between button and contact grid */
+            text-align: center;
+        }
+
+        .resume-download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background-color: var(--bg-primary);
+            color: var(--primary-color);
+            padding: 0.8rem 1.75rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .resume-download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+            background-color: rgba(255,255,255,0.9);
+            border-color: var(--primary-color);
+        }
+
+        .resume-download-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+        /* END: ADDED STYLES FOR RESUME BUTTON */
+
 
         .contact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1.5rem;
-            margin-top: 2rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
@@ -796,6 +831,19 @@
                 
                 <h1 class="name" itemprop="name">Sari Kassar</h1>
                 <p class="tagline" itemprop="jobTitle">Senior Strategy Consultant | AI Innovation Expert | Product Strategy Leader</p>
+                
+                <!-- START: ADDED RESUME DOWNLOAD BUTTON -->
+                <div class="resume-download-container">
+                    <a href="Sari_Kassar_Resume.pdf" class="resume-download-btn" download>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z" />
+                            <path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z" />
+                        </svg>
+                        <span>Download Resume</span>
+                    </a>
+                </div>
+                <!-- END: ADDED RESUME DOWNLOAD BUTTON -->
+
                 <div class="contact-grid">
                     <div class="contact-item" itemprop="address">
                         <span>📍</span>
@@ -818,6 +866,7 @@
         </header>
 
         <main class="main-content" role="main">
+            <!-- The rest of your content remains unchanged -->
             <section id="about" aria-labelledby="about-heading">
                 <div class="section-header">
                     <h2 id="about-heading">About</h2>
@@ -1070,7 +1119,7 @@
         </main>
 
         <footer style="background: var(--text-primary); color: white; text-align: center; padding: 2rem;">
-            <p>&copy; 2025 Sari Kassar. All rights reserved.</p>
+            <p>© 2025 Sari Kassar. All rights reserved.</p>
             <p style="margin-top: 0.5rem; opacity: 0.8; font-size: 0.9rem;">
                 Available for consulting opportunities in AI strategy, product innovation, and digital transformation.
             </p>
