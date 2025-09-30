@@ -1,737 +1,572 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sari Kassar - Senior Strategy Consultant</title>
-    <meta name="description" content="Strategic storyteller and P&L expert with 9+ years experience in research, engineering and strategy consulting at IBM and Ford.">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --black: #000000;
-            --white: #ffffff;
-            --gray-100: #f5f5f5;
-            --gray-200: #e5e5e5;
-            --gray-800: #262626;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            line-height: 1.6;
-            color: var(--black);
-            background: var(--white);
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: var(--white);
-            border-bottom: 1px solid var(--gray-200);
-            z-index: 1000;
-            padding: 1.5rem 2rem;
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--black);
-            text-decoration: none;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2.5rem;
-            margin: 0;
-        }
-
-        .nav-link {
-            color: var(--black);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: opacity 0.2s;
-        }
-
-        .nav-link:hover {
-            opacity: 0.6;
-        }
-
-        .nav-resume {
-            color: var(--black);
-            text-decoration: none;
-            font-size: 0.95rem;
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--black);
-            transition: all 0.2s;
-        }
-
-        .nav-resume:hover {
-            background: var(--black);
-            color: var(--white);
-        }
-
-        .mobile-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        body {
-            padding-top: 80px;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 100%;
-            overflow-x: hidden;
-        }
-
-        /* Header */
-        header {
-            border-bottom: 1px solid var(--gray-200);
-            padding: 5rem 2rem 4rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .header-content {
-            max-width: 900px;
-            display: flex;
-            gap: 3rem;
-            align-items: flex-start;
-        }
-
-        .header-text {
-            flex: 1;
-        }
-
-        .profile-image {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border: 2px solid var(--gray-200);
-            flex-shrink: 0;
-        }
-
-        h1 {
-            font-size: 4rem;
-            font-weight: 600;
-            letter-spacing: -0.03em;
-            margin-bottom: 1rem;
-        }
-
-        .tagline {
-            font-size: 1.5rem;
-            color: var(--gray-800);
-            font-weight: 400;
-            margin-bottom: 2.5rem;
-            line-height: 1.5;
-        }
-
-        .header-meta {
-            display: flex;
-            gap: 2.5rem;
-            flex-wrap: wrap;
-            font-size: 0.95rem;
-        }
-
-        .header-meta a {
-            color: var(--black);
-            text-decoration: none;
-            border-bottom: 1px solid var(--gray-200);
-            transition: border-color 0.2s;
-        }
-
-        .header-meta a:hover {
-            border-bottom-color: var(--black);
-        }
-
-        /* Main Content */
-        main {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        section {
-            padding: 5rem 0;
-            border-bottom: 1px solid var(--gray-200);
-        }
-
-        section:last-of-type {
-            border-bottom: none;
-        }
-
-        .section-inner {
-            max-width: 900px;
-        }
-
-        h2 {
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            margin-bottom: 3rem;
-            color: var(--gray-800);
-        }
-
-        /* About */
-        .about-text {
-            font-size: 1.25rem;
-            line-height: 1.7;
-            color: var(--gray-800);
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 3rem;
-            margin-top: 4rem;
-        }
-
-        .stat-item {
-            border-top: 2px solid var(--black);
-            padding-top: 1rem;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 600;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 0.95rem;
-            color: var(--gray-800);
-        }
-
-        /* Featured Work */
-        .featured-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            margin-top: 3rem;
-        }
-
-        .featured-item h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .featured-item p {
-            color: var(--gray-800);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .video-container {
-            background: var(--black);
-            aspect-ratio: 16/9;
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-
-        .video-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .patent-preview {
-            border: 1px solid var(--gray-200);
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-            background: var(--gray-100);
-        }
-
-        .patent-preview h4 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .patent-preview p {
-            color: var(--gray-800);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .patent-number {
-            font-family: 'Courier New', monospace;
-            font-size: 0.85rem;
-            color: var(--gray-800);
-        }
-
-        .external-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--black);
-            text-decoration: none;
-            border-bottom: 1px solid var(--black);
-            font-size: 0.95rem;
-            transition: opacity 0.2s;
-        }
-
-        .external-link:hover {
-            opacity: 0.6;
-        }
-
-        /* Awards */
-        .awards-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .award-item {
-            border-left: 2px solid var(--black);
-            padding-left: 1.5rem;
-        }
-
-        .award-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .award-org {
-            color: var(--gray-800);
-            font-size: 0.95rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .award-year {
-            font-size: 0.85rem;
-            color: var(--gray-800);
-        }
-
-        /* Experience */
-        .experience-item {
-            margin-bottom: 4rem;
-        }
-
-        .experience-header {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 2rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .experience-title {
-            font-size: 1.35rem;
-            font-weight: 600;
-            line-height: 1.3;
-        }
-
-        .experience-date {
-            font-size: 0.9rem;
-            color: var(--gray-800);
-            white-space: nowrap;
-        }
-
-        .experience-company {
-            font-size: 1rem;
-            color: var(--gray-800);
-            margin-bottom: 1.25rem;
-        }
-
-        .experience-item ul {
-            list-style: none;
-        }
-
-        .experience-item li {
-            margin-bottom: 0.85rem;
-            padding-left: 1.5rem;
-            position: relative;
-            line-height: 1.6;
-        }
-
-        .experience-item li::before {
-            content: '—';
-            position: absolute;
-            left: 0;
-        }
-
-        /* Education */
-        .education-grid {
-            display: grid;
-            gap: 2.5rem;
-        }
-
-        .education-item {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 2rem;
-        }
-
-        .education-degree {
-            font-weight: 500;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .education-school {
-            color: var(--gray-800);
-            font-size: 0.95rem;
-        }
-
-        .education-year {
-            color: var(--gray-800);
-            font-size: 0.9rem;
-        }
-
-        /* Skills */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 4rem;
-        }
-
-        .skill-category h3 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 1.25rem;
-        }
-
-        .skill-list {
-            line-height: 1.8;
-            color: var(--gray-800);
-        }
-
-        /* Publications */
-        .publication-item {
-            margin-bottom: 2rem;
-            line-height: 1.6;
-            color: var(--gray-800);
-        }
-
-        /* Footer */
-        footer {
-            border-top: 1px solid var(--gray-200);
-            padding: 3rem 2rem;
-            text-align: center;
-            color: var(--gray-800);
-            font-size: 0.9rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .featured-grid,
-            .awards-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .skills-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-
-            .mobile-toggle {
-                display: block;
-            }
-
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            .tagline {
-                font-size: 1.15rem;
-            }
-
-            .header-meta {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .experience-header {
-                grid-template-columns: 1fr;
-            }
-
-            .education-item {
-                grid-template-columns: 1fr;
-            }
-
-            .stats,
-            .skills-grid,
-            .awards-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sari Kassar - Senior Strategy Consultant</title>
+  <meta name="description" content="Strategic storyteller and P&L expert with 9+ years experience in research, engineering and strategy consulting at IBM and Ford." />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #000000;
+      --white: #ffffff;
+      --gray-50: #fafafa;
+      --gray-100: #f5f5f5;
+      --gray-200: #e5e5e5;
+      --gray-800: #262626;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.6;
+      color: var(--black);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+      padding-top: 72px; /* fixed nav offset */
+      overflow-x: hidden;
+    }
+
+    /* NAVIGATION */
+    nav {
+      position: fixed; inset: 0 0 auto 0; z-index: 1000;
+      background: rgba(255,255,255,0.9);
+      border-bottom: 1px solid var(--gray-200);
+      backdrop-filter: saturate(150%) blur(8px);
+    }
+
+    .nav-shell { padding: 0.9rem 1.25rem; }
+
+    /* Keep content centered so the right group never hugs the far edge on huge screens */
+    .nav-container {
+      max-width: 1100px; /* tighter than 1400 to keep things compact */
+      margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+
+    .nav-left { display: flex; align-items: center; gap: 1rem; min-width: 0; }
+
+    .nav-logo {
+      font-size: 1.05rem; font-weight: 700; text-decoration: none; color: var(--black);
+      letter-spacing: 0.01em;
+      padding: 0.25rem 0.4rem;
+      border: 1px solid transparent;
+      border-radius: 10px;
+    }
+    .nav-logo:focus-visible { border-color: var(--gray-200); outline: none; }
+
+    .nav-right { display: flex; align-items: center; gap: 1.25rem; }
+    .nav-menu { display: flex; list-style: none; gap: 1.35rem; }
+
+    .nav-link { color: var(--black); text-decoration: none; font-size: 0.95rem; transition: opacity .2s; }
+    .nav-link:hover { opacity: .6; }
+
+    .nav-resume { color: var(--black); text-decoration: none; font-size: 0.93rem; padding: 0.45rem 0.8rem; border: 1px solid var(--black); border-radius: 999px; transition: all .2s; white-space: nowrap; }
+    .nav-resume:hover { background: var(--black); color: var(--white); }
+
+    .mobile-toggle { display: none; background: none; border: 1px solid var(--gray-200); border-radius: 10px; font-size: 1.15rem; line-height: 1; padding: 0.4rem 0.55rem; cursor: pointer; }
+
+    /* CONTAINERS */
+    .container { max-width: 1400px; margin: 0 auto; padding: 0 1.25rem; }
+
+    header { border-bottom: 1px solid var(--gray-200); padding: 4.5rem 0 4rem; }
+
+    /* HEADER LAYOUT: better image placement */
+    .header-content {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 220px 1fr; gap: 2.25rem; align-items: start;
+    }
+
+    .profile-wrap { position: relative; }
+    .profile-image { max-width: 220px; width: 100%; height: auto; border: 1px solid var(--gray-200); border-radius: 16px; box-shadow: var(--shadow-sm); display: block; background: var(--gray-50); }
+
+    .header-text { min-width: 0; }
+
+    h1 { font-size: clamp(2.2rem, 3.5vw + 1rem, 3.25rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.6rem; }
+
+    .tagline { font-size: clamp(1.05rem, 0.8vw + 0.9rem, 1.35rem); color: var(--gray-800); font-weight: 400; margin-bottom: 1.8rem; line-height: 1.5; }
+
+    .header-meta { display: flex; flex-wrap: wrap; gap: 1.25rem 2rem; font-size: 0.95rem; }
+    .header-meta a { color: var(--black); text-decoration: none; border-bottom: 1px solid var(--gray-200); transition: border-color .2s; }
+    .header-meta a:hover { border-bottom-color: var(--black); }
+
+    /* MAIN */
+    main { max-width: 1100px; margin: 0 auto; padding: 0 1.25rem; }
+    section { padding: 4.5rem 0; border-bottom: 1px solid var(--gray-200); }
+    section:last-of-type { border-bottom: none; }
+    .section-inner { max-width: 900px; }
+
+    h2 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 2.25rem; color: var(--gray-800); }
+
+    /* ABOUT */
+    .about-text { font-size: 1.2rem; line-height: 1.7; color: var(--gray-800); }
+
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; margin-top: 3rem; }
+    .stat-item { border-top: 2px solid var(--black); padding-top: 0.85rem; }
+    .stat-number { font-size: 2.1rem; font-weight: 700; display: block; margin-bottom: 0.35rem; }
+    .stat-label { font-size: 0.95rem; color: var(--gray-800); }
+
+    /* FEATURED */
+    .featured-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 2rem; }
+    .featured-item h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.8rem; }
+    .featured-item p { color: var(--gray-800); margin-bottom: 1.25rem; line-height: 1.6; }
+
+    .video-container { background: var(--black); aspect-ratio: 16/9; margin-bottom: 1rem; position: relative; border-radius: 12px; overflow: hidden; }
+    .video-container iframe { width: 100%; height: 100%; border: 0; }
+
+    .patent-preview { border: 1px solid var(--gray-200); padding: 1.5rem; margin-bottom: 1rem; background: var(--gray-100); border-radius: 12px; }
+    .patent-preview h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .patent-preview p { color: var(--gray-800); font-size: 0.95rem; line-height: 1.6; margin-bottom: 0.7rem; }
+    .patent-number { font-family: 'Courier New', monospace; font-size: 0.85rem; color: var(--gray-800); }
+
+    .external-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--black); text-decoration: none; border-bottom: 1px solid var(--black); font-size: 0.95rem; transition: opacity .2s; }
+    .external-link:hover { opacity: .7; }
+
+    /* AWARDS */
+    .awards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.25rem; margin-top: 2rem; }
+    .award-item { border-left: 2px solid var(--black); padding-left: 1.25rem; }
+    .award-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .award-org { color: var(--gray-800); font-size: 0.95rem; margin-bottom: 0.35rem; }
+    .award-year { font-size: 0.85rem; color: var(--gray-800); }
+
+    /* EXPERIENCE */
+    .experience-item { margin-bottom: 3.25rem; }
+    .experience-header { display: grid; grid-template-columns: 1fr auto; gap: 1rem; margin-bottom: 0.6rem; }
+    .experience-title { font-size: 1.25rem; font-weight: 700; line-height: 1.3; }
+    .experience-date { font-size: 0.9rem; color: var(--gray-800); white-space: nowrap; }
+    .experience-company { font-size: 1rem; color: var(--gray-800); margin-bottom: 1rem; }
+    .experience-item ul { list-style: none; }
+    .experience-item li { margin-bottom: 0.75rem; padding-left: 1.25rem; position: relative; line-height: 1.6; }
+    .experience-item li::before { content: '—'; position: absolute; left: 0; }
+
+    /* EDUCATION */
+    .education-grid { display: grid; gap: 1.8rem; }
+    .education-item { display: grid; grid-template-columns: 1fr auto; gap: 1rem; }
+    .education-degree { font-weight: 600; font-size: 1.05rem; margin-bottom: 0.35rem; }
+    .education-school { color: var(--gray-800); font-size: 0.95rem; }
+    .education-year { color: var(--gray-800); font-size: 0.9rem; }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+    .skill-category h3 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; }
+    .skill-list { line-height: 1.8; color: var(--gray-800); }
+
+    /* PUBLICATIONS */
+    .publication-item { margin-bottom: 1.5rem; line-height: 1.6; color: var(--gray-800); }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--gray-200); padding: 2.5rem 1.25rem; text-align: center; color: var(--gray-800); font-size: 0.9rem; max-width: 1100px; margin: 0 auto; }
+
+    /* RESPONSIVE */
+
+    /* === ADDED: Featured grid layout + Timeline styles (horizontal scroll) === */
+    .featured-grid { 
+      display: grid; 
+      grid-template-columns: 1fr 1fr; 
+      grid-template-areas:
+        "patents helmet"
+        "video   video";
+      gap: 3rem; 
+      margin-top: 2rem; 
+    }
+    .featured-item { display: flex; flex-direction: column; }
+    .featured-item h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.8rem; }
+    .featured-item p { color: var(--gray-800); margin-bottom: 1.25rem; line-height: 1.6; }
+
+    .featured-item.patents { grid-area: patents; }
+    .featured-item.helmet  { grid-area: helmet; }
+    .featured-item.video   { grid-area: video; }
+
+    /* Timeline */
+    .timeline { 
+      position: relative; display: flex; flex-direction: row; align-items: flex-start; gap: 1.25rem; 
+      padding: 2.5rem 0 3.5rem; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+    }
+    .timeline::-webkit-scrollbar { height: 10px; }
+    .timeline::-webkit-scrollbar-thumb { background: var(--gray-200); border-radius: 999px; }
+    .t-item { position: relative; width: 420px; height: 500px; flex: 0 0 420px; background: var(--white);
+      border: 1px solid var(--gray-200); border-radius: 14px; padding: 1.25rem; box-shadow: var(--shadow-sm);
+      scroll-snap-align: center; display: flex; flex-direction: column; }
+    .t-head { display: grid; grid-template-columns: 1fr auto; gap: 0.5rem; margin-bottom: 0.25rem; }
+    .t-title { font-size: 1.1rem; font-weight: 700; }
+    .t-date { font-size: 0.9rem; color: var(--gray-800); white-space: nowrap; }
+    .t-company { font-size: 0.95rem; color: var(--gray-800); margin-bottom: 0.75rem; }
+    .t-item ul { list-style: none; flex: 1; overflow-y: auto; min-height: 0; }
+    .t-item li { margin-bottom: 0.6rem; padding-left: 1rem; position: relative; line-height: 1.55; }
+    .t-item li::before { content: '—'; position: absolute; left: 0; }
+
+    .timeline-rail { position: relative; margin-top: 1rem; }
+    .timeline-rail::before { content: ""; position: absolute; left: 0; right: 0; top: -9999px; height: 0; background: transparent; }
+
+    /* === REFINED TIMELINE: centered rail with dots === */
+    .timeline { 
+      position: relative; display: flex; flex-direction: row; align-items: center; gap: 1.25rem; 
+      padding: 2.5rem 0; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+    }
+    .timeline::before { content: ""; position: absolute; left: 0; right: 0; bottom: 22px; height: 2px; background: var(--gray-200); }
+    .timeline::-webkit-scrollbar { height: 10px; }
+    .timeline::-webkit-scrollbar-thumb { background: var(--gray-200); border-radius: 999px; }
+
+    .t-item { position: relative; min-width: 360px; max-width: 460px; flex: 0 0 auto; background: var(--white);
+      border: 1px solid var(--gray-200); border-radius: 14px; padding: 1.25rem; box-shadow: var(--shadow-sm);
+      scroll-snap-align: center; }
+    .t-head { display: grid; grid-template-columns: 1fr auto; gap: 0.5rem; margin-bottom: 0.25rem; }
+    .t-title { font-size: 1.1rem; font-weight: 700; }
+    .t-date { font-size: 0.9rem; color: var(--gray-800); white-space: nowrap; }
+    .t-company { font-size: 0.95rem; color: var(--gray-800); margin-bottom: 0.75rem; }
+    .t-item ul { list-style: none; }
+    .t-item li { margin-bottom: 0.6rem; padding-left: 1rem; position: relative; line-height: 1.55; }
+    .t-item li::before { content: '—'; position: absolute; left: 0; }
+
+    /* Dot for each position */
+    
+    
+
+    @media (max-width: 1024px) {
+      .featured-grid, .awards-grid { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .header-content { grid-template-columns: 180px 1fr; }
+      .profile-image { width: 180px; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu { display: none; }
+      .mobile-toggle { display: inline-block; }
+      .nav-right { gap: 0.75rem; }
+
+      .header-content { grid-template-columns: 1fr; text-align: left; }
+      .profile-wrap { order: -1; }
+      .profile-image { width: 140px; margin: 0 auto 0.75rem 0; border-radius: 50%; }
+
+      h1 { font-size: 2.2rem; }
+      .tagline { font-size: 1.05rem; }
+
+      .header-meta { flex-direction: column; gap: 0.75rem; }
+      .experience-header { grid-template-columns: 1fr; }
+      .education-item { grid-template-columns: 1fr; }
+      .stats, .skills-grid, .awards-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-    <nav>
-        <div class="nav-container">
-            <a href="#top" class="nav-logo">Sari Kassar</a>
-            <ul class="nav-menu">
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#featured" class="nav-link">Featured</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#education" class="nav-link">Education</a></li>
-                <li><a href="Sari_Kassar_Resume.pdf" class="nav-resume" target="_blank">Resume</a></li>
-            </ul>
-            <button class="mobile-toggle">☰</button>
+  <nav>
+    <div class="nav-shell">
+      <div class="nav-container">
+        <div class="nav-left">
+          <a href="#top" class="nav-logo">Sari Kassar</a>
         </div>
-    </nav>
-
-    <header id="top">
-        <div class="header-content">
-            <div class="header-text">
-                <h1>Sari Kassar</h1>
-                <p class="tagline">Senior Strategy Consultant at IBM specializing in AI innovation, product strategy, and digital transformation</p>
-                <div class="header-meta">
-                    <span>Miami, Florida</span>
-                    <a href="tel:+13137079818">+1 313 707 9818</a>
-                    <a href="mailto:kassar@umich.edu">kassar@umich.edu</a>
-                    <a href="https://linkedin.com/in/sgkassar" target="_blank">LinkedIn</a>
-                </div>
-            </div>
-            <img src="sari-kassar.jpg" alt="Sari Kassar" class="profile-image">
+        <div class="nav-right">
+          <ul class="nav-menu" id="navMenu">
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#featured" class="nav-link">Featured</a></li>
+            <li><a href="#experience" class="nav-link">Experience</a></li>
+            <li><a href="#education" class="nav-link">Education</a></li>
+          </ul>
+          <a href="Sari_Kassar_Resume.pdf" class="nav-resume" target="_blank" rel="noopener">Resume</a>
+          <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
         </div>
-    </header>
+      </div>
+    </div>
+  </nav>
 
-    <main>
-        <section id="about">
-            <div class="section-inner">
-                <h2>About</h2>
-                <p class="about-text">
-                    Strategic storyteller and P&L expert with 9+ years combined experience in research, engineering and strategy consulting. Skilled at translating complex data into clear, executive-ready business strategies. I excel at collaborating with business and technical teams to solve the hardest problems. Certified Gen AI Consultant/PM.
-                </p>
-                <div class="stats">
-                    <div class="stat-item">
-                        <span class="stat-number">9+</span>
-                        <span class="stat-label">Years Experience</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">$100M+</span>
-                        <span class="stat-label">Pursuits Quantified</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">150+</span>
-                        <span class="stat-label">AI Use Cases Identified</span>
-                    </div>
-                </div>
+  <header id="top">
+    <div class="header-content">
+      <div class="profile-wrap">
+        <img src="sari-kassar.jpg" alt="Portrait of Sari Kassar" class="profile-image" />
+      </div>
+      <div class="header-text">
+        <h1>Sari Kassar</h1>
+        <p class="tagline">Executive Consultant at IBM specializing in AI innovation, strategic sales, and emerging technology strategy</p>
+        <div class="header-meta">
+          <span>United States</span>
+          <a href="tel:+13137079818" aria-label="Call +1 313 707 9818">+1 313 707 9818</a>
+          <a href="mailto:sareegpt@gmail.com">sareegpt@gmail.com</a>
+          <a href="https://linkedin.com/in/sgkassar" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="about">
+      <div class="section-inner">
+        <h2>About</h2>
+        <p class="about-text">
+          Strategic storyteller and P&amp;L expert with 9+ years combined experience in research, engineering and strategy consulting. Skilled at translating complex data into clear, executive-ready business strategies. I excel at collaborating with business and technical teams to solve the hardest problems. Certified Gen AI Consultant/PM.
+        </p>
+        <div class="stats">
+          <div class="stat-item">
+            <span class="stat-number">9+</span>
+            <span class="stat-label">Years Experience</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">3+</span>
+            <span class="stat-label">Industries Served</span>
+          </div>
+	  <div class="stat-item">
+            <span class="stat-number">$25M+</span>
+            <span class="stat-label">Cost Savings Delivered</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="featured">
+      <div class="section-inner">
+        <h2>Featured Work</h2>
+        <div class="featured-grid">
+          <!-- Patents (left) -->
+          <div class="featured-item patents">
+            <h3>Autonomous Driving Patents</h3>
+            <div class="patent-preview">
+              <h4>Robotic Apparatus for Vehicle Occupant Protection</h4>
+              <p>Innovative safety system for autonomous vehicles designed to enhance occupant protection through advanced robotic mechanisms and intelligent response systems.</p>
+              <p class="patent-number">U.S. Patent No. 11,584,014 (2023)
+                <a href="https://patents.google.com/patent/US11584014B2" class="external-link" target="_blank" rel="noopener" style="margin-left:.5rem;">View →</a>
+              </p>
             </div>
-        </section>
-
-        <section id="featured">
-            <div class="section-inner">
-                <h2>Featured Work</h2>
-                <div class="featured-grid">
-                    <!-- Video Analysis -->
-                    <div class="featured-item">
-                        <h3>Lebanon's Currency Crisis Analysis</h3>
-                        <div class="video-container">
-                            <iframe width="1038" height="584" src="https://www.youtube.com/embed/YM6U4dOngfE" title="Lebanese Currency Crisis, Michigan Ross, STRAT534" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        </div>
-                        <p>Economic analysis exploring Lebanon's twin deficit phenomenon during the 2019 financial collapse—one of the world's worst since the 19th century. Produced at Michigan Ross School of Business, examining fiscal shortfalls and balance trade dynamics that threatened the country's economic and social systems.</p>
-                    </div>
-
-                    <!-- Patent Preview -->
-                    <div class="featured-item">
-                        <h3>Autonomous Driving Patents</h3>
-                        <div class="patent-preview">
-                            <h4>Robotic Apparatus for Vehicle Occupant Protection</h4>
-                            <p>Innovative safety system for autonomous vehicles designed to enhance occupant protection through advanced robotic mechanisms and intelligent response systems.</p>
-                            <p class="patent-number">U.S. Patent No. 11,584,014 (2023)</p>
-                        </div>
-                        <div class="patent-preview" style="margin-top: 1rem;">
-                            <h4>Simulating Traffic Scenarios</h4>
-                            <p>Novel methodology for generating and simulating complex traffic scenarios to improve autonomous vehicle testing and validation processes.</p>
-                            <p class="patent-number">U.S. Patent Application 20250128704A1 (Pending)</p>
-                        </div>
-                        <a href="https://patents.google.com/patent/US11584014B2" class="external-link" target="_blank" style="margin-right: 1.5rem;">
-                            View Patent 1 →
-                        </a>
-                        <a href="https://patents.google.com/patent/US20250128704A1" class="external-link" target="_blank">
-                            View Patent 2 →
-                        </a>
-                    </div>
-                </div>
+            <div class="patent-preview" style="margin-top: 0.6rem;">
+              <h4>Simulating Traffic Scenarios</h4>
+              <p>Novel methodology for generating and simulating complex traffic scenarios to improve autonomous vehicle testing and validation processes.</p>
+              <p class="patent-number">U.S. Patent Application 20250128704A1 (Pending)
+                <a href="https://patents.google.com/patent/US20250128704A1" class="external-link" target="_blank" rel="noopener" style="margin-left:.5rem;">View →</a>
+              </p>
             </div>
-        </section>
+          </div>
 
-        <section id="awards">
-            <div class="section-inner">
-                <h2>Recognition & Awards</h2>
-                <div class="awards-grid">
-                    <div class="award-item">
-                        <div class="award-title">Michigan Difference Maker Award</div>
-                        <div class="award-org">University of Michigan-Dearborn</div>
-                        <div class="award-year">2018</div>
-                    </div>
-                    <div class="award-item">
-                        <div class="award-title">Beta Gamma Sigma Honor Society</div>
-                        <div class="award-org">University of Michigan Ross School of Business</div>
-                        <div class="award-year">2023</div>
-                    </div>
-                    <div class="award-item">
-                        <div class="award-title">Dean's Creative Achievement Award</div>
-                        <div class="award-org">American University of Beirut, Mechanical Engineering</div>
-                        <div class="award-year">2016-2017</div>
-                    </div>
-                </div>
-                <div style="margin-top: 2rem;">
-                    <a href="https://michigandifferencemakers.com/sari_kassar" class="external-link" target="_blank">
-                        Read Full Feature Story →
-                    </a>
-                </div>
+          <!-- Helmet (right of patents) -->
+          <div class="featured-item helmet">
+            <h3>Bio-Inspired Helmet Design</h3>
+            <div class="video-container">
+              <iframe src="https://www.slideshare.net/slideshow/embed_code/key/gOlrd6qyeOQxYW" title="Bio-Inspired Helmet Design – SlideShare" width="100%" height="420" frameborder="0" scrolling="no" allowfullscreen></iframe>
             </div>
-        </section>
-
-        <section id="experience">
-            <div class="section-inner">
-                <h2>Experience</h2>
-                
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <h3 class="experience-title">Senior Strategy Consultant</h3>
-                        <span class="experience-date">Oct 2023 – Present</span>
-                    </div>
-                    <p class="experience-company">IBM Corporation · Strategic Sales and Enterprise Strategy</p>
-                    <ul>
-                        <li>Create executive ROI frameworks and business value case models used in pursuits, quantifying $100M+ pursuits across strategic sales for AI BPO, finance transformation, oil and gas, talent strategy, and cybersecurity platformization</li>
-                        <li>Partner with large deal leaders throughout the entire sales lifecycle, maintain pricing models, translate scope changes into client analytical views, and run sensitivities to meet client scope while maintaining gross margin</li>
-                        <li>Define product strategy for industrial clients, using data and AI to launch a new feature projected to reduce hardware costs by $10M annually and generate $4M incremental revenue from subscriptions</li>
-                        <li>Lead capability gap assessments and market research to define the minimum viable capabilities required to launch Center of Excellence; delivered roadmap prioritization, operating model, and change strategy PMO to support implementation</li>
-                        <li>Design executive facing decision frameworks connecting strategic priorities with implementation options, highlighting trade-offs through scenario analysis and crawl-walk-run roadmap prioritization</li>
-                        <li>Build and roll out consulting and finance AI agents using Copilot Studio and MCP, translating complex needs into simple workflows, setting clear guardrails, and partnering with partners to drive adoption and ongoing value</li>
-                        <li>Lead end-to-end requirements gathering and vendor down-select for a major utility asset management platform RFP's, aligning business and technical needs for successful vendor shortlisting and selection</li>
-                        <li>Conduct strategy workshops with 20+ executive stakeholders, capturing requirements, synthesizing pain points, and co-developing North Star visions for executive consensus alignment and messaging around data-driven initiatives</li>
-                    </ul>
-                </div>
-
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <h3 class="experience-title">Project Lead and Senior Engineer</h3>
-                        <span class="experience-date">Aug 2021 – Oct 2023</span>
-                    </div>
-                    <p class="experience-company">Ford Motor Company · ADAS Cloud Data Analytics</p>
-                    <ul>
-                        <li>Led team of 8+ engineers and data scientists to launch Ford's first ADAS cloud analytics platform, streamlining data management for unstructured vehicle data and automating driving scenario extraction with AI-driven labeling tools</li>
-                        <li>Created data product roadmap to develop suite of scenario-based data products for spatiotemporal video analysis, increasing data quality and achieving $5M hard savings in redundant labeling costs</li>
-                        <li>Developed in-house data mining tools for expedited triaging of Mustang Mach-E and F-150 BlueCruise issues in production, ensuring timely resolution of field issues among vehicle engineering teams</li>
-                        <li>Spearheaded business relationship between Ford and technology suppliers, evaluated solutions, and engaged partners to deploy Kubernetes-based ADAS simulation framework, boosting ADAS L2+ simulation scale by 10x</li>
-                        <li>Collaborated with Ford's Cavnue subsidiary on I-94 smart road and connected vehicle project, improving coordination between road infrastructure and BlueCruise through cloud-based disengagement analytics</li>
-                        <li>Led quarterly progress updates and presented directly to the office of the CTO</li>
-                    </ul>
-                </div>
-
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <h3 class="experience-title">Systems Safety Research Engineer</h3>
-                        <span class="experience-date">Aug 2018 – Aug 2021</span>
-                    </div>
-                    <p class="experience-company">Ford Motor Company · ADAS Applications</p>
-                    <ul>
-                        <li>Developed Ford's first scenario-based MBSE engineering method, enabling accurate creation of driving scenarios for SOTIF verification and traceability to safety requirements, saving $10M in vehicle testing costs</li>
-                        <li>Spearheaded multiple university research projects (Carnegie Mellon, UM) and mentored graduate student interns, resulting in $2M savings in cost with novel generation of synthetic edge case scenario data and Carla physics based simulation</li>
-                        <li>Acted as liaison between legal, research and AI advancement team to augment data governance framework for ML based production intent ADAS assets, estimated at $880K in cost save per failure using robust algorithmic bias</li>
-                        <li>Piloted new MIT Ford STPA control systems hazard analyses, uncovering 25% additional functional safety requirements</li>
-                        <li>Led study to improve safety framework for updated Ford GPDS quality review process, unlocking 20% engineering efficiency in model-based compliance to ISO26262 Functional Safety standard</li>
-                        <li>Collaborated with industry working group to develop automotive STPA best practices, resulting in J3187 SAE standard</li>
-                    </ul>
-                </div>
+            <p>This research explores bio-inspired approaches to helmet design, combining finite element modeling and experimental testing to enhance impact safety and energy absorption.</p>
+            <div>
+              <a href="https://www.slideshare.net/slideshow/presentation-imece16-shehadehsiblinikassarwehbiabro/93218784" class="external-link" target="_blank" rel="noopener" style="margin-right:1rem;">Slide deck →</a>
+              <a href="https://asmedigitalcollection.asme.org/IMECE/proceedings-abstract/IMECE2016/50688/258815" class="external-link" target="_blank" rel="noopener">ASME proceedings →</a>
             </div>
-        </section>
+          </div>
 
-        <section id="education">
-            <div class="section-inner">
-                <h2>Education</h2>
-                <div class="education-grid">
-                    <div class="education-item">
-                        <div>
-                            <div class="education-degree">Master of Business Administration in Strategy and Finance</div>
-                            <div class="education-school">University of Michigan, Ann Arbor · Distinction</div>
-                        </div>
-                        <div class="education-year">2023</div>
-                    </div>
-                    <div class="education-item">
-                        <div>
-                            <div class="education-degree">Master of Science in Mechanical Engineering</div>
-                            <div class="education-school">University of Michigan, Dearborn · High Distinction</div>
-                        </div>
-                        <div class="education-year">2018</div>
-                    </div>
-                    <div class="education-item">
-                        <div>
-                            <div class="education-degree">Bachelor of Engineering in Mechanical Engineering</div>
-                            <div class="education-school">American University of Beirut · Distinction</div>
-                        </div>
-                        <div class="education-year">2016</div>
-                    </div>
-                </div>
+          <!-- Video analysis (full width under both) -->
+          <div class="featured-item video">
+            <h3>Economic Analysis of Lebanon's 2019 Currency Crisis</h3>
+            <div class="video-container">
+              <iframe src="https://www.youtube.com/embed/YM6U4dOngfE" title="Economic Analysis of Lebanon's 2019 Currency Crisis" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
-        </section>
+            <p>Lebanon’s 2019 currency crisis is widely described as one of the world’s worst financial collapses since the 19th century which threatened the survival of the country’s economic and social systems. Filmed during my time at Michigan Ross, I explore Lebanon's twin deficit phenomenon at both the fiscal and balance-of-trade levels.</p>
+            <a href="https://www.youtube.com/watch?v=YM6U4dOngfE" class="external-link" target="_blank" rel="noopener">Watch on YouTube →</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <section id="skills">
-            <div class="section-inner">
-                <h2>Skills & Expertise</h2>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3>Business Strategy</h3>
-                        <div class="skill-list">Value Case Development, Executive Storytelling, Project Management, Client Relationship Management, Design Thinking</div>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Technical</h3>
-                        <div class="skill-list">Python, Agentic AI Frameworks, Algorithmic Bias, Simulation, Cloud Computing, SQL, Data Analytics</div>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Industry Expertise</h3>
-                        <div class="skill-list">Automotive (Expert), Energy & Utilities (Experienced), Manufacturing, Software-Defined Vehicles</div>
-                    </div>
-                </div>
+    <section id="awards">
+      <div class="section-inner">
+        <h2>Recognition &amp; Awards</h2>
+        <div class="awards-grid">
+          <div class="award-item">
+            <div class="award-title">Michigan Difference Maker Award</div>
+            <div class="award-org">University of Michigan-Dearborn</div>
+            <div class="award-year">2018</div>
+          </div>
+          <div class="award-item">
+            <div class="award-title">Beta Gamma Sigma Honor Society</div>
+            <div class="award-org">University of Michigan Ross School of Business</div>
+            <div class="award-year">2023</div>
+          </div>
+          <div class="award-item">
+            <div class="award-title">Dean's Creative Achievement Award</div>
+            <div class="award-org">American University of Beirut, Mechanical Engineering</div>
+            <div class="award-year">2015–2016</div>
+          </div>
+        </div>
+        <div style="margin-top: 1.5rem;">
+          <a href="https://michigandifferencemakers.com/sari_kassar" class="external-link" target="_blank" rel="noopener">Read Full Feature Story →</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="section-inner">
+        <h2>Experience</h2>
+        <div class="timeline-rail">
+          <div class="timeline">
+
+            <div class="t-item">
+              <div class="t-head">
+                <h3 class="t-title">Senior Strategy Consultant</h3>
+                <span class="t-date">Oct 2023 – Present</span>
+              </div>
+              <p class="t-company">IBM Corporation · Strategic Sales and Enterprise Strategy</p>
+              <ul>
+                <li>Create executive ROI frameworks and business value case models used in pursuits, quantifying $100M+ pursuits across strategic sales for AI BPO, finance transformation, oil and gas, talent strategy, and cybersecurity platformization</li>
+                <li>Partner with large deal leaders throughout the entire sales lifecycle, maintain pricing models, translate scope changes into client analytical views, and run sensitivities to meet client scope while maintaining gross margin</li>
+                <li>Define product strategy for industrial clients, using data and AI to launch a new feature projected to reduce hardware costs by $10M annually and generate $4M incremental revenue from subscriptions</li>
+                <li>Lead capability gap assessments and market research to define the minimum viable capabilities required to launch Center of Excellence; delivered roadmap prioritization, operating model, and change strategy PMO to support implementation</li>
+                <li>Design executive facing decision frameworks connecting strategic priorities with implementation options, highlighting trade-offs through scenario analysis and crawl-walk-run roadmap prioritization</li>
+                <li>Build and roll out consulting and finance AI agents using Copilot Studio and MCP, translating complex needs into simple workflows, setting clear guardrails, and partnering with partners to drive adoption and ongoing value</li>
+                <li>Lead end-to-end requirements gathering and vendor down-select for a major utility asset management platform RFP's, aligning business and technical needs for successful vendor shortlisting and selection</li>
+                <li>Conduct strategy workshops with 20+ executive stakeholders, capturing requirements, synthesizing pain points, and co-developing North Star visions for executive consensus alignment and messaging around data-driven initiatives</li>
+              </ul>
             </div>
-        </section>
 
-        <section id="publications">
-            <div class="section-inner">
-                <h2>Publications & Research</h2>
-                <div class="publication-item">Chehadeh et al. "Simulating Traffic Scenarios." Application Accepted, U.S. Patent Pending, 18492810, 2025.</div>
-                <div class="publication-item">Kassar, Sari, et al. "Robotic apparatus for vehicle occupant protection." U.S. Patent No. 11,584,014, 2023.</div>
-                <div class="publication-item">Kassar, Sari, et al. "Anisotropic time dependent and continuum damage coupled plasticity model: an application for Mg AZ31B", Materials Science, 2019.</div>
-                <div class="publication-item">Kassar, Sari, et al. "Towards a Safer Design of Helmets: Finite Element and Experimental Assessment", Safety Engineering, 2016.</div>
+            <div class="t-item">
+              <div class="t-head">
+                <h3 class="t-title">Project Lead and Senior Engineer</h3>
+                <span class="t-date">Aug 2021 – Oct 2023</span>
+              </div>
+              <p class="t-company">Ford Motor Company · ADAS Cloud Data Analytics</p>
+              <ul>
+                <li>Led team of 8+ engineers and data scientists to launch Ford's first ADAS cloud analytics platform, streamlining data management for unstructured vehicle data and automating driving scenario extraction with AI-driven labeling tools</li>
+                <li>Created data product roadmap to develop suite of scenario-based data products for spatiotemporal video analysis, increasing data quality and achieving $5M hard savings in redundant labeling costs</li>
+                <li>Developed in-house data mining tools for expedited triaging of Mustang Mach-E and F-150 BlueCruise issues in production, ensuring timely resolution of field issues among vehicle engineering teams</li>
+                <li>Spearheaded business relationship between Ford and technology suppliers, evaluated solutions, and engaged partners to deploy Kubernetes-based ADAS simulation framework, boosting ADAS L2+ simulation scale by 10x</li>
+                <li>Collaborated with Ford's Cavnue subsidiary on I-94 smart road and connected vehicle project, improving coordination between road infrastructure and BlueCruise through cloud-based disengagement analytics</li>
+                <li>Led quarterly progress updates and presented directly to the office of the CTO</li>
+              </ul>
             </div>
-        </section>
-    </main>
 
-    <footer>
-        <p>© 2025 Sari Kassar</p>
-    </footer>
+            <div class="t-item">
+              <div class="t-head">
+                <h3 class="t-title">Systems Safety Research Engineer</h3>
+                <span class="t-date">Aug 2018 – Aug 2021</span>
+              </div>
+              <p class="t-company">Ford Motor Company · ADAS Applications</p>
+              <ul>
+                <li>Developed Ford's first scenario-based MBSE engineering method, enabling accurate creation of driving scenarios for SOTIF verification and traceability to safety requirements, saving $10M in vehicle testing costs</li>
+                <li>Spearheaded multiple university research projects (Carnegie Mellon, UM) and mentored graduate student interns, resulting in $2M savings in cost with novel generation of synthetic edge case scenario data and Carla physics based simulation</li>
+                <li>Acted as liaison between legal, research and AI advancement team to augment data governance framework for ML based production intent ADAS assets, estimated at $880K in cost save per failure using robust algorithmic bias</li>
+                <li>Piloted new MIT Ford STPA control systems hazard analyses, uncovering 25% additional functional safety requirements</li>
+                <li>Led study to improve safety framework for updated Ford GPDS quality review process, unlocking 20% engineering efficiency in model-based compliance to ISO26262 Functional Safety standard</li>
+                <li>Collaborated with industry working group to develop automotive STPA best practices, resulting in J3187 SAE standard</li>
+              </ul>
+            </div>
+
+          </div>
+          <button class="timeline-next" aria-label="Next" title="Next" style="position:absolute; right:0; top:50%; transform:translateY(-50%); border:1px solid var(--gray-200); background:var(--white); border-radius:999px; width:40px; height:40px; display:grid; place-items:center; cursor:pointer;">→</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="section-inner">
+        <h2>Education</h2>
+        <div class="education-grid">
+          <div class="education-item">
+            <div>
+              <div class="education-degree">Master of Business Administration in Strategy and Finance</div>
+              <div class="education-school">University of Michigan, Ann Arbor · Distinction</div>
+            </div>
+            <div class="education-year">2023</div>
+          </div>
+          <div class="education-item">
+            <div>
+              <div class="education-degree">Master of Science in Mechanical Engineering</div>
+              <div class="education-school">University of Michigan, Dearborn · High Distinction</div>
+            </div>
+            <div class="education-year">2018</div>
+          </div>
+          <div class="education-item">
+            <div>
+              <div class="education-degree">Bachelor of Engineering in Mechanical Engineering</div>
+              <div class="education-school">American University of Beirut · Distinction</div>
+            </div>
+            <div class="education-year">2016</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="section-inner">
+        <h2>Skills &amp; Expertise</h2>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h3>Business Strategy</h3>
+            <div class="skill-list">Value Case Development, Executive Storytelling, Project Management, Client Relationship Management, Design Thinking</div>
+          </div>
+          <div class="skill-category">
+            <h3>Technical</h3>
+            <div class="skill-list">Python, Agentic AI Frameworks, Algorithmic Bias, Simulation, Cloud Computing, SQL, Data Analytics</div>
+          </div>
+          <div class="skill-category">
+            <h3>Industry Expertise</h3>
+            <div class="skill-list">Automotive, Energy &amp; Utilities, Manufacturing</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <div class="section-inner">
+        <h2>Publications &amp; Research</h2>
+        <div class="featured-grid" style="grid-template-columns:1fr 1fr;">
+          <!-- Magnesium AZ31B paper -->
+          <div class="featured-item">
+            <h3>Mg AZ31B: Anisotropic Plasticity &amp; Damage Coupling (2019)</h3>
+            <p>Continuum damage coupled plasticity model and validation for magnesium alloy AZ31B with time-dependent and anisotropic behavior.</p>
+            <a href="https://www.sciencedirect.com/science/article/pii/S0020768319303178" class="external-link" target="_blank" rel="noopener">ScienceDirect →</a>
+          </div>
+
+          <!-- Helmet safety assessment (2016) -->
+          <div class="featured-item">
+            <h3>Towards a Safer Design of Helmets: FE &amp; Experimental Assessment (2016)</h3>
+            <p>Finite element and experimental evaluation framework for safer helmet design with improved energy absorption and impact mitigation.</p>
+            <a href="https://asmedigitalcollection.asme.org/IMECE/proceedings-abstract/IMECE2016/50688/258815" class="external-link" target="_blank" rel="noopener">Proceedings abstract →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Sari Kassar · <a href="mailto:sareegpt@gmail.com" class="external-link" style="border-bottom:none;">Contact</a></p>
+  </footer>
+
+  <script>
+    // Simple mobile menu toggle
+    const toggle = document.getElementById('mobileToggle');
+    const menu = document.getElementById('navMenu');
+    toggle?.addEventListener('click', () => {
+      const showing = menu.style.display === 'flex';
+      menu.style.display = showing ? 'none' : 'flex';
+      menu.style.flexDirection = 'column';
+      toggle.setAttribute('aria-expanded', (!showing).toString());
+    });
+
+    // Optional: shrink nav on scroll for a cleaner feel
+    const nav = document.querySelector('nav');
+    let last = 0;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY || 0;
+      if (y > 8 && last <= 8) nav.querySelector('.nav-shell').style.padding = '0.6rem 1.25rem';
+      if (y <= 8 && last > 8) nav.querySelector('.nav-shell').style.padding = '0.9rem 1.25rem';
+      last = y;
+    });
+
+    // === Timeline active dot (no library) ===
+    const timeline = document.querySelector('.timeline');
+    const items = [...document.querySelectorAll('.t-item')];
+    if (timeline && items.length) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) e.target.classList.add('active');
+          else e.target.classList.remove('active');
+        });
+      }, { root: timeline, threshold: 0.6 });
+      items.forEach(el => io.observe(el));
+    }
+    // Arrow scroll control (right arrow)
+    const nextBtn = document.querySelector('.timeline-next');
+    if (timeline && nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        const card = timeline.querySelector('.t-item');
+        const delta = (card?.clientWidth || 360) + 20;
+        timeline.scrollBy({ left: delta, behavior: 'smooth' });
+      });
+    }
+  </script>
 </body>
 </html>
