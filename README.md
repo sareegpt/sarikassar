@@ -12,7 +12,7 @@
   <a href="mailto:kassar@umich.edu">✉️ kassar@umich.edu</a> &nbsp;|&nbsp;
   <a href="https://linkedin.com/in/sgkassar" target="_blank">🔗 LinkedIn</a> &nbsp;|&nbsp;
   <a href="Sari_Kassar_Resume.pdf" target="_blank">📄 Resume</a> &nbsp;|&nbsp;
-  <b>Miami, FL</b>
+  <b>United States</b>
 </p>
 
 ---
