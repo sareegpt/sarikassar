@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="frame-src 'self' https://www.slideshare.net https://www.youtube.com;" />
   <title>Sari Kassar</title>
   <meta name="description" content="Strategic storyteller and business leader with 9+ years experience in research, engineering and strategy consulting at IBM and Ford." />
   <style>
@@ -17,6 +18,9 @@
       --gray-800: #262626;
       --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
       --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+      --nav-height: 72px;
+      --breakpoint-mobile: 768px;
+      --scroll-threshold: 8px;
     }
 
     body {
@@ -25,7 +29,7 @@
       color: var(--black);
       background: var(--white);
       -webkit-font-smoothing: antialiased;
-      padding-top: 72px; /* fixed nav offset */
+      padding-top: var(--nav-height); /* fixed nav offset */
       overflow-x: hidden;
     }
 
@@ -212,29 +216,29 @@ header.hero {
     .award-year { font-size: 0.85rem; color: var(--gray-800); }
 
     /* ===== EXPERIENCE: Company logo cards ===== */
-    .journey-grid{
-      display:grid;
+    .journey-grid {
+      display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1.75rem;
     }
-    .brand-card{
-      position:relative;
-      border:1px solid var(--gray-200);
-      border-radius:16px;
-      padding:1.25rem 1.25rem 1.25rem 1.25rem;
+    .brand-card {
+      position: relative;
+      border: 1px solid var(--gray-200);
+      border-radius: 16px;
+      padding: 1.25rem 1.25rem 1.25rem 1.25rem;
       background:
         linear-gradient(180deg, rgba(0,0,0,0.03), rgba(0,0,0,0));
       box-shadow: var(--shadow-md);
-      display:flex; flex-direction:column; gap:.75rem;
+      display: flex; flex-direction: column; gap: .75rem;
     }
-    .brand-top{ display:flex; align-items:center; gap:.75rem; }
-    .brand-logo{
-      width:56px; height:56px; object-fit:contain;
+    .brand-top { display: flex; align-items: center; gap: .75rem; }
+    .brand-logo {
+      width: 56px; height: 56px; object-fit: contain;
       filter: drop-shadow(0 2px 6px rgba(0,0,0,.08));
     }
-    .brand-name{ font-weight:700; }
-    .brand-role{ font-size:.95rem; color:var(--gray-800); }
-    .brand-blurb{ color:var(--gray-800); font-size:.95rem; line-height:1.55; }
+    .brand-name { font-weight: 700; }
+    .brand-role { font-size: .95rem; color: var(--gray-800); }
+    .brand-blurb { color: var(--gray-800); font-size: .95rem; line-height: 1.55; }
 
     /* ===== EDUCATION: Convert to vertical logo cards ===== */
   .education-grid {
@@ -300,9 +304,11 @@ header.hero {
 </head>
 <body>
   <!-- Required assets (filenames):
-       Sari_Kassar_Hero.jpg
+       Sari_Kassar_Hero.png
        logo-ibm.png, logo-ford.png
        award-umich.png, award-bgs.png, award-aub.png
+       mdearborn.png, mross-logo.png
+       Sari_Kassar_Resume.pdf
   -->
 
   <nav>
@@ -331,6 +337,12 @@ header.hero {
       <div class="hero-text">
         <h1>Sari Kassar</h1>
         <p class="tagline">Executive Consultant specializing in AI innovation, strategic sales, and emerging technology strategy</p>
+        <div style="margin-bottom: 1.5rem;">
+          <a href="#chatbot" style="display: inline-block; background: var(--white); color: var(--black); padding: 0.75rem 1.5rem; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+            💬 Chat with My Resume
+          </a>
+          <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--gray-100);">I built an interactive tool to help you chat with my resume</p>
+        </div>
         <div class="header-meta">
           <span>United States</span>
           <a href="mailto:sareegpt@gmail.com" aria-label="Email Sari Kassar" style="display:inline-flex; align-items:center; gap:6px;">
@@ -527,14 +539,14 @@ header.hero {
             <div class="education-school">Mechanical Engineering, American University of Beirut · <strong>Distinction</strong></div>
             <div class="education-year">2016</div>
           </div>
-	  
+          
           <div class="education-card">
             <img src="mdearborn.png" alt="University of Michigan Dearborn logo" class="edu-logo" />
             <div class="education-degree">Master of Science in Engineering</div>
             <div class="education-school">Mechanical Engineering, University of Michigan, Dearborn · <strong>High Distinction</strong></div>
             <div class="education-year">2018</div>
           </div>
-	  <div class="education-card">
+          <div class="education-card">
             <img src="mross-logo.png" alt="University of Michigan logo" class="edu-logo" />
             <div class="education-degree">Master of Business Administration</div>
             <div class="education-school">Strategy and Finance, University of Michigan, Ann Arbor · <strong>Distinction</strong></div>
@@ -565,6 +577,22 @@ header.hero {
       </div>
     </section>
 
+    <section id="chatbot">
+      <div class="section-inner">
+        <h2>Ask My Resume</h2>
+        <p style="margin-bottom: 2rem; color: var(--gray-800); font-size: 1.05rem;">
+          Have questions about my experience, skills, or achievements? Chat with my AI-powered resume assistant below.
+        </p>
+        <div style="border: 1px solid var(--gray-200); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-md);">
+          <script
+            type="module"
+            src="https://gradio.s3-us-west-2.amazonaws.com/5.42.0/gradio.js"
+          ></script>
+          <gradio-app src="https://sarikassar-personal.hf.space"></gradio-app>
+        </div>
+      </div>
+    </section>
+
     <section id="publications">
       <div class="section-inner">
         <h2>Publications &amp; Research</h2>
@@ -590,25 +618,52 @@ header.hero {
   </footer>
 
   <script>
-    // Simple mobile menu toggle
+    // Mobile menu toggle with resize cleanup
     const toggle = document.getElementById('mobileToggle');
     const menu = document.getElementById('navMenu');
-    toggle?.addEventListener('click', () => {
-      const showing = menu.style.display === 'flex';
-      menu.style.display = showing ? 'none' : 'flex';
-      menu.style.flexDirection = 'column';
-      toggle.setAttribute('aria-expanded', (!showing).toString());
-    });
+    
+    if (toggle && menu) {
+      toggle.addEventListener('click', () => {
+        const showing = menu.style.display === 'flex';
+        menu.style.display = showing ? 'none' : 'flex';
+        menu.style.flexDirection = 'column';
+        toggle.setAttribute('aria-expanded', (!showing).toString());
+      });
 
-    // Optional: shrink nav on scroll for a cleaner feel
+      // Reset menu on resize to desktop
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+          menu.style.display = '';
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    // Shrink nav on scroll with throttling
     const nav = document.querySelector('nav');
-    let last = 0;
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY || 0;
-      if (y > 8 && last <= 8) nav.querySelector('.nav-shell').style.padding = '0.6rem 1.25rem';
-      if (y <= 8 && last > 8) nav.querySelector('.nav-shell').style.padding = '0.9rem 1.25rem';
-      last = y;
-    });
+    const navShell = nav?.querySelector('.nav-shell');
+    const SCROLL_THRESHOLD = 8; // Pixels scrolled before nav shrinks
+    let lastScrollY = 0;
+    let ticking = false;
+
+    if (nav && navShell) {
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            const currentScrollY = window.scrollY || 0;
+            if (currentScrollY > SCROLL_THRESHOLD && lastScrollY <= SCROLL_THRESHOLD) {
+              navShell.style.padding = '0.6rem 1.25rem';
+            }
+            if (currentScrollY <= SCROLL_THRESHOLD && lastScrollY > SCROLL_THRESHOLD) {
+              navShell.style.padding = '0.9rem 1.25rem';
+            }
+            lastScrollY = currentScrollY;
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+    }
   </script>
 </body>
 </html>
