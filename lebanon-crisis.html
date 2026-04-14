@@ -195,6 +195,82 @@
     }
     .link-arr:hover { border-color: var(--gold-dim); gap: 0.7rem; }
 
+    /* Callout cards */
+    .callout-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.9s var(--ease) forwards;
+    }
+    .callout-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 2rem;
+    }
+    .callout-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .callout-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .callout-text {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: var(--cream-dim);
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+    .callout-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    .callout-stat {
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+    }
+    .callout-stat-n {
+      font-family: var(--display);
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .callout-stat-l {
+      font-size: 0.72rem;
+      color: var(--cream-faint);
+      line-height: 1.5;
+    }
+    .callout-quote {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: var(--cream);
+      border-left: 2px solid var(--gold);
+      padding-left: 1.25rem;
+      margin: 0;
+    }
+    @media (max-width: 768px) {
+      .callout-grid { grid-template-columns: 1fr; }
+      .callout-stats { grid-template-columns: 1fr; }
+    }
+
     .detail-link-row {
       margin-bottom: 2.5rem;
       opacity: 0;
@@ -295,6 +371,28 @@
       <p class="detail-desc">
         Lebanon's 2019 currency crisis — one of the world's worst financial collapses since the 19th century — threatened the country's entire economic and social fabric. Filmed during my time at Michigan Ross, I explore the twin deficit phenomenon at both the fiscal and balance-of-trade levels.
       </p>
+
+      <div class="callout-grid">
+        <div class="callout-card">
+          <div class="callout-label">The Collapse</div>
+          <p class="callout-text">By 2019 the inflows dried up. Without fresh dollars, the peg was impossible to maintain, the banking system froze depositors out of their own accounts, and Lebanon defaulted on its Eurobonds in March 2020 — its first sovereign default ever.</p>
+          <div class="callout-stats">
+            <div class="callout-stat">
+              <div class="callout-stat-n">53.4%</div>
+              <div class="callout-stat-l">GDP contraction 2019–2021, the largest among 193 countries</div>
+            </div>
+            <div class="callout-stat">
+              <div class="callout-stat-n">~98%</div>
+              <div class="callout-stat-l">Devaluation of the Lebanese pound — from 1,500 to ~89,575 per dollar</div>
+            </div>
+          </div>
+        </div>
+        <div class="callout-card">
+          <div class="callout-label">The Lesson</div>
+          <p class="callout-text">Lebanon shows that twin deficits aren't just an accounting curiosity — they're a warning siren. A country can paper over them for a long time if it can keep attracting foreign money. But the moment confidence cracks and inflows stop, the whole structure collapses at once: currency, banks, government finances, all together.</p>
+          <blockquote class="callout-quote">Twin deficits are scientifically real, and Lebanon is what they look like when nobody listens — almost a textbook illustration of what happens when both holes get out of control.</blockquote>
+        </div>
+      </div>
 
       <div class="detail-link-row">
         <a href="https://www.youtube.com/watch?v=YM6U4dOngfE" class="link-arr" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>
