@@ -6,6 +6,12 @@
   <meta http-equiv="Content-Security-Policy" content="frame-src 'self' https://www.slideshare.net https://www.youtube.com https://sarikassar-personal.hf.space;" />
   <title>Sari Kassar — Executive Consultant</title>
   <meta name="description" content="Strategic storyteller and business leader with 9+ years experience in research, engineering and strategy consulting at IBM and Ford." />
+  <meta property="og:title" content="Sari Kassar — Executive Consultant | AI Strategy">
+  <meta property="og:description" content="Strategic storyteller and business leader with 9+ years experience in research, engineering and strategy consulting at IBM and Ford.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sarikassar.com">
+  <meta property="og:image" content="https://sarikassar.com/sari-hero-new.jpg">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -349,7 +355,7 @@
       margin-bottom: 4rem;
     }
     .sec-label {
-      font-size: 0.68rem;
+      font-size: 0.85rem;
       font-weight: 500;
       letter-spacing: 0.26em;
       text-transform: uppercase;
@@ -359,7 +365,7 @@
     .sec-rule { flex: 1; height: 1px; background: var(--border); }
     .sec-num {
       font-family: var(--display);
-      font-size: 0.85rem;
+      font-size: 1.5rem;
       color: var(--cream-faint);
       letter-spacing: 0.08em;
     }
@@ -409,6 +415,7 @@
       line-height: 1.9;
       color: var(--cream-dim);
       font-weight: 300;
+      max-width: 65ch;
     }
     .stats-block {
       display: grid;
@@ -453,6 +460,37 @@
     }
     .feat-card.span2 { grid-column: 1 / -1; }
 
+
+    /* Featured card tags */
+    .feat-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1.25rem; }
+    .feat-tag {
+      font-size: 0.68rem;
+      color: var(--cream-dim);
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+      letter-spacing: 0.04em;
+    }
+
+    /* Experience tags */
+    .exp-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.75rem; }
+    .exp-tag {
+      font-size: 0.66rem;
+      color: var(--gold);
+      border: 1px solid var(--gold-dim);
+      padding: 0.18rem 0.55rem;
+      border-radius: 2px;
+      letter-spacing: 0.04em;
+    }
+
+    /* Featured title links */
+    .feat-title a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .feat-title a:hover { color: var(--gold); }
+
     .feat-eye {
       font-size: 0.63rem;
       letter-spacing: 0.24em;
@@ -475,6 +513,7 @@
       color: var(--cream-dim);
       font-weight: 300;
       margin-bottom: 1.5rem;
+      max-width: 65ch;
     }
 
     .patent-item { padding-top: 1.25rem; margin-top: 1.25rem; border-top: 1px solid var(--border); }
@@ -544,13 +583,23 @@
       transition: border-color 0.3s, transform 0.3s var(--ease);
     }
     .award-card:hover { border-color: var(--border-hover); transform: translateY(-4px); }
+    .award-img-wrap {
+      width: 110px; height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.75rem;
+    }
     .award-img {
-      width: 60px; height: 60px;
+      max-width: 90px;
+      max-height: 90px;
       object-fit: contain;
-      margin-bottom: 1.5rem;
-      background: #fff;
-      border-radius: 10px;
-      padding: 8px;
+    }
+    .award-img[src="aub-seal.png"] {
+      border-radius: 50%;
+      object-fit: cover;
+      max-width: 110px;
+      max-height: 110px;
     }
     .award-yr {
       font-size: 0.62rem;
@@ -669,7 +718,7 @@
 
     /* ── CHATBOT ── */
     #chatbot { background: var(--bg); border-bottom: 1px solid var(--border); }
-    .chatbot-intro { font-size: 1rem; line-height: 1.82; color: var(--cream-dim); font-weight: 300; max-width: 580px; margin-bottom: 2rem; }
+    .chatbot-intro { font-size: 1rem; line-height: 1.82; color: var(--cream-dim); font-weight: 300; max-width: 65ch; margin-bottom: 2rem; }
     .chatbot-wrap { border: none; overflow: hidden; }
     .chatbot-wrap gradio-app { display: block; width: 100%; height: 850px; }
     @media (max-width: 600px) { .chatbot-wrap gradio-app { height: 600px; } }
@@ -687,7 +736,7 @@
     .pub-card:hover { border-color: var(--border-hover); transform: translateY(-4px); }
     .pub-yr { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 0.7rem; }
     .pub-title { font-family: var(--display); font-size: 1.2rem; font-weight: 400; color: var(--cream); line-height: 1.38; margin-bottom: 0.9rem; }
-    .pub-abs { font-size: 0.88rem; line-height: 1.78; color: var(--cream-dim); font-weight: 300; margin-bottom: 1.25rem; }
+    .pub-abs { font-size: 0.88rem; line-height: 1.78; color: var(--cream-dim); font-weight: 300; margin-bottom: 1.25rem; max-width: 65ch; }
 
     /* ── FOOTER ── */
     footer { border-top: 1px solid var(--border); padding: 2.75rem 2rem; }
@@ -700,6 +749,8 @@
       flex-wrap: wrap;
       gap: 1.5rem;
     }
+    .footer-bio { font-size: 0.82rem; color: var(--cream-dim); font-weight: 300; letter-spacing: 0.02em; margin-bottom: 1.25rem; max-width: 580px; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; width: 100%; }
     .footer-copy { font-size: 0.75rem; color: var(--cream-faint); letter-spacing: 0.06em; }
     .footer-links { display: flex; gap: 2rem; }
     .footer-link {
@@ -812,7 +863,7 @@
       <span class="sec-num">01</span>
     </div>
     <div class="about-grid">
-      <img src="sari-kassar.jpg" alt="Sari Kassar" class="about-photo reveal">
+      <img src="sari-kassar.jpg" alt="Sari Kassar" class="about-photo reveal" loading="lazy">
       <div>
         <blockquote class="about-quote reveal">
           "Strategic storyteller bridging the worlds of engineering, business, and AI."
@@ -829,12 +880,12 @@
           <div class="stat-l">Years Experience</div>
         </div>
         <div class="stat">
-          <div class="stat-n">3</div>
+          <div class="stat-n">3+</div>
           <div class="stat-l">Industries Served</div>
         </div>
         <div class="stat">
-          <div class="stat-n">$25M+</div>
-          <div class="stat-l">Cost Savings Delivered</div>
+          <div class="stat-n">$300M+</div>
+          <div class="stat-l">Value Delivered</div>
         </div>
         <div class="stat">
           <div class="stat-n">2</div>
@@ -858,7 +909,12 @@
       <!-- Patents -->
       <div class="feat-card reveal">
         <div class="feat-eye">Intellectual Property</div>
-        <h3 class="feat-title">Autonomous Driving Patents</h3>
+        <h3 class="feat-title"><a href="patents.html">Autonomous Driving Patents</a></h3>
+        <div class="feat-tags">
+          <span class="feat-tag">Autonomous Vehicles</span>
+          <span class="feat-tag">Safety</span>
+          <span class="feat-tag">IP</span>
+        </div>
         <div class="patent-item">
           <div class="patent-id">U.S. Patent No. 11,584,014 &middot; 2023</div>
           <div class="patent-name">Robotic Apparatus for Vehicle Occupant Protection</div>
@@ -876,9 +932,14 @@
       <!-- Helmet Research -->
       <div class="feat-card reveal d1">
         <div class="feat-eye">Engineering Research</div>
-        <h3 class="feat-title">Mitigating Head Injuries with Biomimicry</h3>
+        <h3 class="feat-title"><a href="helmet-research.html">Mitigating Head Injuries with Biomimicry</a></h3>
+        <div class="feat-tags">
+          <span class="feat-tag">Biomechanics</span>
+          <span class="feat-tag">FEA</span>
+          <span class="feat-tag">Research</span>
+        </div>
         <div class="vid-wrap">
-          <iframe src="https://www.slideshare.net/slideshow/embed_code/key/gOlrd6qyeOQxYW" title="Bio-Inspired Helmet Design" allowfullscreen loading="lazy"></iframe>
+          <iframe src="https://www.slideshare.net/slideshow/embed_code/key/gOlrd6qyeOQxYW" width="610" height="515" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" title="Bio-Inspired Helmet Design" allowfullscreen loading="lazy"></iframe>
         </div>
         <p class="feat-body">Bio-inspired approaches to helmet design combining finite element modeling and experimental testing. Prototype keeps acceleration peaks under ECE22.05 Head-Injury-Criterion limits.</p>
         <a href="https://www.slideshare.net/slideshow/presentation-imece16-shehadehsiblinikassarwehbiabro/93218784" class="link-arr" target="_blank" rel="noopener">Conference &rarr;</a>
@@ -888,7 +949,12 @@
       <!-- Currency Crisis — full width -->
       <div class="feat-card span2 reveal d2">
         <div class="feat-eye">Economic Analysis &middot; Michigan Ross</div>
-        <h3 class="feat-title">Lebanon's 2019 Currency Crisis</h3>
+        <h3 class="feat-title"><a href="lebanon-crisis.html">Lebanon's 2019 Currency Crisis</a></h3>
+        <div class="feat-tags">
+          <span class="feat-tag">Economics</span>
+          <span class="feat-tag">Finance</span>
+          <span class="feat-tag">Ross MBA</span>
+        </div>
         <div class="vid-wrap">
           <iframe src="https://www.youtube.com/embed/YM6U4dOngfE" title="Economic Analysis of Lebanon's 2019 Currency Crisis" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
         </div>
@@ -910,19 +976,19 @@
     </div>
     <div class="awards-grid">
       <div class="award-card reveal">
-        <img src="award-aub.png" alt="American University of Beirut" class="award-img">
+        <div class="award-img-wrap"><img src="aub-seal.png" alt="American University of Beirut" class="award-img" loading="lazy"></div>
         <div class="award-yr">2016</div>
         <div class="award-title">Dean's Creative Achievement Award</div>
         <div class="award-org">American University of Beirut</div>
       </div>
       <div class="award-card reveal d1">
-        <img src="award-umich.png" alt="University of Michigan" class="award-img">
+        <div class="award-img-wrap"><img src="award-umich.png" alt="University of Michigan" class="award-img" loading="lazy"></div>
         <div class="award-yr">2018</div>
         <div class="award-title">Michigan Difference Maker Awardee</div>
         <div class="award-org">University of Michigan&ndash;Dearborn</div>
       </div>
       <div class="award-card reveal d2">
-        <img src="award-bgs.png" alt="Beta Gamma Sigma" class="award-img">
+        <div class="award-img-wrap"><img src="award-bgs.png" alt="Beta Gamma Sigma" class="award-img" loading="lazy"></div>
         <div class="award-yr">2023</div>
         <div class="award-title">Beta Gamma Sigma Honor Society</div>
         <div class="award-org">Ross School of Business</div>
@@ -945,7 +1011,7 @@
     <div>
       <div class="exp-item reveal">
         <div class="exp-logo-col">
-          <img src="logo-ibm.png" alt="IBM" class="exp-logo">
+          <img src="logo-ibm.png" alt="IBM" class="exp-logo" loading="lazy">
           <div class="exp-line"></div>
         </div>
         <div>
@@ -954,13 +1020,18 @@
             <div class="exp-period">Jan 2026 &mdash; Present</div>
           </div>
           <div class="exp-role">Managing Consultant, Enterprise AI and Cybersecurity &middot; Full-time</div>
+          <div class="exp-tags">
+            <span class="exp-tag">AI</span>
+            <span class="exp-tag">Cybersecurity</span>
+            <span class="exp-tag">Sales</span>
+          </div>
           <p class="exp-desc">Work within the Strategic Sales and Enterprise Strategy group with special focus on AI and Cybersecurity solution sales, development and deployment.</p>
         </div>
       </div>
 
       <div class="exp-item reveal d1">
         <div class="exp-logo-col">
-          <img src="logo-ibm.png" alt="IBM" class="exp-logo">
+          <img src="logo-ibm.png" alt="IBM" class="exp-logo" loading="lazy">
           <div class="exp-line"></div>
         </div>
         <div>
@@ -969,12 +1040,17 @@
             <div class="exp-period">Oct 2023 &mdash; Jan 2026</div>
           </div>
           <div class="exp-role">Senior Strategy Consultant</div>
+          <div class="exp-tags">
+            <span class="exp-tag">AI Strategy</span>
+            <span class="exp-tag">Transformation</span>
+            <span class="exp-tag">C-Suite Advisory</span>
+          </div>
           <p class="exp-desc">Serve as trusted advisor to C-suite executives on AI strategy, transformation programs, and enterprise value realization. Designed and delivered ROI/value case models underpinning $100M+ pursuits, shaping industrial product strategies, and driving cost savings and new revenue opportunities.</p>
         </div>
       </div>
       <div class="exp-item reveal d1">
         <div class="exp-logo-col">
-          <img src="logo-ford.png" alt="Ford Motor Company" class="exp-logo">
+          <img src="logo-ford.png" alt="Ford Motor Company" class="exp-logo" loading="lazy">
           <div class="exp-line"></div>
         </div>
         <div>
@@ -983,12 +1059,18 @@
             <div class="exp-period">Aug 2021 &mdash; Oct 2023</div>
           </div>
           <div class="exp-role">Project Lead &amp; Senior Engineer &mdash; ADAS Cloud Analytics</div>
+          <div class="exp-tags">
+            <span class="exp-tag">ADAS</span>
+            <span class="exp-tag">Cloud</span>
+            <span class="exp-tag">Kubernetes</span>
+            <span class="exp-tag">Simulation</span>
+          </div>
           <p class="exp-desc">Led an 8+ person team to launch Ford's first ADAS cloud analytics platform, automated scenario extraction, and delivered $5M hard savings. Scaled L2+ simulation by 10&times; via Kubernetes-based framework and partner ecosystem.</p>
         </div>
       </div>
       <div class="exp-item reveal d2">
         <div class="exp-logo-col">
-          <img src="logo-ford.png" alt="Ford Motor Company" class="exp-logo">
+          <img src="logo-ford.png" alt="Ford Motor Company" class="exp-logo" loading="lazy">
         </div>
         <div>
           <div class="exp-meta">
@@ -996,6 +1078,12 @@
             <div class="exp-period">Aug 2018 &mdash; Aug 2021</div>
           </div>
           <div class="exp-role">Systems Safety Research Engineer &mdash; ADAS Applications</div>
+          <div class="exp-tags">
+            <span class="exp-tag">SOTIF</span>
+            <span class="exp-tag">MBSE</span>
+            <span class="exp-tag">ML</span>
+            <span class="exp-tag">SAE Standards</span>
+          </div>
           <p class="exp-desc">Pioneered scenario-based MBSE method for SOTIF verification, saving $10M in testing. Advanced data governance for ML assets, led university research collaborations, and contributed to SAE J3187 best-practice standardization.</p>
         </div>
       </div>
@@ -1013,21 +1101,21 @@
     </div>
     <div class="edu-grid">
       <div class="edu-card reveal">
-        <img src="award-aub.png" alt="American University of Beirut" class="edu-logo">
+        <img src="aub-seal.png" alt="American University of Beirut" class="edu-logo" loading="lazy">
         <div class="edu-yr">2016</div>
         <div class="edu-deg">Bachelor of Engineering</div>
         <div class="edu-sch">Mechanical Engineering<br>American University of Beirut</div>
         <div class="edu-honor">Distinction</div>
       </div>
       <div class="edu-card reveal d1">
-        <img src="mdearborn.png" alt="University of Michigan Dearborn" class="edu-logo">
+        <img src="mdearborn.png" alt="University of Michigan Dearborn" class="edu-logo" loading="lazy">
         <div class="edu-yr">2018</div>
         <div class="edu-deg">Master of Science in Engineering</div>
         <div class="edu-sch">Mechanical Engineering<br>University of Michigan, Dearborn</div>
         <div class="edu-honor">High Distinction</div>
       </div>
       <div class="edu-card reveal d2">
-        <img src="mross-logo.png" alt="Michigan Ross" class="edu-logo">
+        <img src="mross-logo.png" alt="Michigan Ross" class="edu-logo" loading="lazy">
         <div class="edu-yr">2023</div>
         <div class="edu-deg">Master of Business Administration</div>
         <div class="edu-sch">Strategy &amp; Finance<br>University of Michigan, Ann Arbor</div>
@@ -1124,13 +1212,24 @@
   </div>
 </section>
 
+<!-- CERTIFICATIONS -->
+<section id="certifications" style="padding:3.5rem 0;border-bottom:1px solid var(--border);">
+  <div class="wrap" style="display:flex;justify-content:center;align-items:center;gap:2rem;flex-wrap:wrap;">
+    <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="4e3f4496-b88d-489d-a629-6dcd3c3e6ac7" data-share-badge-host="https://www.credly.com"></div>
+    <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
-    <p class="footer-copy">&copy; 2025 Sari Kassar</p>
-    <div class="footer-links">
-      <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=sareegpt@gmail.com&su=Hello%20Sari" target="_blank" rel="noopener" class="footer-link">Email</a>
-      <a href="https://linkedin.com/in/sgkassar" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+  <div class="footer-inner" style="flex-direction:column;align-items:flex-start;">
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 Sari Kassar</p>
+      <div class="footer-links">
+        <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=sareegpt@gmail.com&su=Hello%20Sari" target="_blank" rel="noopener" class="footer-link">Email</a>
+        <a href="https://linkedin.com/in/sgkassar" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+        <a href="Sari_Kassar_Resume.pdf" class="footer-link" target="_blank" rel="noopener">Resume</a>
+      </div>
     </div>
   </div>
 </footer>

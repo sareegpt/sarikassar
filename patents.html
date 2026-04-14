@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Autonomous Driving Patents — Sari Kassar</title>
+  <meta name="description" content="Sari Kassar's autonomous driving patents in vehicle safety and traffic simulation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:           #0A0A0A;
+      --bg-surface:   #111111;
+      --bg-card:      #181818;
+      --border:       rgba(201,162,85,0.18);
+      --border-hover: rgba(201,162,85,0.45);
+      --gold:         #C9A255;
+      --gold-light:   #DAB96B;
+      --gold-dim:     rgba(201,162,85,0.6);
+      --cream:        #EDE8DF;
+      --cream-dim:    rgba(237,232,223,0.72);
+      --cream-faint:  rgba(237,232,223,0.35);
+      --display:      'Cormorant Garamond', Georgia, serif;
+      --sans:         'Jost', 'Helvetica Neue', sans-serif;
+      --nav-h:        68px;
+      --max-w:        1160px;
+      --ease:         cubic-bezier(0.4,0,0.2,1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--cream);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      padding-top: var(--nav-h);
+      overflow-x: hidden;
+    }
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      pointer-events: none;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 200;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      background: rgba(10,10,10,0.96);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: var(--max-w);
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .nav-logo {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 1.45rem;
+      font-weight: 400;
+      color: var(--cream);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+    .nav-logo:hover { color: var(--gold); }
+    .nav-back {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .nav-back:hover { color: var(--cream); }
+
+    /* ── LAYOUT ── */
+    .wrap {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 6rem 0 4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s var(--ease) forwards;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 36px; height: 1px;
+      background: var(--gold);
+    }
+    .hero-eyebrow span {
+      font-size: 0.68rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+    }
+    .hero-title {
+      font-family: var(--display);
+      font-size: clamp(2.6rem, 5vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--cream);
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.4s var(--ease) forwards;
+    }
+    .hero-subtitle {
+      font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+      font-weight: 300;
+      color: var(--cream-dim);
+      max-width: 560px;
+      line-height: 1.7;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.6s var(--ease) forwards;
+    }
+
+    /* ── PATENTS ── */
+    .patents-section {
+      padding: 5rem 0;
+    }
+    .patent-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 2.5rem;
+      margin-bottom: 1.5rem;
+      transition: border-color 0.3s var(--ease), transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+      opacity: 0;
+      animation: fadeUp 0.8s var(--ease) forwards;
+    }
+    .patent-card:nth-child(1) { animation-delay: 0.3s; }
+    .patent-card:nth-child(2) { animation-delay: 0.5s; }
+    .patent-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(201,162,85,0.07);
+    }
+    .patent-id {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: var(--gold-dim);
+      font-family: 'Courier New', monospace;
+      margin-bottom: 0.6rem;
+    }
+    .patent-name {
+      font-family: var(--display);
+      font-size: 1.55rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+    .patent-desc {
+      font-size: 0.93rem;
+      line-height: 1.82;
+      color: var(--cream-dim);
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+      max-width: 680px;
+    }
+    .link-arr {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s, gap 0.2s;
+    }
+    .link-arr:hover { border-color: var(--gold-dim); gap: 0.7rem; }
+
+    /* ── TAGS ── */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      padding: 3rem 0 0;
+      border-top: 1px solid var(--border);
+      margin-top: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.7s var(--ease) forwards;
+    }
+    .tag {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--border);
+      padding: 0.4rem 1rem;
+      border-radius: 2px;
+      font-weight: 500;
+    }
+
+    /* ── BACK LINK ── */
+    .back-section {
+      padding: 4rem 0 6rem;
+      border-top: 1px solid var(--border);
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--gold);
+      text-decoration: none;
+      border: 1px solid var(--gold-dim);
+      padding: 0.8rem 1.8rem;
+      border-radius: 2px;
+      transition: all 0.25s var(--ease);
+    }
+    .back-link:hover { background: var(--gold); color: var(--bg); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .wrap { padding: 0 1.25rem; }
+      .hero { padding: 4rem 0 3rem; }
+      .patent-card { padding: 1.75rem; }
+      .patents-section { padding: 3.5rem 0; }
+      .back-section { padding: 3rem 0 4rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title { font-size: 2.2rem; }
+      .patent-name { font-size: 1.25rem; }
+      .patent-card { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">Sari Kassar</a>
+      <a class="nav-back" href="index.html">&larr; Back</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-eyebrow"><span>Intellectual Property</span></div>
+      <h1 class="hero-title">Autonomous Driving Patents</h1>
+      <p class="hero-subtitle">Patented innovations in vehicle occupant safety and autonomous driving simulation — advancing the future of intelligent transportation.</p>
+    </div>
+  </section>
+
+  <!-- PATENTS -->
+  <section class="patents-section">
+    <div class="wrap">
+
+      <div class="patent-card">
+        <div class="patent-id">U.S. Patent No. 11,584,014 &middot; 2023</div>
+        <h2 class="patent-name">Robotic Apparatus for Vehicle Occupant Protection</h2>
+        <p class="patent-desc">An apparatus includes a robot body, at least one sensor coupled to the robot body and positioned to receive stimuli from a passenger cabin of a vehicle, an actuatable component coupled to the robot body, and a computer coupled to the robot body and communicatively coupled to the sensor and the actuatable component. The computer is programmed to predict an imminent anomalous event in the vehicle based on data from the at least one sensor, and in response to the determination, actuate the actuatable component to remediate the anomalous event.</p>
+        <a class="link-arr" href="https://patents.google.com/patent/US11584014B2" target="_blank" rel="noopener">View Patent &rarr;</a>
+      </div>
+
+      <div class="patent-card">
+        <div class="patent-id">U.S. Patent No. 12,515,653 &middot; 2026</div>
+        <h2 class="patent-name">Simulating Traffic Scenarios</h2>
+        <p class="patent-desc">A computer that includes a processor and a memory, the memory including instructions executable by the processor to generate first traffic scenarios including one or more objects based on initial object locations and initial object trajectories of the one or more objects, wherein the first traffic scenarios are generated with a three-dimensional simulation engine. Probabilities of impact can be determined between the one or more objects included in the first traffic scenarios; selecting a subset of the first traffic scenarios that include the probabilities of impact greater than a user-selected threshold. Second traffic scenarios can be generated based on perturbing the selected subset of the first traffic scenarios wherein the second traffic scenarios are generated with the three-dimensional simulation engine. A machine learning system can be trained based on the first and the second traffic scenarios.</p>
+        <a class="link-arr" href="https://patents.google.com/patent/US12515653B2" target="_blank" rel="noopener">View Patent &rarr;</a>
+      </div>
+
+      <div class="tags">
+        <span class="tag">Autonomous Vehicles</span>
+        <span class="tag">Safety</span>
+        <span class="tag">IP</span>
+        <span class="tag">Innovation</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BACK -->
+  <section class="back-section">
+    <div class="wrap">
+      <a class="back-link" href="index.html">&larr; Back to Portfolio</a>
+    </div>
+  </section>
+
+</body>
+</html>
