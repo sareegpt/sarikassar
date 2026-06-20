@@ -12,22 +12,25 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg:           #0A0A0A;
-      --bg-surface:   #111111;
-      --bg-card:      #181818;
-      --border:       rgba(201,162,85,0.18);
-      --border-hover: rgba(201,162,85,0.45);
-      --gold:         #C9A255;
-      --gold-light:   #DAB96B;
-      --gold-dim:     rgba(201,162,85,0.6);
-      --cream:        #EDE8DF;
-      --cream-dim:    rgba(237,232,223,0.72);
-      --cream-faint:  rgba(237,232,223,0.35);
+      --bg:           #FBFBF9;
+      --bg-surface:   #F2F1EB;
+      --bg-card:      #FFFFFF;
+      --border:       rgba(22,35,58,0.12);
+      --border-hover: rgba(156,117,40,0.55);
+      --gold:         #9C7528;
+      --gold-light:   #B68B3C;
+      --gold-dim:     rgba(156,117,40,0.62);
+      --navy:         #16233A;
+      --cream:        #16233A;
+      --cream-dim:    #45526B;
+      --cream-faint:  #8b93a3;
       --display:      'Cormorant Garamond', Georgia, serif;
       --sans:         'Jost', 'Helvetica Neue', sans-serif;
       --nav-h:        68px;
       --max-w:        1160px;
       --ease:         cubic-bezier(0.4,0,0.2,1);
+      --shadow:       0 1px 2px rgba(22,35,58,0.04), 0 10px 30px rgba(22,35,58,0.06);
+      --shadow-lg:    0 6px 12px rgba(22,35,58,0.07), 0 22px 50px rgba(22,35,58,0.11);
     }
 
     html { scroll-behavior: smooth; }
@@ -42,18 +45,6 @@
       overflow-x: hidden;
     }
 
-    /* Grain overlay */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      z-index: 9998;
-      pointer-events: none;
-      opacity: 0.035;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-size: 200px 200px;
-    }
-
     /* ── NAV ── */
     nav {
       position: fixed;
@@ -62,7 +53,7 @@
       height: var(--nav-h);
       display: flex;
       align-items: center;
-      background: rgba(10,10,10,0.96);
+      background: rgba(251,251,249,0.85);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--border);
@@ -81,8 +72,8 @@
       font-family: var(--display);
       font-style: italic;
       font-size: 1.45rem;
-      font-weight: 400;
-      color: var(--cream);
+      font-weight: 500;
+      color: var(--navy);
       text-decoration: none;
       letter-spacing: 0.02em;
       transition: color 0.2s;
@@ -101,7 +92,7 @@
       align-items: center;
       gap: 0.5rem;
     }
-    .nav-back:hover { color: var(--cream); }
+    .nav-back:hover { color: var(--navy); }
 
     /* ── LAYOUT ── */
     .wrap {
@@ -114,6 +105,7 @@
     .hero {
       padding: 6rem 0 4rem;
       border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg) 100%);
     }
     .hero-eyebrow {
       display: flex;
@@ -134,14 +126,14 @@
       letter-spacing: 0.24em;
       text-transform: uppercase;
       color: var(--gold);
-      font-weight: 500;
+      font-weight: 600;
     }
     .hero-title {
       font-family: var(--display);
       font-size: clamp(2.6rem, 5vw, 4.5rem);
-      font-weight: 300;
+      font-weight: 500;
       line-height: 1.05;
-      color: var(--cream);
+      color: var(--navy);
       letter-spacing: -0.01em;
       margin-bottom: 1.5rem;
       opacity: 0;
@@ -149,7 +141,7 @@
     }
     .hero-subtitle {
       font-size: clamp(0.95rem, 1.4vw, 1.1rem);
-      font-weight: 300;
+      font-weight: 400;
       color: var(--cream-dim);
       max-width: 560px;
       line-height: 1.7;
@@ -164,9 +156,10 @@
     .patent-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 3px;
+      border-radius: 6px;
       padding: 2.5rem;
       margin-bottom: 1.5rem;
+      box-shadow: var(--shadow);
       transition: border-color 0.3s var(--ease), transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
       opacity: 0;
       animation: fadeUp 0.8s var(--ease) forwards;
@@ -176,20 +169,20 @@
     .patent-card:hover {
       border-color: var(--border-hover);
       transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(201,162,85,0.07);
+      box-shadow: var(--shadow-lg);
     }
     .patent-id {
       font-size: 0.68rem;
       letter-spacing: 0.1em;
-      color: var(--gold-dim);
+      color: var(--gold);
       font-family: 'Courier New', monospace;
       margin-bottom: 0.6rem;
     }
     .patent-name {
       font-family: var(--display);
       font-size: 1.55rem;
-      font-weight: 400;
-      color: var(--cream);
+      font-weight: 500;
+      color: var(--navy);
       margin-bottom: 1rem;
       line-height: 1.3;
     }
@@ -197,7 +190,7 @@
       font-size: 0.93rem;
       line-height: 1.82;
       color: var(--cream-dim);
-      font-weight: 300;
+      font-weight: 400;
       margin-bottom: 1.5rem;
       max-width: 680px;
     }
@@ -208,7 +201,7 @@
       font-size: 0.72rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      font-weight: 500;
+      font-weight: 600;
       color: var(--gold);
       text-decoration: none;
       border-bottom: 1px solid transparent;
@@ -235,7 +228,7 @@
       border: 1px solid var(--border);
       padding: 0.4rem 1rem;
       border-radius: 2px;
-      font-weight: 500;
+      font-weight: 600;
     }
 
     /* ── BACK LINK ── */
@@ -250,15 +243,15 @@
       font-size: 0.72rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      font-weight: 500;
-      color: var(--gold);
+      font-weight: 600;
+      color: var(--navy);
       text-decoration: none;
-      border: 1px solid var(--gold-dim);
+      border: 1px solid var(--navy);
       padding: 0.8rem 1.8rem;
       border-radius: 2px;
       transition: all 0.25s var(--ease);
     }
-    .back-link:hover { background: var(--gold); color: var(--bg); }
+    .back-link:hover { background: var(--navy); color: #fff; }
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
