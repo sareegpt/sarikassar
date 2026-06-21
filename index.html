@@ -336,24 +336,37 @@
 
     .sec-hd {
       display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      margin-bottom: 4rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.85rem;
+      margin-bottom: 3.5rem;
     }
-    .sec-label {
-      font-size: 0.85rem;
+    .sec-num {
+      order: 1;
+      font-family: var(--sans);
+      font-size: 0.7rem;
       font-weight: 600;
-      letter-spacing: 0.26em;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
       color: var(--gold);
-      white-space: nowrap;
     }
-    .sec-rule { flex: 1; height: 1px; background: var(--border); }
-    .sec-num {
+    .sec-num::before { content: '\2014\00a0'; }
+    .sec-label {
+      order: 2;
       font-family: var(--display);
-      font-size: 1.5rem;
-      color: var(--cream-faint);
-      letter-spacing: 0.08em;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: 1.05;
+      text-transform: none;
+      color: var(--navy);
+    }
+    .sec-rule {
+      order: 3;
+      width: 64px;
+      height: 3px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
     }
 
     /* ── SCROLL REVEAL ── */
@@ -372,7 +385,7 @@
     #about { border-bottom: 1px solid var(--border); }
     .about-grid {
       display: grid;
-      grid-template-columns: 220px 1fr 1fr;
+      grid-template-columns: 220px 1fr;
       gap: 4rem;
       align-items: start;
     }
@@ -404,26 +417,43 @@
       font-weight: 400;
       max-width: 65ch;
     }
-    .stats-block {
+    .stats-band {
+      margin-top: 4rem;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2.5rem 3rem;
+      grid-template-columns: repeat(4, 1fr);
+      background: var(--navy);
+      background-image: radial-gradient(120% 140% at 0% 0%, rgba(182,139,60,0.14) 0%, rgba(182,139,60,0) 42%);
+      border-radius: 12px;
+      padding: 3rem 1rem;
+      box-shadow: var(--shadow-lg);
     }
-    .stat { border-top: 2px solid var(--border); padding-top: 1.25rem; }
+    .stat {
+      text-align: center;
+      padding: 0 1.75rem;
+      position: relative;
+    }
+    .stat + .stat::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 50%;
+      transform: translateY(-50%);
+      height: 64%; width: 1px;
+      background: rgba(255,255,255,0.14);
+    }
     .stat-n {
       font-family: var(--display);
-      font-size: 3.75rem;
+      font-size: clamp(2.6rem, 4vw, 3.6rem);
       font-weight: 500;
-      color: var(--gold);
+      color: var(--gold-light);
       line-height: 1;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
       letter-spacing: -0.02em;
     }
     .stat-l {
-      font-size: 0.68rem;
+      font-size: 0.66rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--cream-dim);
+      color: rgba(237,240,245,0.68);
     }
 
     /* ── FEATURED ── */
@@ -448,6 +478,21 @@
     }
     .feat-card.span2 { grid-column: 1 / -1; }
 
+    /* Animated gold accent bar on cards */
+    .feat-card, .award-card, .edu-card, .skill-card, .pub-card { position: relative; overflow: hidden; }
+    .feat-card::after, .award-card::after, .edu-card::after,
+    .skill-card::after, .pub-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.45s var(--ease);
+    }
+    .feat-card:hover::after, .award-card:hover::after, .edu-card:hover::after,
+    .skill-card:hover::after, .pub-card:hover::after { transform: scaleX(1); }
 
     /* Featured card tags */
     .feat-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1.25rem; }
@@ -624,14 +669,17 @@
       padding-top: 0.2rem;
     }
     .exp-logo {
-      width: 52px; height: 52px;
+      width: 56px; height: 56px;
       object-fit: contain;
-      border-radius: 8px;
-      padding: 8px;
+      border-radius: 10px;
+      padding: 9px;
       background: #fff;
       border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transition: border-color 0.3s var(--ease), transform 0.3s var(--ease);
     }
-    .exp-line { width: 1px; flex: 1; background: var(--border); margin-top: 0.75rem; }
+    .exp-item:hover .exp-logo { border-color: var(--border-hover); transform: translateY(-2px); }
+    .exp-line { width: 2px; flex: 1; background: linear-gradient(to bottom, var(--gold-dim), var(--border)); margin-top: 0.75rem; border-radius: 2px; }
     .exp-meta {
       display: flex;
       align-items: baseline;
@@ -724,8 +772,77 @@
     .pub-title { font-family: var(--display); font-size: 1.2rem; font-weight: 500; color: var(--navy); line-height: 1.38; margin-bottom: 0.9rem; }
     .pub-abs { font-size: 0.88rem; line-height: 1.78; color: var(--cream-dim); font-weight: 400; margin-bottom: 1.25rem; max-width: 65ch; }
 
+    /* ── PROOF STRIP ── */
+    .proof { padding: 2.25rem 0; border-bottom: 1px solid var(--border); background: var(--bg); }
+    .proof-inner { display: flex; align-items: center; justify-content: center; gap: 2rem 3rem; flex-wrap: wrap; }
+    .proof-label { font-size: 0.64rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cream-faint); white-space: nowrap; }
+    .proof-logos { display: flex; align-items: center; gap: 2.75rem; flex-wrap: wrap; justify-content: center; }
+    .proof-logos img { height: 34px; width: auto; object-fit: contain; filter: grayscale(1); opacity: 0.5; transition: filter 0.3s, opacity 0.3s; }
+    .proof-logos img:hover { filter: grayscale(0); opacity: 1; }
+
+    /* ── CREDENTIALS ── */
+    #certifications { background: var(--bg-surface); border-bottom: 1px solid var(--border); }
+    .cred-grid {
+      display: grid;
+      grid-template-columns: minmax(280px, 340px) 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .cred-badge {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      border-radius: 16px;
+      padding: 2rem;
+      color: #fff;
+      background-image: linear-gradient(155deg, #1c40d6 0%, #0a23a8 55%, #06165f 100%);
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .cred-badge::before {
+      content: 'IBM';
+      position: absolute;
+      top: 1.5rem; right: 1.6rem;
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: 0.04em;
+      color: #fff;
+    }
+    .cred-badge-title {
+      font-family: var(--display);
+      font-size: clamp(1.35rem, 2.4vw, 1.8rem);
+      font-weight: 500;
+      line-height: 1.18;
+      letter-spacing: -0.01em;
+      max-width: 88%;
+      margin-bottom: auto;
+    }
+    .cred-badge-issuer { font-size: 0.92rem; font-weight: 500; color: rgba(255,255,255,0.94); margin-top: 1.5rem; }
+    .cred-badge-level { font-size: 0.92rem; color: rgba(255,255,255,0.62); }
+    .cred-badge-foot { display: flex; align-items: flex-end; justify-content: space-between; margin-top: 1.4rem; }
+    .cred-orbit { width: 40px; height: 40px; opacity: 0.92; }
+    .cred-bars { display: flex; align-items: flex-end; gap: 5px; height: 30px; }
+    .cred-bars span { width: 9px; background: rgba(255,255,255,0.85); border-radius: 1px; }
+    .cred-bars span:nth-child(1){ height: 32%; }
+    .cred-bars span:nth-child(2){ height: 56%; }
+    .cred-bars span:nth-child(3){ height: 80%; }
+    .cred-bars span:nth-child(4){ height: 100%; }
+    .cred-info-eyebrow { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+    .cred-info h3 { font-family: var(--display); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 500; color: var(--navy); line-height: 1.2; margin-bottom: 1rem; }
+    .cred-info p { font-size: 0.95rem; line-height: 1.85; color: var(--cream-dim); font-weight: 400; margin-bottom: 1.75rem; max-width: 56ch; }
+    .cred-meta { display: flex; gap: 2.5rem; flex-wrap: wrap; margin-bottom: 1.85rem; }
+    .cred-meta-k { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cream-faint); margin-bottom: 0.3rem; }
+    .cred-meta-v { font-size: 0.9rem; color: var(--navy); font-weight: 500; }
+    .certs-row { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 3.5rem; padding-top: 3rem; border-top: 1px solid var(--border); }
+    @media (max-width: 768px) {
+      .cred-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .cred-badge { max-width: 340px; }
+    }
+
     /* ── FOOTER ── */
-    footer { border-top: 1px solid var(--border); padding: 2.75rem 2rem; background: var(--bg-surface); }
+    footer { border-top: 1px solid var(--border); padding: 3.25rem 2rem; background: var(--navy); }
     .footer-inner {
       max-width: var(--max-w);
       margin: 0 auto;
@@ -735,19 +852,19 @@
       flex-wrap: wrap;
       gap: 1.5rem;
     }
-    .footer-bio { font-size: 0.82rem; color: var(--cream-dim); font-weight: 400; letter-spacing: 0.02em; margin-bottom: 1.25rem; max-width: 580px; }
+    .footer-bio { font-size: 0.82rem; color: rgba(237,240,245,0.7); font-weight: 400; letter-spacing: 0.02em; margin-bottom: 1.25rem; max-width: 580px; }
     .footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; width: 100%; }
-    .footer-copy { font-size: 0.75rem; color: var(--cream-faint); letter-spacing: 0.06em; }
+    .footer-copy { font-size: 0.75rem; color: rgba(237,240,245,0.5); letter-spacing: 0.06em; }
     .footer-links { display: flex; gap: 2rem; }
     .footer-link {
       font-size: 0.68rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--cream-dim);
+      color: rgba(237,240,245,0.78);
       text-decoration: none;
       transition: color 0.2s;
     }
-    .footer-link:hover { color: var(--gold); }
+    .footer-link:hover { color: var(--gold-light); }
 
     /* ── KEYFRAMES ── */
     @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:none; } }
@@ -796,7 +913,8 @@
       .awards-grid { grid-template-columns: 1fr; }
       .edu-grid    { grid-template-columns: 1fr; }
       .skills-grid { grid-template-columns: 1fr; }
-      .stats-block { grid-template-columns: 1fr 1fr; }
+      .stats-band { grid-template-columns: 1fr 1fr; gap: 2.5rem 0; padding: 2.25rem 1rem; }
+      .stat + .stat::before { display: none; }
       .exp-item    { grid-template-columns: auto 1fr; gap: 0 1.25rem; }
       section      { padding: 4.5rem 0; }
       .hero-name   { font-size: clamp(3rem, 12vw, 5.5rem); }
@@ -854,6 +972,19 @@
   </div>
 </header>
 
+<!-- PROOF STRIP -->
+<section class="proof" aria-label="Experience and education">
+  <div class="wrap proof-inner">
+    <span class="proof-label">Experience &amp; education across</span>
+    <div class="proof-logos">
+      <img src="logo-ibm.png" alt="IBM" loading="lazy">
+      <img src="logo-ford.png" alt="Ford Motor Company" loading="lazy">
+      <img src="mross-logo.png" alt="University of Michigan, Ross School of Business" loading="lazy">
+      <img src="aub-seal.png" alt="American University of Beirut" loading="lazy">
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section id="about">
   <div class="wrap">
@@ -874,23 +1005,23 @@
           I specialize in AI strategy, autonomous systems, and enterprise transformation — working across business and technical teams to tackle tough challenges and make big ideas happen. I'm also a certified Gen AI Consultant and Project Manager.
         </p>
       </div>
-      <div class="stats-block reveal d2">
-        <div class="stat">
-          <div class="stat-n">9+</div>
-          <div class="stat-l">Years Experience</div>
-        </div>
-        <div class="stat">
-          <div class="stat-n">3+</div>
-          <div class="stat-l">Industries Served</div>
-        </div>
-        <div class="stat">
-          <div class="stat-n">$300M+</div>
-          <div class="stat-l">Value Delivered</div>
-        </div>
-        <div class="stat">
-          <div class="stat-n">2</div>
-          <div class="stat-l">U.S. Patents</div>
-        </div>
+    </div>
+    <div class="stats-band reveal d1">
+      <div class="stat">
+        <div class="stat-n">9+</div>
+        <div class="stat-l">Years Experience</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">3+</div>
+        <div class="stat-l">Industries Served</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">$300M+</div>
+        <div class="stat-l">Value Delivered</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">2</div>
+        <div class="stat-l">U.S. Patents</div>
       </div>
     </div>
   </div>
@@ -1194,13 +1325,59 @@
   </div>
 </section>
 
-<!-- CERTIFICATIONS -->
-<section id="certifications" style="padding:3.5rem 0;border-bottom:1px solid var(--border);">
-  <div class="wrap" style="display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;">
-    <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="4e3f4496-b88d-489d-a629-6dcd3c3e6ac7" data-share-badge-host="https://www.credly.com"></div>
-    <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="34850bec-820c-435f-b612-9157f2c449b4" data-share-badge-host="https://www.credly.com"></div>
-    <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="44507a8c-0479-4629-a4e2-b6648b12e546" data-share-badge-host="https://www.credly.com"></div>
-    <script type="text/javascript" async src="https://cdn.credly.com/assets/utilities/embed.js"></script>
+<!-- CREDENTIALS -->
+<section id="certifications">
+  <div class="wrap">
+    <div class="sec-hd reveal">
+      <span class="sec-label">Credentials</span>
+      <div class="sec-rule"></div>
+      <span class="sec-num">08</span>
+    </div>
+
+    <div class="cred-grid">
+      <div class="cred-badge reveal">
+        <div class="cred-badge-title">Generative &amp; Agentic AI Expert</div>
+        <div class="cred-badge-issuer">IBM Consulting</div>
+        <div class="cred-badge-level">Consultant / Business Analyst &middot; Advanced</div>
+        <div class="cred-badge-foot">
+          <svg class="cred-orbit" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <circle cx="24" cy="24" r="15" stroke="#fff" stroke-width="1.6" opacity="0.85"/>
+            <circle cx="11" cy="20" r="3.4" fill="#fff"/>
+            <circle cx="37" cy="28" r="3.4" fill="#fff"/>
+            <path d="M14 21.5 L34 26.5" stroke="#fff" stroke-width="1.4" opacity="0.8"/>
+          </svg>
+          <div class="cred-bars"><span></span><span></span><span></span><span></span></div>
+        </div>
+      </div>
+
+      <div class="cred-info reveal d1">
+        <div class="cred-info-eyebrow">Latest Certification</div>
+        <h3>Generative &amp; Agentic AI Expert</h3>
+        <p>IBM Consulting Advanced credential certifying expertise in designing, advising on, and deploying generative and agentic AI solutions as a Consultant and Business Analyst — spanning enterprise strategy, solution architecture, and responsible AI adoption.</p>
+        <div class="cred-meta">
+          <div class="cred-meta-item">
+            <div class="cred-meta-k">Issuer</div>
+            <div class="cred-meta-v">IBM Consulting</div>
+          </div>
+          <div class="cred-meta-item">
+            <div class="cred-meta-k">Level</div>
+            <div class="cred-meta-v">Advanced</div>
+          </div>
+          <div class="cred-meta-item">
+            <div class="cred-meta-k">Focus</div>
+            <div class="cred-meta-v">Generative &amp; Agentic AI</div>
+          </div>
+        </div>
+        <a href="https://linkedin.com/in/sgkassar" class="link-arr" target="_blank" rel="noopener">View on LinkedIn &rarr;</a>
+      </div>
+    </div>
+
+    <div class="certs-row reveal d2">
+      <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="4e3f4496-b88d-489d-a629-6dcd3c3e6ac7" data-share-badge-host="https://www.credly.com"></div>
+      <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="34850bec-820c-435f-b612-9157f2c449b4" data-share-badge-host="https://www.credly.com"></div>
+      <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="44507a8c-0479-4629-a4e2-b6648b12e546" data-share-badge-host="https://www.credly.com"></div>
+      <script type="text/javascript" async src="https://cdn.credly.com/assets/utilities/embed.js"></script>
+    </div>
   </div>
 </section>
 
