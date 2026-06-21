@@ -806,10 +806,36 @@
     .cred-meta { display: flex; gap: 2.5rem; flex-wrap: wrap; margin-bottom: 1.85rem; }
     .cred-meta-k { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cream-faint); margin-bottom: 0.3rem; }
     .cred-meta-v { font-size: 0.9rem; color: var(--navy); font-weight: 500; }
-    .certs-row { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 3.5rem; padding-top: 3rem; border-top: 1px solid var(--border); }
+
+    /* Credentials carousel */
+    .cred-viewport { overflow: hidden; }
+    .cred-track { display: flex; transition: transform 0.55s var(--ease); will-change: transform; }
+    .cred-slide { flex: 0 0 100%; min-width: 0; padding: 0.5rem 0.25rem; }
+    .cred-tag {
+      display: inline-block;
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--navy); background: var(--gold-light);
+      padding: 0.32rem 0.78rem; border-radius: 999px; margin-bottom: 1rem;
+    }
+    .cred-controls { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-top: 2.75rem; }
+    .cred-nav {
+      width: 46px; height: 46px; border-radius: 50%;
+      border: 1px solid var(--border); background: var(--bg-card); color: var(--navy);
+      font-size: 1.5rem; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; box-shadow: var(--shadow);
+      transition: background 0.2s, color 0.2s, border-color 0.2s, opacity 0.2s;
+    }
+    .cred-nav:hover:not(:disabled) { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .cred-nav:disabled { opacity: 0.3; cursor: default; }
+    .cred-dots { display: flex; align-items: center; gap: 0.6rem; }
+    .cred-dot { width: 8px; height: 8px; border-radius: 50%; border: none; background: var(--border); cursor: pointer; padding: 0; transition: background 0.25s, transform 0.25s; }
+    .cred-dot.active { background: var(--gold); transform: scale(1.4); }
+
     @media (max-width: 768px) {
-      .cred-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .cred-badge-frame { max-width: 360px; }
+      .cred-grid { grid-template-columns: 1fr; gap: 2rem; justify-items: center; text-align: center; }
+      .cred-badge-frame { max-width: 360px; width: 100%; }
+      .cred-meta { justify-content: center; }
     }
 
     /* ── FOOTER ── */
@@ -1305,40 +1331,130 @@
       <span class="sec-num">08</span>
     </div>
 
-    <div class="cred-grid">
-      <div class="cred-badge-frame reveal">
-        <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="23f6c485-fe43-4e9b-a660-529777274504" data-share-badge-host="https://www.credly.com"></div>
-      </div>
+    <div class="cred-carousel reveal">
+      <div class="cred-viewport">
+        <div class="cred-track" id="credTrack">
 
-      <div class="cred-info reveal d1">
-        <div class="cred-info-eyebrow">Latest Certification</div>
-        <h3>Generative &amp; Agentic AI Expert</h3>
-        <p>IBM Consulting Advanced credential certifying expertise in designing, advising on, and deploying generative and agentic AI solutions as a Consultant and Business Analyst — spanning enterprise strategy, solution architecture, and responsible AI adoption.</p>
-        <div class="cred-meta">
-          <div class="cred-meta-item">
-            <div class="cred-meta-k">Issuer</div>
-            <div class="cred-meta-v">IBM Consulting</div>
-          </div>
-          <div class="cred-meta-item">
-            <div class="cred-meta-k">Level</div>
-            <div class="cred-meta-v">Advanced</div>
-          </div>
-          <div class="cred-meta-item">
-            <div class="cred-meta-k">Focus</div>
-            <div class="cred-meta-v">Generative &amp; Agentic AI</div>
-          </div>
+          <!-- Generative & Agentic AI Expert (Advanced) -->
+          <article class="cred-slide">
+            <div class="cred-grid">
+              <div class="cred-badge-frame">
+                <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="23f6c485-fe43-4e9b-a660-529777274504" data-share-badge-host="https://www.credly.com"></div>
+              </div>
+              <div class="cred-info">
+                <span class="cred-tag">Latest</span>
+                <div class="cred-info-eyebrow">IBM Consulting Credential</div>
+                <h3>Generative &amp; Agentic AI Expert</h3>
+                <p>IBM Consulting Advanced credential certifying expertise in designing, advising on, and deploying generative and agentic AI solutions as a Consultant and Business Analyst — spanning enterprise strategy, solution architecture, and responsible AI adoption.</p>
+                <div class="cred-meta">
+                  <div class="cred-meta-item"><div class="cred-meta-k">Issuer</div><div class="cred-meta-v">IBM Consulting</div></div>
+                  <div class="cred-meta-item"><div class="cred-meta-k">Level</div><div class="cred-meta-v">Advanced</div></div>
+                  <div class="cred-meta-item"><div class="cred-meta-k">Focus</div><div class="cred-meta-v">Generative &amp; Agentic AI</div></div>
+                </div>
+                <a href="https://linkedin.com/in/sgkassar" class="link-arr" target="_blank" rel="noopener">View on LinkedIn &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Generative & Agentic AI Consultant / Business Analyst (Intermediate) -->
+          <article class="cred-slide">
+            <div class="cred-grid">
+              <div class="cred-badge-frame">
+                <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="34850bec-820c-435f-b612-9157f2c449b4" data-share-badge-host="https://www.credly.com"></div>
+              </div>
+              <div class="cred-info">
+                <div class="cred-info-eyebrow">IBM Consulting Credential</div>
+                <h3>Generative &amp; Agentic AI — Consultant / Business Analyst</h3>
+                <p>Intermediate IBM Consulting credential validating the ability to consult on and analyze generative and agentic AI solutions — translating client needs into AI-enabled business outcomes.</p>
+                <div class="cred-meta">
+                  <div class="cred-meta-item"><div class="cred-meta-k">Issuer</div><div class="cred-meta-v">IBM Consulting</div></div>
+                  <div class="cred-meta-item"><div class="cred-meta-k">Level</div><div class="cred-meta-v">Intermediate</div></div>
+                  <div class="cred-meta-item"><div class="cred-meta-k">Focus</div><div class="cred-meta-v">Generative &amp; Agentic AI</div></div>
+                </div>
+                <a href="https://linkedin.com/in/sgkassar" class="link-arr" target="_blank" rel="noopener">View on LinkedIn &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Automotive: Industry Insights & Solutions (Gold) -->
+          <article class="cred-slide">
+            <div class="cred-grid">
+              <div class="cred-badge-frame">
+                <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="4e3f4496-b88d-489d-a629-6dcd3c3e6ac7" data-share-badge-host="https://www.credly.com"></div>
+              </div>
+              <div class="cred-info">
+                <div class="cred-info-eyebrow">IBM Industry Credential</div>
+                <h3>Automotive — Industry Insights &amp; Solutions</h3>
+                <p>Gold-level recognition of deep expertise in automotive industry trends, challenges, and the IBM solutions that address them across the value chain.</p>
+                <div class="cred-meta">
+                  <div class="cred-meta-item"><div class="cred-meta-k">Issuer</div><div class="cred-meta-v">IBM</div></div>
+                  <div class="cred-meta-item"><div class="cred-meta-k">Level</div><div class="cred-meta-v">Gold</div></div>
+                  <div class="cred-meta-item"><div class="cred-meta-k">Focus</div><div class="cred-meta-v">Automotive Industry</div></div>
+                </div>
+                <a href="https://linkedin.com/in/sgkassar" class="link-arr" target="_blank" rel="noopener">View on LinkedIn &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Enterprise Design Thinking Practitioner -->
+          <article class="cred-slide">
+            <div class="cred-grid">
+              <div class="cred-badge-frame">
+                <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="44507a8c-0479-4629-a4e2-b6648b12e546" data-share-badge-host="https://www.credly.com"></div>
+              </div>
+              <div class="cred-info">
+                <div class="cred-info-eyebrow">IBM Credential</div>
+                <h3>Enterprise Design Thinking — Practitioner</h3>
+                <p>IBM's Enterprise Design Thinking Practitioner credential — applying a scalable, human-centered framework to align teams and deliver better user outcomes.</p>
+                <div class="cred-meta">
+                  <div class="cred-meta-item"><div class="cred-meta-k">Issuer</div><div class="cred-meta-v">IBM</div></div>
+                  <div class="cred-meta-item"><div class="cred-meta-k">Level</div><div class="cred-meta-v">Practitioner</div></div>
+                  <div class="cred-meta-item"><div class="cred-meta-k">Focus</div><div class="cred-meta-v">Human-Centered Design</div></div>
+                </div>
+                <a href="https://linkedin.com/in/sgkassar" class="link-arr" target="_blank" rel="noopener">View on LinkedIn &rarr;</a>
+              </div>
+            </div>
+          </article>
+
         </div>
-        <a href="https://linkedin.com/in/sgkassar" class="link-arr" target="_blank" rel="noopener">View on LinkedIn &rarr;</a>
       </div>
-    </div>
 
-    <div class="certs-row reveal d2">
-      <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="4e3f4496-b88d-489d-a629-6dcd3c3e6ac7" data-share-badge-host="https://www.credly.com"></div>
-      <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="34850bec-820c-435f-b612-9157f2c449b4" data-share-badge-host="https://www.credly.com"></div>
-      <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="44507a8c-0479-4629-a4e2-b6648b12e546" data-share-badge-host="https://www.credly.com"></div>
+      <div class="cred-controls">
+        <button class="cred-nav cred-prev" aria-label="Previous credential">&#8249;</button>
+        <div class="cred-dots" id="credDots">
+          <button class="cred-dot" aria-label="Go to credential 1"></button>
+          <button class="cred-dot" aria-label="Go to credential 2"></button>
+          <button class="cred-dot" aria-label="Go to credential 3"></button>
+          <button class="cred-dot" aria-label="Go to credential 4"></button>
+        </div>
+        <button class="cred-nav cred-next" aria-label="Next credential">&#8250;</button>
+      </div>
+
       <script type="text/javascript" async src="https://cdn.credly.com/assets/utilities/embed.js"></script>
     </div>
   </div>
+
+  <script>
+    (function () {
+      const track = document.getElementById('credTrack');
+      if (!track) return;
+      const slides = track.children.length;
+      const prev = document.querySelector('.cred-prev');
+      const next = document.querySelector('.cred-next');
+      const dots = Array.from(document.querySelectorAll('#credDots .cred-dot'));
+      let i = 0;
+      function update() {
+        track.style.transform = 'translateX(' + (-i * 100) + '%)';
+        dots.forEach((d, idx) => d.classList.toggle('active', idx === i));
+        if (prev) prev.disabled = i === 0;
+        if (next) next.disabled = i === slides - 1;
+      }
+      prev && prev.addEventListener('click', () => { if (i > 0) { i--; update(); } });
+      next && next.addEventListener('click', () => { if (i < slides - 1) { i++; update(); } });
+      dots.forEach((d, idx) => d.addEventListener('click', () => { i = idx; update(); }));
+      update();
+    })();
+  </script>
 </section>
 
 <!-- FOOTER -->
