@@ -401,7 +401,10 @@
       border-left: 2px solid var(--gold);
       padding-left: 1.75rem;
       margin-bottom: 2rem;
+      text-wrap: balance;
     }
+    /* Prevent orphaned last lines on display headings */
+    .sec-label, .feat-title, .cred-info h3, .pub-title, .award-title, .edu-deg { text-wrap: balance; }
     .about-body {
       font-size: 0.98rem;
       line-height: 1.9;
