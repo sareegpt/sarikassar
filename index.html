@@ -788,55 +788,18 @@
       gap: 3rem;
       align-items: center;
     }
-    .cred-badge {
-      position: relative;
-      aspect-ratio: 1 / 1;
-      border-radius: 16px;
-      padding: 2rem;
-      color: #fff;
-      background-image: linear-gradient(155deg, #1c40d6 0%, #0a23a8 55%, #06165f 100%);
-      box-shadow: var(--shadow-lg);
+    .cred-badge-frame {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 1.75rem;
       display: flex;
-      flex-direction: column;
-      overflow: hidden;
+      align-items: center;
+      justify-content: center;
+      min-height: 320px;
     }
-    .cred-badge-img {
-      position: absolute;
-      inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      z-index: 2;
-      background: #fff;
-    }
-    .cred-badge::before {
-      content: 'IBM';
-      position: absolute;
-      top: 1.5rem; right: 1.6rem;
-      font-family: var(--sans);
-      font-weight: 700;
-      font-size: 1.25rem;
-      letter-spacing: 0.04em;
-      color: #fff;
-    }
-    .cred-badge-title {
-      font-family: var(--display);
-      font-size: clamp(1.35rem, 2.4vw, 1.8rem);
-      font-weight: 500;
-      line-height: 1.18;
-      letter-spacing: -0.01em;
-      max-width: 88%;
-      margin-bottom: auto;
-    }
-    .cred-badge-issuer { font-size: 0.92rem; font-weight: 500; color: rgba(255,255,255,0.94); margin-top: 1.5rem; }
-    .cred-badge-level { font-size: 0.92rem; color: rgba(255,255,255,0.62); }
-    .cred-badge-foot { display: flex; align-items: flex-end; justify-content: space-between; margin-top: 1.4rem; }
-    .cred-orbit { width: 40px; height: 40px; opacity: 0.92; }
-    .cred-bars { display: flex; align-items: flex-end; gap: 5px; height: 30px; }
-    .cred-bars span { width: 9px; background: rgba(255,255,255,0.85); border-radius: 1px; }
-    .cred-bars span:nth-child(1){ height: 32%; }
-    .cred-bars span:nth-child(2){ height: 56%; }
-    .cred-bars span:nth-child(3){ height: 80%; }
-    .cred-bars span:nth-child(4){ height: 100%; }
+    .cred-badge-frame > div { max-width: 100%; }
     .cred-info-eyebrow { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
     .cred-info h3 { font-family: var(--display); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 500; color: var(--navy); line-height: 1.2; margin-bottom: 1rem; }
     .cred-info p { font-size: 0.95rem; line-height: 1.85; color: var(--cream-dim); font-weight: 400; margin-bottom: 1.75rem; max-width: 56ch; }
@@ -846,7 +809,7 @@
     .certs-row { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 3.5rem; padding-top: 3rem; border-top: 1px solid var(--border); }
     @media (max-width: 768px) {
       .cred-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .cred-badge { max-width: 340px; }
+      .cred-badge-frame { max-width: 360px; }
     }
 
     /* ── FOOTER ── */
@@ -1343,20 +1306,8 @@
     </div>
 
     <div class="cred-grid">
-      <div class="cred-badge reveal">
-        <img src="gen-ai-badge.png" alt="IBM Generative and Agentic AI Expert — Consultant / Business Analyst, IBM Consulting Advanced" class="cred-badge-img" loading="lazy" onerror="this.remove()">
-        <div class="cred-badge-title">Generative &amp; Agentic AI Expert</div>
-        <div class="cred-badge-issuer">IBM Consulting</div>
-        <div class="cred-badge-level">Consultant / Business Analyst &middot; Advanced</div>
-        <div class="cred-badge-foot">
-          <svg class="cred-orbit" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-            <circle cx="24" cy="24" r="15" stroke="#fff" stroke-width="1.6" opacity="0.85"/>
-            <circle cx="11" cy="20" r="3.4" fill="#fff"/>
-            <circle cx="37" cy="28" r="3.4" fill="#fff"/>
-            <path d="M14 21.5 L34 26.5" stroke="#fff" stroke-width="1.4" opacity="0.8"/>
-          </svg>
-          <div class="cred-bars"><span></span><span></span><span></span><span></span></div>
-        </div>
+      <div class="cred-badge-frame reveal">
+        <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="23f6c485-fe43-4e9b-a660-529777274504" data-share-badge-host="https://www.credly.com"></div>
       </div>
 
       <div class="cred-info reveal d1">
