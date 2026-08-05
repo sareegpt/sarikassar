@@ -231,17 +231,36 @@
 
     .nav-mobile-btn {
       display: none;
-      background: none;
+      background: var(--bg-card);
       border: 1px solid var(--border);
       color: var(--navy);
       width: 44px; height: 44px;
       align-items: center; justify-content: center;
-      border-radius: 4px;
+      border-radius: 50%;
       cursor: pointer;
-      font-size: 1.2rem;
-      line-height: 1;
+      padding: 0;
+      box-shadow: var(--shadow);
       -webkit-tap-highlight-color: transparent;
+      transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease), transform 0.25s var(--ease);
     }
+    .nav-mobile-btn:active { transform: scale(0.94); }
+    .nav-mobile-btn[aria-expanded="true"] { border-color: var(--gold-dim); }
+    /* Middle bar is the element; the two outer bars are its pseudo-elements,
+       so the whole icon can rotate into an X. */
+    .nav-burger, .nav-burger::before, .nav-burger::after {
+      display: block;
+      width: 17px; height: 1.5px;
+      border-radius: 2px;
+      background: var(--navy);
+      transition: transform 0.3s var(--ease), opacity 0.2s var(--ease), background 0.25s;
+    }
+    .nav-burger { position: relative; }
+    .nav-burger::before, .nav-burger::after { content: ''; position: absolute; left: 0; }
+    .nav-burger::before { top: -5.5px; }
+    .nav-burger::after  { top:  5.5px; }
+    .nav-mobile-btn[aria-expanded="true"] .nav-burger { background: transparent; }
+    .nav-mobile-btn[aria-expanded="true"] .nav-burger::before { transform: translateY(5.5px) rotate(45deg); background: var(--gold); }
+    .nav-mobile-btn[aria-expanded="true"] .nav-burger::after  { transform: translateY(-5.5px) rotate(-45deg); background: var(--gold); }
 
     /* ── HERO ── */
     .hero {
@@ -1145,7 +1164,7 @@
       <li><a href="#certifications" class="nav-link">Credentials</a></li>
       <li><a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=sareegpt@gmail.com&su=Hello%20Sari" class="nav-cta" target="_blank" rel="noopener">Contact</a></li>
     </ul>
-    <button class="nav-mobile-btn" id="mobileBtn" aria-label="Open menu" aria-expanded="false">☰</button>
+    <button class="nav-mobile-btn" id="mobileBtn" aria-label="Open menu" aria-expanded="false"><span class="nav-burger"></span></button>
   </div>
 </nav>
 
@@ -1749,20 +1768,21 @@
   const links = document.getElementById('navLinks');
   btn.addEventListener('click', () => {
     const open = links.classList.toggle('open');
-    btn.textContent = open ? '✕' : '☰';
     btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   });
   links.querySelectorAll('.nav-link').forEach(a => {
     a.addEventListener('click', () => {
       links.classList.remove('open');
-      btn.textContent = '☰';
       btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-label', 'Open menu');
     });
   });
   window.addEventListener('resize', () => {
     if (window.innerWidth > 768) {
       links.classList.remove('open');
-      btn.textContent = '☰';
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-label', 'Open menu');
     }
   });
 
