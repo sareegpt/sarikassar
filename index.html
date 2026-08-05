@@ -176,9 +176,15 @@
       color: var(--navy);
       text-decoration: none;
       letter-spacing: 0.02em;
-      transition: color 0.2s;
       white-space: nowrap;
+      /* The hero already says the name; the nav only needs it once the
+         hero has scrolled away. */
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-4px);
+      transition: color 0.2s, opacity 0.35s var(--ease), transform 0.35s var(--ease), visibility 0.35s;
     }
+    nav.scrolled .nav-logo { opacity: 1; visibility: visible; transform: none; }
     .nav-logo:hover { color: var(--gold); }
 
     .nav-links {
