@@ -1074,11 +1074,17 @@
 
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-visual { grid-column: 1; grid-row: 1; min-height: 44vh; }
-      .hero-visual::after {
-        background: linear-gradient(0deg, var(--bg) 0%, rgba(251,251,249,0.25) 30%, rgba(251,251,249,0) 62%);
+      /* Crop to the subject rather than the bright floor below him, and
+         keep the fade shallow so it doesn't add to the gap. */
+      .hero-visual {
+        grid-column: 1; grid-row: 1;
+        min-height: 46vh;
+        background-position: center 12%;
       }
-      .hero-content { grid-column: 1; grid-row: 2; padding: 2.75rem 1.5rem 3.5rem; }
+      .hero-visual::after {
+        background: linear-gradient(0deg, var(--bg) 0%, rgba(251,251,249,0.15) 14%, rgba(251,251,249,0) 34%);
+      }
+      .hero-content { grid-column: 1; grid-row: 2; padding: 1.5rem 1.5rem 3rem; }
       .hero-inner { max-width: none; }
       .scroll-hint { display: none; }
     }
