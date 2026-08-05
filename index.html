@@ -33,7 +33,7 @@
         "url": "https://www.sarikassar.com/",
         "image": "https://www.sarikassar.com/sari-kassar.jpg",
         "jobTitle": "Managing Consultant, Enterprise AI and Cybersecurity",
-        "description": "Sari Kassar is a Managing Consultant for Enterprise AI and Cybersecurity at IBM with over nine years of experience across engineering research, autonomous systems, and management consulting. He designs and builds agentic AI systems, including the identity and delegated-authority problems that come with agents acting on behalf of individual users. He runs large cybersecurity programs for enterprise clients, develops the ROI and value models that get AI programs funded, and advises executives on enterprise AI transformation. He holds two U.S. patents in autonomous vehicle safety.",
+        "description": "Sari Kassar is a Managing Consultant for Enterprise AI and Cybersecurity at IBM who combines hands-on technical delivery with enterprise business strategy, a pairing that is rare in AI programs. He designs and builds agentic AI systems, including the identity, delegated-authority, and context-engineering problems that come with agents acting on behalf of individual users. He runs large cybersecurity programs for enterprise clients, builds the ROI and value models that get AI programs funded, and advises C-suite executives on enterprise AI transformation. He holds two U.S. patents in autonomous vehicle safety and an MBA from the University of Michigan Ross School of Business.",
         "worksFor": {
           "@type": "Organization",
           "name": "IBM",
@@ -65,6 +65,13 @@
           "AI value case and ROI modeling",
           "Cybersecurity strategy",
           "Enterprise security program delivery",
+          "Forward deployed engineering",
+          "Context engineering",
+          "AI delegation and oversight",
+          "Technical and business strategy hybrid leadership",
+          "Client-embedded solution delivery",
+          "Kubernetes and cloud platform architecture",
+          "Cloud analytics platforms",
           "Autonomous vehicle safety",
           "Advanced driver assistance systems",
           "Model-based systems engineering",
@@ -152,6 +159,8 @@
     .nav-inner {
       max-width: var(--max-w);
       width: 100%;
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
       margin: 0 auto;
       padding: 0 2rem;
       display: flex;
@@ -219,11 +228,13 @@
       background: none;
       border: 1px solid var(--border);
       color: var(--navy);
-      padding: 0.4rem 0.65rem;
-      border-radius: 3px;
+      width: 44px; height: 44px;
+      align-items: center; justify-content: center;
+      border-radius: 4px;
       cursor: pointer;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       line-height: 1;
+      -webkit-tap-highlight-color: transparent;
     }
 
     /* ── HERO ── */
@@ -255,28 +266,8 @@
       padding: 4rem 2.5rem 4rem max(2rem, calc((100vw - var(--max-w)) / 2 + 2rem));
     }
     .hero-inner { max-width: 540px; }
-    .hero-eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.75rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.2s var(--ease) forwards;
-    }
-    .hero-eyebrow::before {
-      content: '';
-      display: block;
-      width: 36px; height: 1px;
-      background: var(--gold);
-    }
-    .hero-eyebrow span {
-      font-size: 0.68rem;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 600;
-    }
     .hero-name {
+      margin-top: 0.5rem;
       font-family: var(--display);
       font-size: clamp(3.6rem, 7vw, 7rem);
       font-weight: 500;
@@ -285,7 +276,7 @@
       letter-spacing: -0.01em;
       margin-bottom: 1.75rem;
       opacity: 0;
-      animation: fadeUp 0.8s 0.4s var(--ease) forwards;
+      animation: fadeUp 0.8s 0.15s var(--ease) forwards;
     }
     .hero-name em {
       font-style: italic;
@@ -300,7 +291,7 @@
       margin-bottom: 2.5rem;
       line-height: 1.7;
       opacity: 0;
-      animation: fadeUp 0.8s 0.6s var(--ease) forwards;
+      animation: fadeUp 0.8s 0.35s var(--ease) forwards;
     }
     .hero-actions {
       display: flex;
@@ -309,7 +300,7 @@
       flex-wrap: wrap;
       margin-bottom: 3rem;
       opacity: 0;
-      animation: fadeUp 0.8s 0.8s var(--ease) forwards;
+      animation: fadeUp 0.8s 0.55s var(--ease) forwards;
     }
     .btn-gold {
       display: inline-flex;
@@ -413,7 +404,7 @@
       margin: 0 auto;
       padding: 0 2rem;
     }
-    section { padding: 7rem 0; position: relative; }
+    section { padding: 5rem 0; position: relative; }
 
     .sec-hd {
       display: flex;
@@ -439,6 +430,29 @@
       height: 3px;
       border-radius: 2px;
       background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    }
+
+    /* Sub-heading inside a consolidated section */
+    .sub-hd {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 4.5rem 0 2rem;
+    }
+    .sub-hd:first-of-type { margin-top: 0; }
+    .sub-hd span {
+      font-size: 0.66rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .sub-hd::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
     }
 
     /* ── SCROLL REVEAL ── */
@@ -470,6 +484,9 @@
       border: 3px solid var(--bg-card);
       box-shadow: 0 0 0 1px var(--border), var(--shadow);
       display: block;
+      /* Follows the text so the left column is never a dead gutter */
+      position: sticky;
+      top: calc(var(--nav-h) + 2.5rem);
     }
     .about-quote {
       font-family: var(--display);
@@ -484,7 +501,7 @@
       text-wrap: balance;
     }
     /* Prevent orphaned last lines on display headings */
-    .sec-label, .feat-title, .cred-info h3, .pub-title, .award-title, .edu-deg { text-wrap: balance; }
+    .sec-label, .feat-title, .cred-info h3, .pub-title, .edu-deg { text-wrap: balance; }
     .about-body {
       font-size: 0.98rem;
       line-height: 1.9;
@@ -492,16 +509,19 @@
       font-weight: 400;
       max-width: 65ch;
     }
+    /* Full-bleed: the band IS the boundary between About and Selected Work,
+       rather than a slab floating in the middle of two piles of whitespace. */
     .stats-band {
-      margin-top: 4rem;
+      margin: 4rem calc(50% - 50vw) 0;
+      width: 100vw;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       background: var(--navy);
       background-image: radial-gradient(120% 140% at 0% 0%, rgba(182,139,60,0.14) 0%, rgba(182,139,60,0) 42%);
-      border-radius: 12px;
-      padding: 3rem 1rem;
-      box-shadow: var(--shadow-lg);
+      border-radius: 0;
+      padding: 3.25rem max(2rem, calc((100vw - var(--max-w)) / 2 + 2rem));
     }
+    #about { padding-bottom: 0; border-bottom: none; }
     .stat {
       text-align: center;
       padding: 0 1.75rem;
@@ -601,6 +621,47 @@
       margin-bottom: 0.4rem;
     }
 
+    /* ── AGENT ARCHITECTURE DIAGRAM ── */
+    .arch-wrap {
+      margin: 1.75rem 0 1.5rem;
+      padding: 1.75rem 1.25rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow-x: auto;
+    }
+    .arch-svg { display: block; width: 100%; min-width: 660px; height: auto; }
+    .arch-node { fill: var(--bg-card); stroke: var(--border); stroke-width: 1.5; }
+    .arch-node-hi { stroke: var(--gold-dim); }
+    .arch-label { font-family: var(--sans); font-size: 15px; font-weight: 600; fill: var(--navy); }
+    .arch-sub   { font-family: var(--sans); font-size: 11.5px; fill: var(--cream-faint); letter-spacing: 0.04em; }
+    .arch-line  { stroke: var(--border); stroke-width: 2; fill: none; }
+    .arch-flow {
+      stroke: var(--gold); stroke-width: 2; fill: none;
+      stroke-dasharray: 7 11; stroke-linecap: round;
+      animation: archFlow 1.4s linear infinite;
+    }
+    .arch-flow-rev { animation: archFlowRev 1.6s linear infinite; }
+    @keyframes archFlow    { to { stroke-dashoffset: -36; } }
+    @keyframes archFlowRev { to { stroke-dashoffset:  36; } }
+    .arch-guard-box { fill: var(--bg-card); stroke: var(--gold-dim); stroke-width: 1.2; }
+    .arch-guard-t {
+      font-family: var(--sans); font-size: 10.5px; font-weight: 600;
+      fill: var(--gold); letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .arch-zone { fill: none; stroke: var(--border); stroke-width: 1.2; stroke-dasharray: 4 5; }
+    .arch-zone-t {
+      font-family: var(--sans); font-size: 10px; font-weight: 700;
+      fill: var(--cream-faint); letter-spacing: 0.17em; text-transform: uppercase;
+    }
+    .arch-caption {
+      font-size: 0.82rem; color: var(--cream-faint);
+      letter-spacing: 0.02em; margin-top: 0.35rem;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .arch-flow, .arch-flow-rev { animation: none; stroke-dasharray: none; }
+    }
+
     /* ── FEATURED ── */
     #featured { border-bottom: 1px solid var(--border); }
     .feat-grid {
@@ -624,20 +685,9 @@
     .feat-card.span2 { grid-column: 1 / -1; }
 
     /* Animated gold accent bar on cards */
-    .feat-card, .award-card, .edu-card, .skill-card, .pub-card { position: relative; overflow: hidden; }
-    .feat-card::after, .award-card::after, .edu-card::after,
-    .skill-card::after, .pub-card::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 3px;
-      background: linear-gradient(90deg, var(--gold), var(--gold-light));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.45s var(--ease);
-    }
-    .feat-card:hover::after, .award-card:hover::after, .edu-card:hover::after,
-    .skill-card:hover::after, .pub-card:hover::after { transform: scaleX(1); }
+    .feat-card, .edu-card, .pub-card { position: relative; overflow: hidden; }
+    .feat-card::after, .edu-card::after,
+    .feat-card:hover::after, .edu-card:hover::after,
 
     /* Featured card tags */
     .feat-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1.25rem; }
@@ -651,15 +701,6 @@
     }
 
     /* Experience tags */
-    .exp-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.75rem; }
-    .exp-tag {
-      font-size: 0.66rem;
-      color: var(--gold);
-      border: 1px solid var(--gold-dim);
-      padding: 0.18rem 0.55rem;
-      border-radius: 2px;
-      letter-spacing: 0.04em;
-    }
 
     /* Featured title links */
     .feat-title a {
@@ -744,114 +785,70 @@
 
     /* ── AWARDS ── */
     #awards { background: var(--bg-surface); border-bottom: 1px solid var(--border); }
-    .awards-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-    }
-    .award-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 2.5rem 2rem;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      box-shadow: var(--shadow);
-      transition: border-color 0.3s, transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
-    }
-    .award-card:hover { border-color: var(--border-hover); transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-    .award-img-wrap {
-      width: 110px; height: 110px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.75rem;
-    }
-    .award-img {
-      max-width: 90px;
-      max-height: 90px;
-      object-fit: contain;
-    }
-    .award-img[src="aub-seal.png"] {
-      border-radius: 50%;
-      object-fit: cover;
-      max-width: 110px;
-      max-height: 110px;
-    }
-    .award-yr {
-      font-size: 0.62rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.65rem;
-    }
-    .award-title {
-      font-family: var(--display);
-      font-size: 1.1rem;
-      font-weight: 500;
-      color: var(--navy);
-      line-height: 1.4;
-      margin-bottom: 0.5rem;
-    }
-    .award-org { font-size: 0.8rem; color: var(--cream-dim); }
 
     /* ── EXPERIENCE ── */
     #experience { border-bottom: 1px solid var(--border); }
-    .exp-item {
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 0 2rem;
-      padding: 2.5rem 0;
-      border-bottom: 1px solid var(--border);
+    .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .exp-item.span2 { grid-column: 1 / -1; }
+    .exp-roles { margin: 0.2rem 0 1rem; }
+    .exp-role-row {
+      display: flex; align-items: baseline; gap: 0.75rem; flex-wrap: wrap;
+      padding: 0.55rem 0 0.55rem 0.9rem;
+      border-left: 2px solid var(--border);
     }
-    .exp-item:last-child { border-bottom: none; }
-    .exp-logo-col {
+    .exp-role-row:first-child { border-left-color: var(--gold); }
+    .exp-role-row .t { font-size: 0.92rem; color: var(--navy); font-weight: 600; }
+    .exp-role-row .d { font-size: 0.64rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--cream-faint); }
+    .exp-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 2rem 1.9rem;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      padding-top: 0.2rem;
-    }
-    .exp-logo {
-      width: 56px; height: 56px;
-      object-fit: contain;
-      border-radius: 10px;
-      padding: 9px;
-      background: #fff;
-      border: 1px solid var(--border);
       box-shadow: var(--shadow);
-      transition: border-color 0.3s var(--ease), transform 0.3s var(--ease);
+      transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease), transform 0.3s var(--ease);
     }
-    .exp-item:hover .exp-logo { border-color: var(--border-hover); transform: translateY(-2px); }
-    .exp-line { width: 2px; flex: 1; background: linear-gradient(to bottom, var(--gold-dim), var(--border)); margin-top: 0.75rem; border-radius: 2px; }
-    .exp-meta {
-      display: flex;
-      align-items: baseline;
-      gap: 1.25rem;
-      flex-wrap: wrap;
-      margin-bottom: 0.35rem;
+    .exp-item:hover { border-color: var(--border-hover); box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+    .exp-logo {
+      height: 42px; width: auto; max-width: 120px;
+      object-fit: contain; object-position: left center;
+      margin-bottom: 1.4rem; display: block;
     }
-    .exp-co {
-      font-family: var(--display);
-      font-size: 1.45rem;
-      font-weight: 500;
-      color: var(--navy);
+    .exp-meta { display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap; margin-bottom: 0.3rem; }
+    .exp-co { font-family: var(--display); font-size: 1.6rem; font-weight: 500; color: var(--navy); }
+    .exp-period { font-size: 0.66rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); }
+    .exp-role { font-size: 0.92rem; color: var(--cream-dim); font-weight: 600; margin-bottom: 0.85rem; letter-spacing: 0.01em; }
+    .exp-desc { font-size: 0.89rem; line-height: 1.72; color: var(--cream-dim); font-weight: 400; }
+    .exp-engagements { margin-top: 1.3rem; }
+    .exp-engagements + .exp-engagements { margin-top: 1.1rem; }
+    .exp-eng-label {
+      font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--cream-faint); font-weight: 600; margin-bottom: 0.65rem;
     }
-    .exp-period {
-      font-size: 0.68rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--gold);
+    .exp-eng-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .exp-eng {
+      font-size: 0.76rem; line-height: 1.3; color: var(--cream-dim);
+      border: 1px solid var(--border); border-radius: 3px;
+      padding: 0.32rem 0.65rem;
+      transition: border-color 0.2s, color 0.2s;
     }
-    .exp-role {
-      font-size: 0.87rem;
-      color: var(--cream-dim);
-      font-weight: 500;
-      margin-bottom: 0.9rem;
-      letter-spacing: 0.02em;
+    .exp-item:hover .exp-eng { border-color: var(--gold-dim); }
+    .exp-outcomes { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: auto; padding-top: 1.4rem; }
+    .exp-outcome {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.55rem 0.9rem;
     }
-    .exp-desc { font-size: 0.92rem; line-height: 1.82; color: var(--cream-dim); font-weight: 400; }
+    .exp-outcome-n {
+      display: block; font-family: var(--display); font-size: 1.35rem;
+      font-weight: 600; color: var(--gold); line-height: 1; letter-spacing: -0.01em;
+    }
+    .exp-outcome-l {
+      display: block; margin-top: 0.2rem; font-size: 0.62rem;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--cream-faint);
+    }
 
     /* ── EDUCATION ── */
     #education { background: var(--bg-surface); border-bottom: 1px solid var(--border); }
@@ -871,35 +868,56 @@
       transition: border-color 0.3s, transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
     }
     .edu-card:hover { border-color: var(--border-hover); transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-    .edu-logo { width: 50px; height: 50px; object-fit: contain; margin-bottom: 1.5rem; background: #fff; border-radius: 8px; padding: 7px; border: 1px solid var(--border); }
+    /* Fixed box so all three sit on the same baseline; per-logo scale
+       corrects optical weight (Ross is portrait with a wordmark, so it
+       reads smaller than the near-square Dearborn mark at equal height). */
+    .edu-logo {
+      --logo-scale: 1;
+      width: 150px;
+      height: 94px;
+      object-fit: contain;
+      object-position: left center;
+      margin-bottom: 1.75rem;
+      display: block;
+      transform: scale(var(--logo-scale));
+      transform-origin: left center;
+      transition: transform 0.3s var(--ease);
+    }
+    .edu-logo[src="mross-logo.png"]  { --logo-scale: 1.2; }
+    .edu-logo[src="mdearborn.png"]   { --logo-scale: 1.02; }
+    .edu-logo[src="aub-seal.png"] {
+      --logo-scale: 1.04;
+      width: 94px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .edu-card:hover .edu-logo { transform: scale(calc(var(--logo-scale) * 1.06)); }
     .edu-yr { font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.45rem; }
     .edu-deg { font-family: var(--display); font-size: 1.1rem; font-weight: 500; color: var(--navy); line-height: 1.35; margin-bottom: 0.5rem; }
     .edu-sch { font-size: 0.83rem; color: var(--cream-dim); line-height: 1.55; }
-    .edu-honor { font-size: 0.63rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-top: auto; padding-top: 1.25rem; font-weight: 600; }
-
-    /* ── SKILLS ── */
-    #skills { border-bottom: 1px solid var(--border); }
-    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-    .skill-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 2rem;
-      box-shadow: var(--shadow);
-      transition: border-color 0.3s, box-shadow 0.3s var(--ease), transform 0.3s var(--ease);
+    .edu-honor {
+      display: inline-block;
+      font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--gold); font-weight: 700;
+      border: 1px solid var(--gold-dim); border-radius: 2px;
+      padding: 0.22rem 0.55rem; margin-top: 1rem;
     }
-    .skill-card:hover { border-color: var(--border-hover); transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-    .skill-cat { font-size: 0.65rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; font-weight: 600; }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; }
-    .skill-tag {
-      font-size: 0.78rem;
-      color: var(--cream-dim);
-      border: 1px solid var(--border);
-      padding: 0.3rem 0.75rem;
-      border-radius: 2px;
-      transition: border-color 0.2s, color 0.2s;
+    .edu-award {
+      margin-top: auto;
+      padding-top: 1.35rem;
+      display: flex; gap: 0.6rem; align-items: flex-start;
     }
-    .skill-tag:hover { border-color: var(--gold-dim); color: var(--navy); }
+    .edu-award::before {
+      content: '';
+      position: absolute; left: 2rem; right: 2rem;
+      margin-top: -0.7rem;
+      height: 1px; background: var(--border);
+    }
+    .edu-card { position: relative; }
+    .edu-award-ico { width: 15px; height: 15px; flex-shrink: 0; fill: var(--gold); margin-top: 1px; }
+    .edu-award-t { font-size: 0.83rem; line-height: 1.45; color: var(--navy); font-weight: 500; }
+    .edu-award-t a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--gold-dim); }
+    .edu-award-t a:hover { color: var(--gold); }
 
     /* ── PUBLICATIONS ── */
     #publications { background: var(--bg-surface); border-bottom: 1px solid var(--border); }
@@ -921,8 +939,14 @@
     .proof { padding: 2.25rem 0; border-bottom: 1px solid var(--border); background: var(--bg); }
     .proof-inner { display: flex; align-items: center; justify-content: center; gap: 2rem 3rem; flex-wrap: wrap; }
     .proof-label { font-size: 0.64rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cream-faint); white-space: nowrap; }
-    .proof-logos { display: flex; align-items: center; gap: 2.75rem; flex-wrap: wrap; justify-content: center; }
-    .proof-logos img { height: 34px; width: auto; object-fit: contain; filter: grayscale(1); opacity: 0.5; transition: filter 0.3s, opacity 0.3s; }
+    .proof-logos { display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap; justify-content: center; }
+    /* Heights tuned per aspect ratio so optical mass matches: the wide
+       wordmarks and the square/portrait marks need different heights. */
+    .proof-logos img { width: auto; object-fit: contain; filter: grayscale(1); opacity: 0.5; transition: filter 0.3s, opacity 0.3s; }
+    .proof-logos img[src="logo-ibm.png"]   { height: 31px; }
+    .proof-logos img[src="logo-ford.png"]  { height: 29px; }
+    .proof-logos img[src="mross-logo.png"] { height: 54px; }
+    .proof-logos img[src="aub-seal.png"]   { height: 46px; border-radius: 50%; }
     .proof-logos img:hover { filter: grayscale(0); opacity: 1; }
 
     /* ── CREDENTIALS ── */
@@ -973,9 +997,17 @@
     }
     .cred-nav:hover:not(:disabled) { background: var(--navy); color: #fff; border-color: var(--navy); }
     .cred-nav:disabled { opacity: 0.3; cursor: default; }
-    .cred-dots { display: flex; align-items: center; gap: 0.6rem; }
-    .cred-dot { width: 8px; height: 8px; border-radius: 50%; border: none; background: var(--border); cursor: pointer; padding: 0; transition: background 0.25s, transform 0.25s; }
-    .cred-dot.active { background: var(--gold); transform: scale(1.4); }
+    .cred-dots { display: flex; align-items: center; gap: 0; }
+    .cred-dot {
+      width: 44px; height: 44px; padding: 0; border: none; background: none;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .cred-dot::before {
+      content: ''; width: 8px; height: 8px; border-radius: 50%;
+      background: var(--border); transition: background 0.25s, transform 0.25s;
+    }
+    .cred-dot.active::before { background: var(--gold); transform: scale(1.4); }
 
     @media (max-width: 768px) {
       .cred-grid { grid-template-columns: 1fr; gap: 2rem; justify-items: center; text-align: center; }
@@ -1015,14 +1047,13 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
       .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .about-photo { width: 160px; height: 160px; }
+      .about-photo { width: 160px; height: 160px; position: static; }
       .feat-grid  { grid-template-columns: 1fr; }
       .feat-card.span2 { grid-column: auto; }
-      .awards-grid { grid-template-columns: 1fr 1fr; }
       .edu-grid    { grid-template-columns: 1fr 1fr; }
-      .skills-grid { grid-template-columns: 1fr 1fr; }
       .pubs-grid   { grid-template-columns: 1fr; }
       .cap-grid    { grid-template-columns: 1fr; }
+      .exp-grid    { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 900px) {
@@ -1038,7 +1069,7 @@
 
     @media (max-width: 768px) {
       .nav-links { display: none; }
-      .nav-mobile-btn { display: block; }
+      .nav-mobile-btn { display: flex; }
       .nav-links.open {
         display: flex;
         flex-direction: column;
@@ -1053,12 +1084,9 @@
         z-index: 199;
       }
       .nav-links.open .nav-link { font-size: 1.4rem; letter-spacing: 0.12em; }
-      .awards-grid { grid-template-columns: 1fr; }
       .edu-grid    { grid-template-columns: 1fr; }
-      .skills-grid { grid-template-columns: 1fr; }
-      .stats-band { grid-template-columns: 1fr 1fr; gap: 2.5rem 0; padding: 2.25rem 1rem; }
+      .stats-band { grid-template-columns: 1fr 1fr; gap: 2.5rem 0; padding: 2.5rem 1.5rem; margin-top: 3rem; }
       .stat + .stat::before { display: none; }
-      .exp-item    { grid-template-columns: auto 1fr; gap: 0 1.25rem; }
       section      { padding: 4.5rem 0; }
       .hero-name   { font-size: clamp(3rem, 12vw, 5.5rem); }
     }
@@ -1071,12 +1099,11 @@
   <div class="nav-inner">
     <a href="#top" class="nav-logo">Sari Kassar</a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#about"      class="nav-link">About</a></li>
-      <li><a href="#featured"   class="nav-link">Featured</a></li>
       <li><a href="#capabilities" class="nav-link">Where I'm Useful</a></li>
-      <li><a href="#experience" class="nav-link">Experience</a></li>
-      <li><a href="#education"  class="nav-link">Education</a></li>
-      <li><a href="#publications" class="nav-link">Research</a></li>
+      <li><a href="#about"      class="nav-link">About</a></li>
+      <li><a href="#featured"   class="nav-link">Work</a></li>
+      <li><a href="#experience" class="nav-link">Track Record</a></li>
+      <li><a href="#certifications" class="nav-link">Credentials</a></li>
       <li><a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=sareegpt@gmail.com&su=Hello%20Sari" class="nav-cta" target="_blank" rel="noopener">Contact</a></li>
     </ul>
     <button class="nav-mobile-btn" id="mobileBtn" aria-label="Open menu" aria-expanded="false">☰</button>
@@ -1088,14 +1115,11 @@
   <div class="hero-visual" aria-hidden="true"></div>
   <div class="hero-content">
     <div class="hero-inner">
-      <div class="hero-eyebrow">
-        <span>Enterprise AI &amp; Agentic Systems</span>
-      </div>
       <h1 class="hero-name">Sari<br><em>Kassar</em></h1>
-      <p class="hero-tagline">I build agentic AI systems, run enterprise security programs, and write the business cases that get both funded &mdash; for large organizations scaling AI, and for companies still figuring out where to start.</p>
+      <p class="hero-tagline">I sit on both sides of the AI conversation: the architecture that has to work, and the business case that has to hold. Those two jobs usually belong to different people, which is most of why AI programs stall.</p>
       <div class="hero-actions">
         <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=sareegpt@gmail.com&su=Hello%20Sari" class="btn-gold" target="_blank" rel="noopener">Start a Conversation</a>
-        <a href="#featured" class="btn-outline">Explore Work &rarr;</a>
+        <a href="#capabilities" class="btn-outline">See How I Work &rarr;</a>
       </div>
       <div class="hero-meta">
         <span class="hero-meta-item">United States</span>
@@ -1137,35 +1161,35 @@
       <span class="sec-label">Where I&rsquo;m Useful</span>
       <div class="sec-rule"></div>
     </div>
-    <p class="cap-intro reveal">Most AI programs don&rsquo;t fail on the model. They fail because nobody could say what it was worth, nobody worked out what the system was allowed to do, or the organization had no idea where to begin. Four problems, and they&rsquo;re where I spend my time.</p>
+    <p class="cap-intro reveal">AI programs stall for predictable reasons. The value case never survives scrutiny. Nobody defines what the system is allowed to do. The organization has no obvious place to start. I work embedded with client teams on all of it, holding both the technical design and the business argument, which is the pairing that keeps a program alive past its first review.</p>
     <div class="cap-grid">
 
       <div class="cap-card reveal">
         <div class="cap-idx">01</div>
         <h3 class="cap-title">Making the case AI actually gets funded on</h3>
-        <p class="cap-body">Executives don&rsquo;t reject AI, they reject vague numbers. I build the ROI and value models that survive a CFO&rsquo;s questions: where the cost comes out, when it lands, what has to be true for it to hold. Then I put them in front of the room and defend them.</p>
-        <div class="cap-proof"><strong>$100M+</strong>in enterprise pursuits underpinned by value cases I designed</div>
+        <p class="cap-body">I build the ROI and value models that hold up under a CFO&rsquo;s scrutiny: where the cost comes out, when it lands, and which assumptions the whole number rests on. Then I sit in the room and defend them. That last part is where most value cases come apart.</p>
+        <div class="cap-proof"><strong>$500M+</strong>in enterprise pursuits won on value cases I built or contributed to</div>
       </div>
 
       <div class="cap-card reveal d1">
         <div class="cap-idx">02</div>
-        <h3 class="cap-title">Building agents &mdash; and answering who they&rsquo;re allowed to be</h3>
-        <p class="cap-body">I write the code, not just the architecture diagram. And the hard part of agentic systems isn&rsquo;t orchestration, it&rsquo;s identity: an agent acting for a specific user has to inherit that user&rsquo;s permissions and nothing more. Delegated authority, per-user scoping, credentials that don&rsquo;t become a standing key to everything. Get it wrong and you&rsquo;ve built a very efficient way to leak data across your own org.</p>
-        <div class="cap-proof"><strong>Hands-on</strong>agent orchestration, delegated identity, and least-privilege design</div>
+        <h3 class="cap-title">Building agents, and the security model they need</h3>
+        <p class="cap-body">I build agents hands-on, where the security model is the hard part. An agent acting on live systems for a specific person has to inherit that person&rsquo;s permissions and stop there. Data coming back from a tool has to be fenced so the model treats it as information rather than instructions. Anything that writes needs a human confirming first. I design and implement those controls.</p>
+        <div class="cap-proof"><strong>Hands-on</strong>agent orchestration, scoped authorization, prompt-injection defense</div>
       </div>
 
       <div class="cap-card reveal d1">
         <div class="cap-idx">03</div>
         <h3 class="cap-title">Running security programs at enterprise scale</h3>
-        <p class="cap-body">Large security programs don&rsquo;t fail on tooling, they fail on coordination &mdash; competing stakeholders, unclear ownership, controls nobody sequenced against delivery. I run these for major clients: setting the scope, holding the roadmap, and keeping security a design input rather than the thing that blocks launch.</p>
-        <div class="cap-proof"><strong>Enterprise</strong>AI and cybersecurity programs for large clients at IBM</div>
+        <p class="cap-body">I run large security programs for enterprise clients. Most of the difficulty is coordination: competing stakeholders, unclear ownership, and controls that nobody sequenced against the delivery date. Treating security as a design input from the start costs a fraction of what it costs to retrofit two weeks before launch.</p>
+        <div class="cap-proof"><strong>Enterprise</strong>AI and cybersecurity program delivery for large clients at IBM</div>
       </div>
 
       <div class="cap-card reveal d2">
         <div class="cap-idx">04</div>
         <h3 class="cap-title">Getting from zero to a first deployment that works</h3>
-        <p class="cap-body">Organizations with no AI footing don&rsquo;t need a transformation roadmap, they need one thing running that people trust. I find the workflow where automation pays for itself fastest, ship it, and let the credibility from that fund whatever comes next.</p>
-        <div class="cap-proof"><strong>$5M</strong>hard savings from a first-of-its-kind analytics platform at Ford</div>
+        <p class="cap-body">Companies starting from zero get further with one working deployment than with a three-year roadmap. I embed with the team, find the workflow where automation pays for itself fastest, and ship it against the systems they already run: legacy schemas, partner integrations, and all the glue nobody budgeted for. The credibility that earns is what funds the next thing.</p>
+        <div class="cap-proof"><strong>$15M+</strong>hard savings delivered across client and in-house programs</div>
       </div>
 
     </div>
@@ -1184,14 +1208,27 @@
       <img src="sari-kassar.jpg" alt="Sari Kassar" class="about-photo reveal" loading="lazy">
       <div>
         <blockquote class="about-quote reveal">
-          I spent six years as an engineer before I ever wrote a strategy deck. It shows &mdash; usually in the questions I ask.
+          Writing the code stopped being the bottleneck. Knowing what to ask for, and recognizing when what
+          comes back is confidently wrong, is the job now.
         </blockquote>
         <p class="about-body reveal d1">
-          I&rsquo;m a Managing Consultant at IBM working on enterprise AI and cybersecurity &mdash; running large programs for major clients, and building agent systems hands-on. Before consulting I was at Ford for five years, first as a safety research engineer on driver-assistance systems, then leading the team that built the company&rsquo;s first ADAS cloud analytics platform. Two U.S. patents came out of that work.
+          I&rsquo;m a Managing Consultant at IBM working on enterprise AI and cybersecurity. I run large programs
+          for major clients, and I build the agent systems myself. Those two things almost never live in the same
+          person, and the gap between them is where most AI investment quietly dies: architecture nobody can
+          justify, or business cases nobody can build.
           <br><br>
-          That path is the reason I&rsquo;m useful in the room. I&rsquo;ve been the engineer told to deliver against a business case nobody stress-tested, and I&rsquo;ve been the consultant who had to write one. I know which assumptions quietly decide whether an AI program survives contact with production &mdash; and I&rsquo;d rather surface those early than watch a pilot stall at month nine.
+          The agentic shift changed what technical work rewards. For a decade the prized engineer was the
+          meticulous one, careful with every line. That skill is now table stakes. The work today is decomposition,
+          delegation, and verification: framing a problem precisely enough that a system can act on it, engineering
+          the context it needs to act well, and holding a high enough bar to catch output that is fluent and wrong.
+          Those are management skills. The people adapting fastest are the ones who already knew how to set a
+          brief, delegate it, and inspect what came back.
           <br><br>
-          I work across automotive, manufacturing, and energy &amp; utilities. Certified in Generative &amp; Agentic AI and project management, with an MBA from Michigan Ross in strategy and finance.
+          I&rsquo;ve spent years translating between the engineers who build systems and the executives who fund
+          them, which turns out to be the same shape as directing an agent: set the goal, bound the authority,
+          judge the result against what the business actually needed. I work across automotive, manufacturing, and
+          energy &amp; utilities, with an MBA from Michigan Ross in strategy and finance, IBM&rsquo;s Advanced
+          credential in Generative &amp; Agentic AI, and Gold-level industry certification in Automotive.
         </p>
       </div>
     </div>
@@ -1201,12 +1238,12 @@
         <div class="stat-l">Years Experience</div>
       </div>
       <div class="stat">
-        <div class="stat-n">3+</div>
-        <div class="stat-l">Industries Served</div>
+        <div class="stat-n">$500M+</div>
+        <div class="stat-l">Pursuits Won</div>
       </div>
       <div class="stat">
-        <div class="stat-n">$300M+</div>
-        <div class="stat-l">Value Delivered</div>
+        <div class="stat-n">$15M+</div>
+        <div class="stat-l">Hard Savings Delivered</div>
       </div>
       <div class="stat">
         <div class="stat-n">2</div>
@@ -1220,11 +1257,105 @@
 <section id="featured">
   <div class="wrap">
     <div class="sec-hd reveal">
-      <span class="sec-label">Featured Work</span>
+      <span class="sec-label">Selected Work</span>
       <div class="sec-rule"></div>
       <span class="sec-num">02</span>
     </div>
     <div class="feat-grid">
+
+      <!-- Agent architecture -->
+      <div class="feat-card span2 reveal">
+        <div class="feat-eye">Agent Engineering</div>
+        <h3 class="feat-title">How I Build Agents That Touch Real Systems</h3>
+        <div class="feat-tags">
+          <span class="feat-tag">Agentic AI</span>
+          <span class="feat-tag">MCP</span>
+          <span class="feat-tag">Least Privilege</span>
+          <span class="feat-tag">Least Agency</span>
+        </div>
+        <p class="feat-body" style="max-width:760px;">A demo agent is a model and a few tools. An agent allowed near production systems is a distributed system with an untrusted natural-language interface. This is the reference architecture I build to, with each boundary mapped to the threat it exists to stop.</p>
+
+        <div class="arch-wrap">
+          <svg class="arch-svg" viewBox="0 0 940 372" role="img"
+               aria-label="Agent architecture. Untrusted inputs (prompts, retrieved data, peer-agent messages) enter a governed agent runtime with a policy and scope layer and isolated memory, then reach action through a human approval gate and typed, allowlisted tools. Returned data is fenced. Observability spans the whole flow.">
+
+            <!-- ZONES -->
+            <rect class="arch-zone" x="6"   y="40" width="236" height="240" rx="10"/>
+            <text class="arch-zone-t" x="124" y="30" text-anchor="middle">Untrusted Input</text>
+            <rect class="arch-zone" x="272" y="40" width="250" height="240" rx="10"/>
+            <text class="arch-zone-t" x="397" y="30" text-anchor="middle">Governed Runtime</text>
+            <rect class="arch-zone" x="552" y="40" width="382" height="240" rx="10"/>
+            <text class="arch-zone-t" x="743" y="30" text-anchor="middle">Governed Action</text>
+
+            <!-- INPUTS -->
+            <rect class="arch-node" x="20" y="60"  width="208" height="48" rx="7"/>
+            <text class="arch-label" x="124" y="82"  text-anchor="middle">Prompts</text>
+            <text class="arch-sub"   x="124" y="98"  text-anchor="middle">user instructions</text>
+            <rect class="arch-node" x="20" y="124" width="208" height="48" rx="7"/>
+            <text class="arch-label" x="124" y="146" text-anchor="middle">Retrieved Data / RAG</text>
+            <text class="arch-sub"   x="124" y="162" text-anchor="middle">docs, mail, web</text>
+            <rect class="arch-node" x="20" y="188" width="208" height="48" rx="7"/>
+            <text class="arch-label" x="124" y="210" text-anchor="middle">Peer Agent Messages</text>
+            <text class="arch-sub"   x="124" y="226" text-anchor="middle">A2A traffic</text>
+
+            <!-- RUNTIME -->
+            <rect class="arch-node arch-node-hi" x="286" y="60"  width="222" height="48" rx="7"/>
+            <text class="arch-label" x="397" y="82"  text-anchor="middle">Policy &amp; Scope</text>
+            <text class="arch-sub"   x="397" y="98"  text-anchor="middle">caller identity, least agency</text>
+            <rect class="arch-node arch-node-hi" x="286" y="124" width="222" height="48" rx="7"/>
+            <text class="arch-label" x="397" y="146" text-anchor="middle">Agent</text>
+            <text class="arch-sub"   x="397" y="162" text-anchor="middle">plan, select, act</text>
+            <rect class="arch-node arch-node-hi" x="286" y="188" width="222" height="48" rx="7"/>
+            <text class="arch-label" x="397" y="210" text-anchor="middle">Memory &amp; Context</text>
+            <text class="arch-sub"   x="397" y="226" text-anchor="middle">scoped, expiring, verified</text>
+
+            <!-- ACTION -->
+            <rect class="arch-node" x="566" y="60"  width="354" height="48" rx="7"/>
+            <text class="arch-label" x="743" y="82"  text-anchor="middle">Human Approval Gate</text>
+            <text class="arch-sub"   x="743" y="98"  text-anchor="middle">every high-impact or goal-changing action</text>
+            <rect class="arch-node arch-node-hi" x="566" y="124" width="354" height="48" rx="7"/>
+            <text class="arch-label" x="743" y="146" text-anchor="middle">Tools / MCP</text>
+            <text class="arch-sub"   x="743" y="162" text-anchor="middle">typed schemas, allowlisted resources</text>
+            <rect class="arch-node" x="566" y="188" width="354" height="48" rx="7"/>
+            <text class="arch-label" x="743" y="210" text-anchor="middle">Systems of Record</text>
+            <text class="arch-sub"   x="743" y="226" text-anchor="middle">the real data</text>
+
+            <!-- FLOW: inputs -> agent -->
+            <path class="arch-line" d="M228 84 H256 V148 H286"/>
+            <path class="arch-flow" d="M228 84 H256 V148 H286"/>
+            <path class="arch-line" d="M228 148 H286"/>
+            <path class="arch-flow" d="M228 148 H286" style="animation-delay:.2s"/>
+            <path class="arch-line" d="M228 212 H256 V148 H286"/>
+            <path class="arch-flow" d="M228 212 H256 V148 H286" style="animation-delay:.4s"/>
+
+            <!-- agent <-> policy / memory -->
+            <path class="arch-line" d="M397 124 V108"/>
+            <path class="arch-line" d="M397 172 V188"/>
+
+            <!-- agent -> gate -> tools -> systems -->
+            <path class="arch-line" d="M508 148 H536 V84 H566"/>
+            <path class="arch-flow" d="M508 148 H536 V84 H566" style="animation-delay:.55s"/>
+            <path class="arch-line" d="M508 148 H566"/>
+            <path class="arch-flow" d="M508 148 H566" style="animation-delay:.7s"/>
+            <path class="arch-line" d="M743 172 V188"/>
+
+            <!-- fenced return -->
+            <path class="arch-line" d="M566 212 H540 V258 H397 V236"/>
+            <path class="arch-flow arch-flow-rev" d="M566 212 H540 V258 H397 V236"/>
+            <rect class="arch-guard-box" x="586" y="244" width="196" height="26" rx="13"/>
+            <text class="arch-guard-t" x="684" y="261" text-anchor="middle">Returned Data Fenced</text>
+
+
+            <!-- observability -->
+            <rect class="arch-node" x="6" y="296" width="928" height="44" rx="7"/>
+            <text class="arch-label" x="26" y="317" text-anchor="start">Observability</text>
+            <text class="arch-sub"   x="26" y="333" text-anchor="start">tool-call traces, goal-state tracking, behavioral baseline, full audit trail</text>
+          </svg>
+        </div>
+
+
+        <p class="arch-caption">The boundaries do the work. Every natural-language input arrives untrusted, including retrieved documents and messages from other agents. The agent carries the calling user&rsquo;s permissions and no more. High-impact actions stop for a person. And everything is logged well enough to reconstruct afterward what the agent did and why it decided to.</p>
+      </div>
 
       <!-- Patents -->
       <div class="feat-card reveal">
@@ -1283,224 +1414,8 @@
       </div>
 
     </div>
-  </div>
-</section>
 
-<!-- AWARDS -->
-<section id="awards">
-  <div class="wrap">
-    <div class="sec-hd reveal">
-      <span class="sec-label">Recognition &amp; Awards</span>
-      <div class="sec-rule"></div>
-      <span class="sec-num">03</span>
-    </div>
-    <div class="awards-grid">
-      <div class="award-card reveal">
-        <div class="award-img-wrap"><img src="aub-seal.png" alt="American University of Beirut" class="award-img" loading="lazy"></div>
-        <div class="award-yr">2016</div>
-        <div class="award-title">Dean's Creative Achievement Award</div>
-        <div class="award-org">American University of Beirut</div>
-      </div>
-      <div class="award-card reveal d1">
-        <div class="award-img-wrap"><img src="award-umich.png" alt="University of Michigan" class="award-img" loading="lazy"></div>
-        <div class="award-yr">2018</div>
-        <div class="award-title">Michigan Difference Maker Awardee</div>
-        <div class="award-org">University of Michigan&ndash;Dearborn</div>
-      </div>
-      <div class="award-card reveal d2">
-        <div class="award-img-wrap"><img src="award-bgs.png" alt="Beta Gamma Sigma" class="award-img" loading="lazy"></div>
-        <div class="award-yr">2023</div>
-        <div class="award-title">Beta Gamma Sigma Honor Society</div>
-        <div class="award-org">Ross School of Business</div>
-      </div>
-    </div>
-    <div style="margin-top:2rem;" class="reveal d3">
-      <a href="https://michigandifferencemakers.com/sari_kassar" class="link-arr" target="_blank" rel="noopener">Read Feature Publication &rarr;</a>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="wrap">
-    <div class="sec-hd reveal">
-      <span class="sec-label">Journey So Far</span>
-      <div class="sec-rule"></div>
-      <span class="sec-num">04</span>
-    </div>
-    <div>
-      <div class="exp-item reveal">
-        <div class="exp-logo-col">
-          <img src="logo-ibm.png" alt="IBM" class="exp-logo" loading="lazy">
-          <div class="exp-line"></div>
-        </div>
-        <div>
-          <div class="exp-meta">
-            <div class="exp-co">IBM</div>
-            <div class="exp-period">Jan 2026 &ndash; Present</div>
-          </div>
-          <div class="exp-role">Managing Consultant, Enterprise AI and Cybersecurity &middot; Full-time</div>
-          <div class="exp-tags">
-            <span class="exp-tag">AI</span>
-            <span class="exp-tag">Cybersecurity</span>
-            <span class="exp-tag">Sales</span>
-          </div>
-          <p class="exp-desc">Work within the Strategic Sales and Enterprise Strategy group with special focus on AI and Cybersecurity solution sales, development and deployment.</p>
-        </div>
-      </div>
-
-      <div class="exp-item reveal d1">
-        <div class="exp-logo-col">
-          <img src="logo-ibm.png" alt="IBM" class="exp-logo" loading="lazy">
-          <div class="exp-line"></div>
-        </div>
-        <div>
-          <div class="exp-meta">
-            <div class="exp-co">IBM</div>
-            <div class="exp-period">Oct 2023 &ndash; Jan 2026</div>
-          </div>
-          <div class="exp-role">Senior Strategy Consultant</div>
-          <div class="exp-tags">
-            <span class="exp-tag">AI Strategy</span>
-            <span class="exp-tag">Transformation</span>
-            <span class="exp-tag">C-Suite Advisory</span>
-          </div>
-          <p class="exp-desc">Serve as trusted advisor to C-suite executives on AI strategy, transformation programs, and enterprise value realization. Designed and delivered ROI/value case models underpinning $100M+ pursuits, shaping industrial product strategies, and driving cost savings and new revenue opportunities.</p>
-        </div>
-      </div>
-      <div class="exp-item reveal d1">
-        <div class="exp-logo-col">
-          <img src="logo-ford.png" alt="Ford Motor Company" class="exp-logo" loading="lazy">
-          <div class="exp-line"></div>
-        </div>
-        <div>
-          <div class="exp-meta">
-            <div class="exp-co">Ford Motor Company</div>
-            <div class="exp-period">Aug 2021 &ndash; Oct 2023</div>
-          </div>
-          <div class="exp-role">Project Lead &amp; Senior Engineer, ADAS Cloud Analytics</div>
-          <div class="exp-tags">
-            <span class="exp-tag">ADAS</span>
-            <span class="exp-tag">Cloud</span>
-            <span class="exp-tag">Kubernetes</span>
-            <span class="exp-tag">Simulation</span>
-          </div>
-          <p class="exp-desc">Led an 8+ person team to launch Ford's first ADAS cloud analytics platform, automated scenario extraction, and delivered $5M hard savings. Scaled L2+ simulation by 10&times; via Kubernetes-based framework and partner ecosystem.</p>
-        </div>
-      </div>
-      <div class="exp-item reveal d2">
-        <div class="exp-logo-col">
-          <img src="logo-ford.png" alt="Ford Motor Company" class="exp-logo" loading="lazy">
-        </div>
-        <div>
-          <div class="exp-meta">
-            <div class="exp-co">Ford Motor Company</div>
-            <div class="exp-period">Aug 2018 &ndash; Aug 2021</div>
-          </div>
-          <div class="exp-role">Systems Safety Research Engineer, ADAS Applications</div>
-          <div class="exp-tags">
-            <span class="exp-tag">SOTIF</span>
-            <span class="exp-tag">MBSE</span>
-            <span class="exp-tag">ML</span>
-            <span class="exp-tag">SAE Standards</span>
-          </div>
-          <p class="exp-desc">Pioneered scenario-based MBSE method for SOTIF verification, saving $10M in testing. Advanced data governance for ML assets, led university research collaborations, and contributed to SAE J3187 best-practice standardization.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EDUCATION -->
-<section id="education">
-  <div class="wrap">
-    <div class="sec-hd reveal">
-      <span class="sec-label">Education</span>
-      <div class="sec-rule"></div>
-      <span class="sec-num">05</span>
-    </div>
-    <div class="edu-grid">
-      <div class="edu-card reveal">
-        <img src="aub-seal.png" alt="American University of Beirut" class="edu-logo" loading="lazy">
-        <div class="edu-yr">2016</div>
-        <div class="edu-deg">Bachelor of Engineering</div>
-        <div class="edu-sch">Mechanical Engineering<br>American University of Beirut</div>
-        <div class="edu-honor">Distinction</div>
-      </div>
-      <div class="edu-card reveal d1">
-        <img src="mdearborn.png" alt="University of Michigan Dearborn" class="edu-logo" loading="lazy">
-        <div class="edu-yr">2018</div>
-        <div class="edu-deg">Master of Science in Engineering</div>
-        <div class="edu-sch">Mechanical Engineering<br>University of Michigan, Dearborn</div>
-        <div class="edu-honor">High Distinction</div>
-      </div>
-      <div class="edu-card reveal d2">
-        <img src="mross-logo.png" alt="Michigan Ross" class="edu-logo" loading="lazy">
-        <div class="edu-yr">2023</div>
-        <div class="edu-deg">Master of Business Administration</div>
-        <div class="edu-sch">Strategy &amp; Finance<br>University of Michigan, Ann Arbor</div>
-        <div class="edu-honor">Distinction</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="wrap">
-    <div class="sec-hd reveal">
-      <span class="sec-label">Skills &amp; Expertise</span>
-      <div class="sec-rule"></div>
-      <span class="sec-num">06</span>
-    </div>
-    <div class="skills-grid">
-      <div class="skill-card reveal">
-        <div class="skill-cat">Business Strategy</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Value Case &amp; ROI Modeling</span>
-          <span class="skill-tag">C-Suite Advisory</span>
-          <span class="skill-tag">Security Program Delivery</span>
-          <span class="skill-tag">Project Management</span>
-          <span class="skill-tag">Client Relations</span>
-          <span class="skill-tag">Design Thinking</span>
-        </div>
-      </div>
-      <div class="skill-card reveal d1">
-        <div class="skill-cat">Technical</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Agentic AI Frameworks</span>
-          <span class="skill-tag">Agentic Identity &amp; Delegation</span>
-          <span class="skill-tag">Least-Privilege Design</span>
-          <span class="skill-tag">Intelligent Automation</span>
-          <span class="skill-tag">Python</span>
-          <span class="skill-tag">Algorithmic Bias</span>
-          <span class="skill-tag">Simulation</span>
-          <span class="skill-tag">Cloud Computing</span>
-          <span class="skill-tag">SQL</span>
-          <span class="skill-tag">Data Analytics</span>
-        </div>
-      </div>
-      <div class="skill-card reveal d2">
-        <div class="skill-cat">Industry Expertise</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Automotive</span>
-          <span class="skill-tag">Energy &amp; Utilities</span>
-          <span class="skill-tag">Manufacturing</span>
-          <span class="skill-tag">Autonomous Systems</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PUBLICATIONS -->
-<section id="publications">
-  <div class="wrap">
-    <div class="sec-hd reveal">
-      <span class="sec-label">Publications &amp; Research</span>
-      <div class="sec-rule"></div>
-      <span class="sec-num">07</span>
-    </div>
+    <div class="sub-hd reveal"><span>Peer-Reviewed Research</span></div>
     <div class="pubs-grid">
       <div class="pub-card reveal">
         <div class="pub-yr">2019 &middot; International Journal of Solids and Structures</div>
@@ -1513,6 +1428,79 @@
         <h3 class="pub-title">Towards a Safer Design of Helmets: FE &amp; Experimental Assessment</h3>
         <p class="pub-abs">Finite element and experimental evaluation framework for safer helmet design with improved energy absorption and impact mitigation.</p>
         <a href="https://asmedigitalcollection.asme.org/IMECE/proceedings-abstract/IMECE2016/50688/258815" class="link-arr" target="_blank" rel="noopener">Read Publication &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-hd reveal">
+      <span class="sec-label">Track Record</span>
+      <div class="sec-rule"></div>
+      <span class="sec-num">04</span>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-item reveal">
+        <img src="logo-ibm.png" alt="IBM" class="exp-logo" loading="lazy">
+        <div class="exp-meta">
+          <div class="exp-co">IBM</div>
+          <div class="exp-period">Oct 2023 &ndash; Present</div>
+        </div>
+        <div class="exp-roles">
+          <div class="exp-role-row"><span class="t">Managing Consultant, Enterprise AI and Cybersecurity</span><span class="d">Jan 2026 &ndash; Present</span></div>
+          <div class="exp-role-row"><span class="t">Senior Strategy Consultant</span><span class="d">Oct 2023 &ndash; Jan 2026</span></div>
+        </div>
+        <p class="exp-desc">I work both ends of the client relationship: winning the work, then delivering it. Consultants usually specialize in one or the other.</p>
+        <div class="exp-engagements">
+          <div class="exp-eng-label">Sales &amp; Pursuit</div>
+          <div class="exp-eng-list">
+            <span class="exp-eng">Value case &amp; ROI modeling</span>
+            <span class="exp-eng">Deal shaping</span>
+            <span class="exp-eng">C-suite briefings</span>
+            <span class="exp-eng">Capability gap assessment</span>
+          </div>
+        </div>
+        <div class="exp-engagements">
+          <div class="exp-eng-label">Delivery &amp; Build</div>
+          <div class="exp-eng-list">
+            <span class="exp-eng">Innovation CoE launch</span>
+            <span class="exp-eng">Technology modernization</span>
+            <span class="exp-eng">Agentic AI architecture</span>
+            <span class="exp-eng">Security program delivery</span>
+          </div>
+        </div>
+        <div class="exp-outcomes">
+          <div class="exp-outcome"><span class="exp-outcome-n">$500M+</span><span class="exp-outcome-l">Pursuits Won</span></div>
+        </div>
+      </div>
+
+      <div class="exp-item reveal d1">
+        <img src="logo-ford.png" alt="Ford Motor Company" class="exp-logo" loading="lazy">
+        <div class="exp-meta">
+          <div class="exp-co">Ford Motor Company</div>
+          <div class="exp-period">Aug 2018 &ndash; Oct 2023</div>
+        </div>
+        <div class="exp-roles">
+          <div class="exp-role-row"><span class="t">Project Lead &amp; Senior Engineer, ADAS Cloud Analytics</span><span class="d">Aug 2021 &ndash; Oct 2023</span></div>
+          <div class="exp-role-row"><span class="t">Systems Safety Research Engineer, ADAS Applications</span><span class="d">Aug 2018 &ndash; Aug 2021</span></div>
+        </div>
+        <p class="exp-desc">Led an 8+ person team to launch Ford&rsquo;s first ADAS cloud analytics platform and automated scenario extraction, scaling L2+ simulation throughput on a Kubernetes-based framework. Earlier, pioneered a scenario-based MBSE method for SOTIF verification, advanced data governance for ML assets, and contributed to SAE J3187 standardization.</p>
+        <div class="exp-engagements">
+          <div class="exp-eng-label">Selected Work</div>
+          <div class="exp-eng-list">
+            <span class="exp-eng">Cloud analytics platform</span>
+            <span class="exp-eng">Simulation scale-up</span>
+            <span class="exp-eng">Scenario-based MBSE</span>
+            <span class="exp-eng">SAE J3187 standardization</span>
+          </div>
+        </div>
+        <div class="exp-outcomes">
+          <div class="exp-outcome"><span class="exp-outcome-n">$15M</span><span class="exp-outcome-l">Savings &amp; Cost Avoided</span></div>
+          <div class="exp-outcome"><span class="exp-outcome-n">8+</span><span class="exp-outcome-l">Engineers Led</span></div>
+          <div class="exp-outcome"><span class="exp-outcome-n">2</span><span class="exp-outcome-l">U.S. Patents Granted</span></div>
+        </div>
       </div>
     </div>
   </div>
@@ -1606,6 +1594,34 @@
 
       <script type="text/javascript" async src="https://cdn.credly.com/assets/utilities/embed.js"></script>
     </div>
+
+    <div class="sub-hd reveal"><span>Education &amp; Honors</span></div>
+    <div class="edu-grid">
+      <div class="edu-card reveal">
+        <img src="aub-seal.png" alt="American University of Beirut" class="edu-logo" loading="lazy">
+        <div class="edu-yr">2016</div>
+        <div class="edu-deg">Bachelor of Engineering</div>
+        <div class="edu-sch">Mechanical Engineering<br>American University of Beirut</div>
+        <div class="edu-honor">Distinction</div>
+        <div class="edu-award"><svg class="edu-award-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 9.2 7.3 3.3 8.2l4.3 4.2-1 5.9L12 15.5l5.4 2.8-1-5.9 4.3-4.2-5.9-.9z"/></svg><span class="edu-award-t">Dean&rsquo;s Creative Achievement Award</span></div>
+      </div>
+      <div class="edu-card reveal d1">
+        <img src="mdearborn.png" alt="University of Michigan Dearborn" class="edu-logo" loading="lazy">
+        <div class="edu-yr">2018</div>
+        <div class="edu-deg">Master of Science in Engineering</div>
+        <div class="edu-sch">Mechanical Engineering<br>University of Michigan, Dearborn</div>
+        <div class="edu-honor">High Distinction</div>
+        <div class="edu-award"><svg class="edu-award-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 9.2 7.3 3.3 8.2l4.3 4.2-1 5.9L12 15.5l5.4 2.8-1-5.9 4.3-4.2-5.9-.9z"/></svg><span class="edu-award-t"><a href="https://michigandifferencemakers.com/sari_kassar" target="_blank" rel="noopener">Michigan Difference Maker</a></span></div>
+      </div>
+      <div class="edu-card reveal d2">
+        <img src="mross-logo.png" alt="Michigan Ross" class="edu-logo" loading="lazy">
+        <div class="edu-yr">2023</div>
+        <div class="edu-deg">Master of Business Administration</div>
+        <div class="edu-sch">Strategy &amp; Finance<br>University of Michigan, Ann Arbor</div>
+        <div class="edu-honor">Distinction</div>
+        <div class="edu-award"><svg class="edu-award-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 9.2 7.3 3.3 8.2l4.3 4.2-1 5.9L12 15.5l5.4 2.8-1-5.9 4.3-4.2-5.9-.9z"/></svg><span class="edu-award-t">Beta Gamma Sigma Honor Society</span></div>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -1626,6 +1642,16 @@
       prev && prev.addEventListener('click', () => { if (i > 0) { i--; update(); } });
       next && next.addEventListener('click', () => { if (i < slides - 1) { i++; update(); } });
       dots.forEach((d, idx) => d.addEventListener('click', () => { i = idx; update(); }));
+      // touch swipe
+      let x0 = null;
+      const vp = track.parentElement;
+      vp.addEventListener('touchstart', e => { x0 = e.changedTouches[0].clientX; }, { passive: true });
+      vp.addEventListener('touchend', e => {
+        if (x0 === null) return;
+        const dx = e.changedTouches[0].clientX - x0;
+        if (Math.abs(dx) > 45) { if (dx < 0 && i < slides - 1) i++; else if (dx > 0 && i > 0) i--; update(); }
+        x0 = null;
+      }, { passive: true });
       update();
     })();
   </script>
