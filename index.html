@@ -664,6 +664,19 @@
       .arch-flow, .arch-flow-rev { animation: none; stroke-dasharray: none; }
     }
 
+    /* ── OPEN PROBLEMS ── */
+    .probs { margin-top: 2rem; padding-top: 1.75rem; border-top: 1px solid var(--border); }
+    .probs-label {
+      font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); font-weight: 700; margin-bottom: 1.25rem;
+    }
+    .probs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 2rem; }
+    .prob h4 {
+      font-size: 0.92rem; font-weight: 600; color: var(--navy);
+      margin-bottom: 0.4rem; letter-spacing: 0.01em;
+    }
+    .prob p { font-size: 0.85rem; line-height: 1.7; color: var(--cream-dim); }
+
     /* ── FEATURED ── */
     #featured { border-bottom: 1px solid var(--border); }
     .feat-grid {
@@ -1055,6 +1068,7 @@
       .edu-grid    { grid-template-columns: 1fr 1fr; }
       .pubs-grid   { grid-template-columns: 1fr; }
       .cap-grid    { grid-template-columns: 1fr; }
+      .probs-grid  { grid-template-columns: 1fr; }
       .exp-grid    { grid-template-columns: 1fr; }
     }
 
@@ -1370,6 +1384,28 @@
 
 
         <p class="arch-caption">The boundaries do the work. Every natural-language input arrives untrusted, including retrieved documents and messages from other agents. The agent carries the calling user&rsquo;s permissions and no more. High-impact actions stop for a person. And everything is logged well enough to reconstruct afterward what the agent did and why it decided to.</p>
+
+        <div class="probs">
+          <div class="probs-label">Open Problems I&rsquo;m Watching</div>
+          <div class="probs-grid">
+            <div class="prob">
+              <h4>Expert fingerprinting in MoE routing</h4>
+              <p>Mixture-of-experts models route each token to a handful of specialists, invisibly. Latency and failure patterns leak that routing anyway. Probe long enough and you can map which expert handles what, then target the weakest safety behavior. Reconnaissance rather than exploit, which is why it falls off threat models.</p>
+            </div>
+            <div class="prob">
+              <h4>Identity systems built for people, not agents</h4>
+              <p>Provisioning, rotation, and deprovisioning all assume a human on the other end. Give a thousand agents scoped credentials and the directory quietly becomes the largest unmanaged identity surface in the company. Each holds real authority, and nobody has built a process for offboarding one.</p>
+            </div>
+            <div class="prob">
+              <h4>Poisoned context outliving the session</h4>
+              <p>Most evaluation catches single-turn failures. A corrupted memory or retrieved document persists instead, shaping decisions days later with no obvious link back to the injection that caused them. That distance between where harm surfaces and where it entered is the whole problem.</p>
+            </div>
+            <div class="prob">
+              <h4>Tool provenance as a supply chain</h4>
+              <p>An agent&rsquo;s capability surface is now effectively a package manifest. Every connected tool is code you did not write, executing with your users&rsquo; authority against your real systems, and the ecosystem ships far faster than any review process has managed to keep up with.</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="sub-hd reveal"><span>Patents &amp; Published Research</span></div>
