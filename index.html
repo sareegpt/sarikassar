@@ -126,7 +126,7 @@
       --shadow-lg:    0 6px 12px rgba(22,35,58,0.07), 0 22px 50px rgba(22,35,58,0.11);
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
 
     body {
       font-family: var(--sans);
@@ -244,6 +244,14 @@
       transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease), transform 0.25s var(--ease);
     }
     .nav-mobile-btn:active { transform: scale(0.94); }
+    /* Floats over the hero photo until the nav gains its own background */
+    nav:not(.scrolled) .nav-mobile-btn {
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-color: rgba(22,35,58,0.16);
+      box-shadow: 0 2px 10px rgba(22,35,58,0.12);
+    }
     .nav-mobile-btn[aria-expanded="true"] { border-color: var(--gold-dim); }
     /* Middle bar is the element; the two outer bars are its pseudo-elements,
        so the whole icon can rotate into an X. */
@@ -1101,9 +1109,11 @@
       .hero { grid-template-columns: 1fr; min-height: auto; }
       /* Crop to the subject rather than the bright floor below him, and
          keep the fade shallow so it doesn't add to the gap. */
+      /* Photo runs to the top of the screen, nav floats over it */
+      body { padding-top: 0; }
       .hero-visual {
         grid-column: 1; grid-row: 1;
-        min-height: 46vh;
+        min-height: calc(46vh + var(--nav-h));
         background-position: center 12%;
       }
       .hero-visual::after {
