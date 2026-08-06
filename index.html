@@ -648,12 +648,12 @@
     }
     .cap-proof strong {
       font-family: var(--display);
-      font-size: 1.5rem;
+      font-size: 2.2rem;
       font-weight: 600;
       color: var(--gold);
       display: block;
       line-height: 1;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.45rem;
     }
 
     /* ── AGENT ARCHITECTURE DIAGRAM ── */
@@ -1063,6 +1063,28 @@
       .cred-meta { justify-content: center; }
     }
 
+    /* ── CTA ── */
+    .cta-section {
+      padding: 5.5rem 0;
+      background: var(--bg);
+      text-align: center;
+    }
+    .cta-title {
+      font-family: var(--display);
+      font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 1rem;
+      text-wrap: balance;
+    }
+    .cta-body {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--cream-dim);
+      max-width: 540px;
+      margin: 0 auto 2rem;
+    }
+
     /* ── FOOTER ── */
     footer { border-top: 1px solid var(--border); padding: 3.25rem 2rem; background: var(--navy); }
     .footer-inner {
@@ -1167,12 +1189,12 @@
   <div class="nav-inner">
     <a href="#top" class="nav-logo">Sari Kassar</a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#capabilities" class="nav-link">Where I'm Useful</a></li>
+      <li><a href="#capabilities" class="nav-link">How I Help</a></li>
+      <li><a href="#featured"   class="nav-link">Featured</a></li>
       <li><a href="#about"      class="nav-link">About</a></li>
-      <li><a href="#featured"   class="nav-link">Work</a></li>
       <li><a href="#experience" class="nav-link">Track Record</a></li>
       <li><a href="#certifications" class="nav-link">Credentials</a></li>
-      <li><a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=sareegpt@gmail.com&su=Hello%20Sari" class="nav-cta" target="_blank" rel="noopener">Contact</a></li>
+      <li><a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=sareegpt@gmail.com&su=Hello%20Sari" class="nav-cta" target="_blank" rel="noopener">Let&rsquo;s Talk</a></li>
     </ul>
     <button class="nav-mobile-btn" id="mobileBtn" aria-label="Open menu" aria-expanded="false"><span class="nav-burger"></span></button>
   </div>
@@ -1184,10 +1206,10 @@
   <div class="hero-content">
     <div class="hero-inner">
       <h1 class="hero-name">Sari<br><em>Kassar</em></h1>
-      <p class="hero-tagline">I sit on both sides of the AI conversation: the architecture that has to work, and the business case that has to hold. Those two jobs usually belong to different people, which is most of why AI programs stall.</p>
+      <p class="hero-tagline">I build and secure agentic AI systems for the enterprise, and I sit on both sides of that conversation: the architecture that has to work, and the business case that has to hold. Those two jobs usually belong to different people, which is most of why AI programs stall.</p>
       <div class="hero-actions">
         <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=sareegpt@gmail.com&su=Hello%20Sari" class="btn-gold" target="_blank" rel="noopener">Start a Conversation</a>
-        <a href="#capabilities" class="btn-outline">See How I Work &rarr;</a>
+        <a href="#capabilities" class="btn-outline">How I Help &rarr;</a>
       </div>
       <div class="hero-meta">
         <span class="hero-meta-item">United States</span>
@@ -1221,102 +1243,44 @@
   </div>
 </section>
 
-<!-- ABOUT -->
 <!-- CAPABILITIES -->
 <section id="capabilities">
   <div class="wrap">
     <div class="sec-hd reveal">
-      <span class="sec-label">Where I&rsquo;m Useful</span>
+      <span class="sec-label">How I Help</span>
       <div class="sec-rule"></div>
     </div>
-    <p class="cap-intro reveal">AI programs stall for predictable reasons. The value case never survives scrutiny. Nobody defines what the system is allowed to do. The organization has no obvious place to start. I work embedded with client teams on all of it, holding both the technical design and the business argument, which is the pairing that keeps a program alive past its first review.</p>
+    <p class="cap-intro reveal">Most organizations haven&rsquo;t scaled AI past a pilot, and the reasons are predictable. I work embedded with client teams, holding both the technical design and the business argument: the pairing that keeps a program alive past its first review.</p>
     <div class="cap-grid">
 
       <div class="cap-card reveal">
         <div class="cap-idx">01</div>
         <h3 class="cap-title">Making the case AI actually gets funded on</h3>
-        <p class="cap-body">I build the ROI and value models that hold up under a CFO&rsquo;s scrutiny: where the cost comes out, when it lands, and which assumptions the whole number rests on. Then I sit in the room and defend them. That last part is where most value cases come apart.</p>
+        <p class="cap-body">ROI and value models that hold up under a CFO&rsquo;s scrutiny, defended in the room where most value cases come apart.</p>
         <div class="cap-proof"><strong>$500M+</strong>in enterprise pursuits won on value cases I built or contributed to</div>
       </div>
 
       <div class="cap-card reveal d1">
         <div class="cap-idx">02</div>
         <h3 class="cap-title">Building agents, and the security model they need</h3>
-        <p class="cap-body">I build agents hands-on, where the security model is the hard part. An agent acting on live systems for a specific person has to inherit that person&rsquo;s permissions and stop there. Data coming back from a tool has to be fenced so the model treats it as information rather than instructions. Anything that writes needs a human confirming first. I design and implement those controls.</p>
+        <p class="cap-body">Agents built hands-on, scoped to the user&rsquo;s permissions, fenced against injected instructions, and gated by human approval.</p>
         <div class="cap-proof"><strong>Hands-on</strong>agent orchestration, scoped authorization, prompt-injection defense</div>
       </div>
 
       <div class="cap-card reveal d1">
         <div class="cap-idx">03</div>
         <h3 class="cap-title">Running security programs at enterprise scale</h3>
-        <p class="cap-body">I run large security programs for enterprise clients. Most of the difficulty is coordination: competing stakeholders, unclear ownership, and controls that nobody sequenced against the delivery date. Treating security as a design input from the start costs a fraction of what it costs to retrofit two weeks before launch.</p>
+        <p class="cap-body">Large security programs for enterprise clients, with security as a design input instead of a retrofit two weeks before launch.</p>
         <div class="cap-proof"><strong>Enterprise</strong>AI and cybersecurity program delivery for large clients at IBM</div>
       </div>
 
       <div class="cap-card reveal d2">
         <div class="cap-idx">04</div>
         <h3 class="cap-title">Getting from zero to a first deployment that works</h3>
-        <p class="cap-body">Companies starting from zero get further with one working deployment than with a three-year roadmap. I embed with the team, find the workflow where automation pays for itself fastest, and ship it against the systems they already run: legacy schemas, partner integrations, and all the glue nobody budgeted for. The credibility that earns is what funds the next thing.</p>
+        <p class="cap-body">One working deployment beats a three-year roadmap. I ship the workflow that pays for itself fastest, against the systems you already run.</p>
         <div class="cap-proof"><strong>$15M+</strong>hard savings delivered across client and in-house programs</div>
       </div>
 
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="wrap">
-    <div class="sec-hd reveal">
-      <span class="sec-label">About</span>
-      <div class="sec-rule"></div>
-      <span class="sec-num">01</span>
-    </div>
-    <div class="about-grid">
-      <img src="sari-kassar.jpg" alt="Sari Kassar" class="about-photo reveal" loading="lazy">
-      <div>
-        <blockquote class="about-quote reveal">
-          Writing the code stopped being the bottleneck. Knowing what to ask for, and recognizing when what
-          comes back is confidently wrong, is the job now.
-        </blockquote>
-        <p class="about-body reveal d1">
-          I&rsquo;m a Managing Consultant at IBM working on enterprise AI and cybersecurity. I run large programs
-          for major clients, and I build the agent systems myself. Those two things almost never live in the same
-          person, and the gap between them is where most AI investment quietly dies: architecture nobody can
-          justify, or business cases nobody can build.
-          <br><br>
-          The agentic shift changed what technical work rewards. For a decade the prized engineer was the
-          meticulous one, careful with every line. That skill is now table stakes. The work today is decomposition,
-          delegation, and verification: framing a problem precisely enough that a system can act on it, engineering
-          the context it needs to act well, and holding a high enough bar to catch output that is fluent and wrong.
-          Those are management skills. The people adapting fastest are the ones who already knew how to set a
-          brief, delegate it, and inspect what came back.
-          <br><br>
-          I&rsquo;ve spent years translating between the engineers who build systems and the executives who fund
-          them, which turns out to be the same shape as directing an agent: set the goal, bound the authority,
-          judge the result against what the business actually needed. I work across automotive, manufacturing, and
-          energy &amp; utilities, with an MBA from Michigan Ross in strategy and finance, IBM&rsquo;s Advanced
-          credential in Generative &amp; Agentic AI, and Gold-level industry certification in Automotive.
-        </p>
-      </div>
-    </div>
-    <div class="stats-band reveal d1">
-      <div class="stat">
-        <div class="stat-n">9+</div>
-        <div class="stat-l">Years Experience</div>
-      </div>
-      <div class="stat">
-        <div class="stat-n">$500M+</div>
-        <div class="stat-l">Pursuits Won</div>
-      </div>
-      <div class="stat">
-        <div class="stat-n">$15M+</div>
-        <div class="stat-l">Hard Savings Delivered</div>
-      </div>
-      <div class="stat">
-        <div class="stat-n">2</div>
-        <div class="stat-l">U.S. Patents</div>
-      </div>
     </div>
   </div>
 </section>
@@ -1446,6 +1410,7 @@
               <p>An agent&rsquo;s capability surface is now effectively a package manifest. Every connected tool is code you did not write, executing with your users&rsquo; authority against your real systems, and the ecosystem ships far faster than any review process has managed to keep up with.</p>
             </div>
           </div>
+          <a href="how-i-think.html" class="link-arr" style="margin-top:1.75rem;">Read the full notes &rarr;</a>
         </div>
       </div>
 
@@ -1524,6 +1489,67 @@
         <h3 class="pub-title">Towards a Safer Design of Helmets: FE &amp; Experimental Assessment</h3>
         <p class="pub-abs">Finite element and experimental evaluation framework for safer helmet design with improved energy absorption and impact mitigation.</p>
         <a href="https://asmedigitalcollection.asme.org/IMECE/proceedings-abstract/IMECE2016/50688/258815" class="link-arr" target="_blank" rel="noopener">Read Publication &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-hd reveal">
+      <span class="sec-label">About</span>
+      <div class="sec-rule"></div>
+      <span class="sec-num">01</span>
+    </div>
+    <div class="about-grid">
+      <img src="sari-kassar.jpg" alt="Sari Kassar" class="about-photo reveal" loading="lazy">
+      <div>
+        <blockquote class="about-quote reveal">
+          Writing the code stopped being the bottleneck. Knowing what to ask for, and recognizing when what
+          comes back is confidently wrong, is the job now.
+        </blockquote>
+        <p class="about-body reveal d1">
+          I&rsquo;m a Managing Consultant at IBM working on enterprise AI and cybersecurity. I run large programs
+          for major clients, and I build the agent systems myself. Those two things almost never live in the same
+          person, and the gap between them is where most AI investment quietly dies: architecture nobody can
+          justify, or business cases nobody can build.
+          <br><br>
+          The agentic shift changed what technical work rewards. For a decade the prized engineer was the
+          meticulous one, careful with every line. That skill is now table stakes. The work today is decomposition,
+          delegation, and verification: framing a problem precisely enough that a system can act on it, engineering
+          the context it needs to act well, and holding a high enough bar to catch output that is fluent and wrong.
+          Those are management skills. The people adapting fastest are the ones who already knew how to set a
+          brief, delegate it, and inspect what came back.
+          <br><br>
+          I&rsquo;ve spent years translating between the engineers who build systems and the executives who fund
+          them, which turns out to be the same shape as directing an agent: set the goal, bound the authority,
+          judge the result against what the business actually needed. I&rsquo;ve gone deepest in automotive,
+          manufacturing, and energy &amp; utilities, and the agentic work keeps pulling me wider, into e-commerce
+          and wherever else an enterprise is putting agents near real systems. The problems repeat; the industry
+          changes the constraints. I hold an MBA from Michigan Ross in strategy and finance,
+          IBM&rsquo;s Advanced credential in Generative &amp; Agentic AI, and Gold-level industry certification
+          in Automotive.
+        </p>
+        <a href="how-i-think.html" class="link-arr reveal d1" style="margin-top:1.5rem;">How I Think &rarr;</a>
+      </div>
+    </div>
+    <div class="stats-band reveal d1">
+      <div class="stat">
+        <div class="stat-n">9+</div>
+        <div class="stat-l">Years Experience</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">$500M+</div>
+        <div class="stat-l">Pursuits Won</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">$15M+</div>
+        <div class="stat-l">Hard Savings Delivered</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">2</div>
+        <div class="stat-l">U.S. Patents</div>
       </div>
     </div>
   </div>
@@ -1751,6 +1777,15 @@
       update();
     })();
   </script>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="wrap">
+    <h2 class="cta-title reveal">Tell Me What You&rsquo;re Building</h2>
+    <p class="cta-body reveal d1">Whether you&rsquo;re getting a first deployment funded or securing agents that already touch production, the useful next step is the same: a short conversation about where it stands and where it&rsquo;s stuck.</p>
+    <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=sareegpt@gmail.com&su=Hello%20Sari" class="btn-gold reveal d2" target="_blank" rel="noopener">Let&rsquo;s Talk</a>
+  </div>
 </section>
 
 <!-- FOOTER -->

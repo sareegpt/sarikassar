@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open Problems in Agentic AI Security | Sari Kassar</title>
+  <meta name="description" content="Working notes from Sari Kassar on the security problems agentic AI creates, and the posture he uses against them: MoE routing side channels, agent identity lifecycles, persistent context poisoning, and tool supply chains." />
+  <link rel="canonical" href="https://www.sarikassar.com/how-i-think.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:           #FBFBF9;
+      --bg-surface:   #F2F1EB;
+      --bg-card:      #FFFFFF;
+      --border:       rgba(22,35,58,0.12);
+      --border-hover: rgba(156,117,40,0.55);
+      --gold:         #9C7528;
+      --gold-light:   #B68B3C;
+      --gold-dim:     rgba(156,117,40,0.62);
+      --navy:         #16233A;
+      --cream:        #16233A;
+      --cream-dim:    #45526B;
+      --cream-faint:  #8b93a3;
+      --display:      'Cormorant Garamond', Georgia, serif;
+      --sans:         'Jost', 'Helvetica Neue', sans-serif;
+      --nav-h:        68px;
+      --max-w:        1160px;
+      --ease:         cubic-bezier(0.4,0,0.2,1);
+      --shadow:       0 1px 2px rgba(22,35,58,0.04), 0 10px 30px rgba(22,35,58,0.06);
+      --shadow-lg:    0 6px 12px rgba(22,35,58,0.07), 0 22px 50px rgba(22,35,58,0.11);
+    }
+
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 1.5rem); }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--cream);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      padding-top: var(--nav-h);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 200;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      background: rgba(251,251,249,0.85);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: var(--max-w);
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .nav-logo {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 1.45rem;
+      font-weight: 500;
+      color: var(--navy);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+    .nav-logo:hover { color: var(--gold); }
+    .nav-back {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .nav-back:hover { color: var(--navy); }
+
+    /* ── LAYOUT ── */
+    .wrap {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 6rem 0 4rem;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg) 100%);
+    }
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s var(--ease) forwards;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 36px; height: 1px;
+      background: var(--gold);
+    }
+    .hero-eyebrow span {
+      font-size: 0.68rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .hero-title {
+      font-family: var(--display);
+      font-size: clamp(2.6rem, 5vw, 4.5rem);
+      font-weight: 500;
+      line-height: 1.05;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.4s var(--ease) forwards;
+      text-wrap: balance;
+    }
+    .hero-subtitle {
+      font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+      font-weight: 400;
+      color: var(--cream-dim);
+      max-width: 760px;
+      line-height: 1.7;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.6s var(--ease) forwards;
+    }
+    .hero-date {
+      margin-top: 1.5rem;
+      font-size: 0.66rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cream-faint);
+      opacity: 0;
+      animation: fadeUp 0.8s 0.7s var(--ease) forwards;
+    }
+
+    /* ── TOC ── */
+    .toc {
+      list-style: none;
+      margin-top: 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem 2rem;
+      max-width: 920px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.8s var(--ease) forwards;
+    }
+    .toc a {
+      display: flex;
+      align-items: baseline;
+      gap: 0.85rem;
+      text-decoration: none;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: border-color 0.25s;
+    }
+    .toc a:hover { border-color: var(--gold-dim); }
+    .toc .n {
+      font-size: 0.66rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .toc .t {
+      font-family: var(--display);
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--navy);
+      line-height: 1.35;
+      transition: color 0.2s;
+    }
+    .toc a:hover .t { color: var(--gold); }
+
+    /* ── ESSAYS ── */
+    .essays { padding: 2rem 0 3rem; }
+    .essay {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 4rem 0;
+    }
+    .essay + .essay { border-top: 1px solid var(--border); }
+    .essay-eye {
+      font-size: 0.63rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 0.9rem;
+    }
+    .essay-title {
+      font-family: var(--display);
+      font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+      font-weight: 500;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      text-wrap: balance;
+    }
+    .essay-lede {
+      font-family: var(--display);
+      font-size: clamp(1.15rem, 1.8vw, 1.35rem);
+      font-style: italic;
+      font-weight: 500;
+      line-height: 1.6;
+      color: var(--navy);
+      border-left: 2px solid var(--gold);
+      padding-left: 1.5rem;
+      margin-bottom: 2rem;
+      text-wrap: pretty;
+    }
+    .essay p:not(.essay-lede) {
+      font-size: 1.04rem;
+      line-height: 1.85;
+      color: var(--cream-dim);
+      margin-bottom: 1.4rem;
+    }
+    .essay p:last-child { margin-bottom: 0; }
+
+    /* ── DEFENSE GENERATIONS DIAGRAM ── */
+    .gen-wrap {
+      margin: 2rem 0 0.85rem;
+      padding: 1.75rem 1.25rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow-x: auto;
+    }
+    .gen-svg { display: block; width: 100%; min-width: 640px; height: auto; }
+    .gen-node { fill: var(--bg-card); stroke: var(--border); stroke-width: 1.5; }
+    .gen-node-hi { stroke: var(--gold-dim); }
+    .gen-label { font-family: var(--sans); font-size: 15px; font-weight: 600; fill: var(--navy); }
+    .gen-sub   { font-family: var(--sans); font-size: 11.5px; fill: var(--cream-faint); letter-spacing: 0.04em; }
+    .gen-tier {
+      font-family: var(--sans); font-size: 10px; font-weight: 700;
+      fill: var(--cream-faint); letter-spacing: 0.17em; text-transform: uppercase;
+    }
+    .gen-arrow { stroke: var(--cream-faint); stroke-width: 1.5; fill: none; }
+    .gen-meter-track { stroke: var(--border); stroke-width: 5; stroke-linecap: round; }
+    .gen-meter-dim   { stroke: rgba(156,117,40,0.35); stroke-width: 5; stroke-linecap: round; }
+    .gen-meter-full  { stroke: var(--gold); stroke-width: 5; stroke-linecap: round; }
+    .gen-verdict {
+      font-family: var(--sans); font-size: 10.5px; font-weight: 600;
+      fill: var(--cream-faint); letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .gen-verdict-hi { fill: var(--gold); }
+    .gen-zone { fill: none; stroke: var(--border); stroke-width: 1.2; stroke-dasharray: 4 5; }
+    .gen-zone-t {
+      font-family: var(--sans); font-size: 10px; font-weight: 700;
+      fill: var(--cream-faint); letter-spacing: 0.17em; text-transform: uppercase;
+    }
+    .gen-leak { stroke: var(--cream-faint); stroke-width: 1.5; stroke-dasharray: 4 6; fill: none; }
+    .gen-dashed { stroke: var(--gold); stroke-width: 1.5; stroke-dasharray: 5 6; fill: none; }
+    .essay p.gen-caption {
+      font-size: 0.82rem;
+      color: var(--cream-faint);
+      letter-spacing: 0.02em;
+      margin-bottom: 1.4rem;
+    }
+
+    /* ── APPROACH NOTE ── */
+    .approach {
+      margin-top: 2rem;
+      padding: 1.4rem 1.6rem;
+      background: var(--bg-surface);
+      border-left: 2px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+    }
+    .approach-label {
+      font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); font-weight: 700; margin-bottom: 0.5rem;
+    }
+    .essay .approach p {
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: var(--cream-dim);
+      margin-bottom: 0;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      padding: 5rem 0;
+      border-top: 1px solid var(--border);
+      background: var(--bg-surface);
+      text-align: center;
+    }
+    .cta-title {
+      font-family: var(--display);
+      font-size: clamp(1.7rem, 3vw, 2.3rem);
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 1rem;
+      text-wrap: balance;
+    }
+    .cta-body {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--cream-dim);
+      max-width: 560px;
+      margin: 0 auto 2rem;
+    }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--navy);
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 0.85rem 1.8rem;
+      border-radius: 2px;
+      transition: all 0.25s var(--ease);
+    }
+    .cta-btn:hover {
+      background: var(--gold);
+      color: var(--navy);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(22,35,58,0.18);
+    }
+
+    /* ── BACK LINK ── */
+    .back-section {
+      padding: 4rem 0 6rem;
+      border-top: 1px solid var(--border);
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--navy);
+      text-decoration: none;
+      border: 1px solid var(--navy);
+      padding: 0.8rem 1.8rem;
+      border-radius: 2px;
+      transition: all 0.25s var(--ease);
+    }
+    .back-link:hover { background: var(--navy); color: #fff; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .wrap { padding: 0 1.25rem; }
+      .hero { padding: 4rem 0 3rem; }
+      .toc { grid-template-columns: 1fr; }
+      .essay { padding: 3rem 0; }
+      .back-section { padding: 3rem 0 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">Sari Kassar</a>
+      <a class="nav-back" href="index.html">&larr; Back</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-eyebrow"><span>Insights</span></div>
+      <h1 class="hero-title">Open Problems in Agentic AI Security</h1>
+      <p class="hero-subtitle">Working notes on the security problems that agents create and the industry hasn&rsquo;t solved yet. These are the things I watch because they decide whether the systems I build stay defensible, and they move faster than any framework tracking them.</p>
+      <div class="hero-date">August 2026 &middot; Updated as the field moves</div>
+      <ul class="toc">
+        <li><a href="#moe-fingerprinting"><span class="n">01</span><span class="t">Expert Fingerprinting in MoE Routing</span></a></li>
+        <li><a href="#agent-identity"><span class="n">02</span><span class="t">Identity Systems Built for People, Not Agents</span></a></li>
+        <li><a href="#poisoned-context"><span class="n">03</span><span class="t">Poisoned Context That Outlives the Session</span></a></li>
+        <li><a href="#tool-provenance"><span class="n">04</span><span class="t">Tool Provenance Is a Supply Chain</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ESSAYS -->
+  <section class="essays">
+    <div class="wrap">
+
+      <article class="essay" id="posture">
+        <div class="essay-eye">Before the Problems &middot; The Posture</div>
+        <h2 class="essay-title">Assume the Model Can Be Fooled</h2>
+        <p>I came to security from vehicle safety engineering, where nobody certifies a car by assuming the driver never makes a mistake. You assume the mistake and design the vehicle so it is survivable. Agent security is settling on the same posture. A system that takes instructions in natural language can be talked into things, no amount of training will fully fix that, and the useful question is not whether an injection can succeed. It is what the injection reaches when it does.</p>
+        <p>That posture sorts every proposed control into one of three generations, and the generation tells you what the control actually guarantees.</p>
+        <div class="gen-wrap">
+          <svg class="gen-svg" viewBox="0 0 940 185" role="img"
+               aria-label="Three generations of agent defense. Generation one: ask the model to resist, through training and instruction hierarchy. Generation two: detect the attack, with classifiers and filters. Both are probabilistic and degrade under adaptive attack. Generation three: enforce outside the model, with policy applied where the action takes effect. This is architectural and holds even when the model is fooled.">
+
+            <text class="gen-tier" x="146" y="12" text-anchor="middle">Generation 1</text>
+            <rect class="gen-node" x="10" y="22" width="272" height="70" rx="7"/>
+            <text class="gen-label" x="146" y="53" text-anchor="middle">Ask the model to resist</text>
+            <text class="gen-sub"   x="146" y="72" text-anchor="middle">training, instruction hierarchy</text>
+
+            <text class="gen-tier" x="470" y="12" text-anchor="middle">Generation 2</text>
+            <rect class="gen-node" x="334" y="22" width="272" height="70" rx="7"/>
+            <text class="gen-label" x="470" y="53" text-anchor="middle">Detect the attack</text>
+            <text class="gen-sub"   x="470" y="72" text-anchor="middle">classifiers, filters, guardrails</text>
+
+            <text class="gen-tier" x="794" y="12" text-anchor="middle">Generation 3</text>
+            <rect class="gen-node gen-node-hi" x="658" y="22" width="272" height="70" rx="7"/>
+            <text class="gen-label" x="794" y="53" text-anchor="middle">Enforce outside the model</text>
+            <text class="gen-sub"   x="794" y="72" text-anchor="middle">policy where the action takes effect</text>
+
+            <path class="gen-arrow" d="M288 57 H322"/>
+            <path class="gen-arrow" d="M316 51 L324 57 L316 63"/>
+            <path class="gen-arrow" d="M612 57 H646"/>
+            <path class="gen-arrow" d="M640 51 L648 57 L640 63"/>
+
+            <line class="gen-meter-track" x1="26"  y1="122" x2="266" y2="122"/>
+            <line class="gen-meter-dim"   x1="26"  y1="122" x2="94"  y2="122"/>
+            <line class="gen-meter-track" x1="350" y1="122" x2="590" y2="122"/>
+            <line class="gen-meter-dim"   x1="350" y1="122" x2="452" y2="122"/>
+            <line class="gen-meter-track" x1="674" y1="122" x2="914" y2="122"/>
+            <line class="gen-meter-full"  x1="674" y1="122" x2="914" y2="122"/>
+
+            <text class="gen-verdict" x="146" y="152" text-anchor="middle">Probabilistic</text>
+            <text class="gen-sub"     x="146" y="171" text-anchor="middle">degrades under adaptive attack</text>
+            <text class="gen-verdict" x="470" y="152" text-anchor="middle">Probabilistic</text>
+            <text class="gen-sub"     x="470" y="171" text-anchor="middle">adaptive attackers get past it</text>
+            <text class="gen-verdict gen-verdict-hi" x="794" y="152" text-anchor="middle">Architectural</text>
+            <text class="gen-sub"     x="794" y="171" text-anchor="middle">holds when the model is fooled</text>
+          </svg>
+        </div>
+        <p class="gen-caption">Most agent security spend sits in the first two boxes. Keep them, but do not let them carry the system, because an adaptive attacker gets past both. The designs I build lead with the third: deterministic enforcement at the point where the action takes effect, so a fooled model still cannot reach anything that matters.</p>
+        <p>Before any detailed work I check three capabilities: whether the agent can read private data, whether it ingests untrusted content, and whether it can send anything out. All three at once, with nothing deterministic in between, is an exfiltration engine waiting for its prompt. Removing one leg is often the cheapest control you will ever buy.</p>
+        <p>The field&rsquo;s own rankings are converging on this posture. OWASP&rsquo;s 2026 Top 10 for LLM applications held prompt injection at number one even though, counted by raw public incident data alone, it would fall off the list entirely; OWASP reads that gap as a defense effect, teams spending hard enough that clean exploits rarely reach a public database. The larger signal is excessive agency, the polite name for handing an agent more privilege than its task needs, climbing to third, the biggest move on the list. The injection is rarely the expensive part. The privilege the agent was carrying when it hit is.</p>
+        <p>Where each control belongs and what your blast radius actually is depends on the control structure of your deployment: who can instruct the agent, what it can touch, and what watches it act. Mapping that structure is where every engagement starts, and it comes out differently every time.</p>
+      </article>
+
+      <article class="essay" id="moe-fingerprinting">
+        <div class="essay-eye">No. 01 &middot; Model Architecture</div>
+        <h2 class="essay-title">Expert Fingerprinting in MoE Routing</h2>
+        <p class="essay-lede">Mixture-of-experts models route each token to a handful of specialists, invisibly. Latency and failure patterns leak that routing anyway. Probe long enough and you can map which expert handles what, then target the weakest safety behavior.</p>
+        <p>Mixture-of-experts models get their efficiency by not using most of the model most of the time. A router examines each token and dispatches it to a few specialist subnetworks out of the dozens or hundreds available. Which experts fire is an internal implementation detail: no API returns it, no response header exposes it, and most threat models treat it as invisible.</p>
+        <p>It leaks anyway. Different experts mean different computation paths, and different paths have different timing signatures. Failure modes leak too: a model degrades differently, refuses differently, and hedges differently depending on which specialists caught the request. Send enough structurally similar probes with small perturbations, correlate the responses, and the routing stops being secret.</p>
+        <div class="gen-wrap">
+          <svg class="gen-svg" viewBox="0 0 940 250" role="img"
+               aria-label="Probe traffic enters the model, where a router picks among experts. The chosen expert never appears in a response, but latency and refusal patterns leak out the side, letting an observer build a map of which prompts go where.">
+            <rect class="gen-node" x="10" y="97" width="180" height="56" rx="7"/>
+            <text class="gen-label" x="100" y="120" text-anchor="middle">Probe traffic</text>
+            <text class="gen-sub"   x="100" y="138" text-anchor="middle">thousands of near-twins</text>
+
+            <rect class="gen-zone" x="250" y="12" width="420" height="226" rx="10"/>
+            <text class="gen-zone-t" x="460" y="30" text-anchor="middle">The Model</text>
+            <rect class="gen-node" x="270" y="97" width="130" height="56" rx="7"/>
+            <text class="gen-label" x="335" y="120" text-anchor="middle">Router</text>
+            <text class="gen-sub"   x="335" y="138" text-anchor="middle">picks experts</text>
+            <rect class="gen-node" x="490" y="44" width="160" height="44" rx="7"/>
+            <text class="gen-label" x="570" y="71" text-anchor="middle">Expert A</text>
+            <rect class="gen-node gen-node-hi" x="490" y="104" width="160" height="44" rx="7"/>
+            <text class="gen-label" x="570" y="131" text-anchor="middle">Expert B</text>
+            <rect class="gen-node" x="490" y="164" width="160" height="44" rx="7"/>
+            <text class="gen-label" x="570" y="191" text-anchor="middle">Expert C</text>
+
+            <path class="gen-arrow" d="M190 125 H270"/>
+            <path class="gen-arrow" d="M264 119 L272 125 L264 131"/>
+            <path class="gen-arrow" d="M400 125 H445 V66 H490"/>
+            <path class="gen-arrow" d="M400 125 H490"/>
+            <path class="gen-arrow" d="M400 125 H445 V186 H490"/>
+
+            <path class="gen-leak" d="M670 125 H748"/>
+            <path class="gen-arrow" d="M742 119 L750 125 L742 131"/>
+            <text class="gen-sub" x="710" y="112" text-anchor="middle">it leaks</text>
+
+            <rect class="gen-node" x="750" y="97" width="180" height="56" rx="7"/>
+            <text class="gen-label" x="840" y="120" text-anchor="middle">The routing map</text>
+            <text class="gen-sub"   x="840" y="138" text-anchor="middle">which prompts go where</text>
+          </svg>
+        </div>
+        <p class="gen-caption">The router&rsquo;s choice never appears in a response. It shows up in latency and refusal patterns anyway, and enough probes turn those into a map.</p>
+        <p>An attacker who maps the routing has not extracted a single weight or broken a single control, and does not need to. Safety behavior is not uniform across a model; alignment training covers some regions of the input distribution more thoroughly than others. Once you know which prompt patterns land where, you can aim traffic at the paths where the safety training is thinnest. It is reconnaissance rather than exploit, which is why it falls off threat models: nothing was breached, nothing tripped an alert, and the whole campaign looks like a high volume of slightly odd queries.</p>
+        <p>Security has been here before. We spent two decades learning that shared hardware leaks: cache timing, power analysis, speculative execution. Shared model infrastructure is relearning the same lesson. Anything that changes the computation changes something observable, and an adversary with patience will find it.</p>
+        <p>What to do about it today is mostly posture. Providers should treat behavioral variance as telemetry and watch for probing patterns: large families of near-duplicate queries are a signature, not noise. Enterprises inherit this exposure from whichever provider they build on, so it belongs on the vendor-assessment list, and no control on your side should depend on the model&rsquo;s internals staying secret. OWASP&rsquo;s 2026 list now states the same principle for everything the model holds, under Hidden Context Exposure: nothing in the context should need to stay secret to keep you safe. Assume the architecture is enumerable and design as if the adversary has the map.</p>
+        <div class="approach">
+          <div class="approach-label">How I Approach It</div>
+          <p>When I assess a deployment on a mixture-of-experts provider, I am not trying to defend the routing. I go hunting for the controls that quietly assume model internals stay secret, because those are the ones this class of reconnaissance eventually embarrasses. Every stack has a few, and they are never where the architecture diagram says they are.</p>
+        </div>
+      </article>
+
+      <article class="essay" id="agent-identity">
+        <div class="essay-eye">No. 02 &middot; Identity &amp; Access</div>
+        <h2 class="essay-title">Identity Systems Built for People, Not Agents</h2>
+        <p class="essay-lede">Give a thousand agents scoped credentials and the directory quietly becomes the largest unmanaged identity surface in the company. Each holds real authority, and nobody has built a process for offboarding one.</p>
+        <p>Enterprise identity is built around a human lifecycle. Someone is hired, provisioned, given a multifactor token, reviewed in quarterly access attestations, and eventually deprovisioned when they leave. Every control in the stack quietly assumes that rhythm: human timescales, a manager who can vouch, a person on the other end of the authentication.</p>
+        <p>Agents break every one of those assumptions. They spawn in seconds and in thousands. They have no hire date, no manager to attest for them, and no natural end of employment. What they do have is authority: inherited from the user they act for, delegated downward through chains of sub-agents, exercised against real systems at machine speed.</p>
+        <p>The industry has a preview of how this goes: service accounts. They are already the worst-audited corner of every directory, full of passwords that never rotate, owners who left years ago, and permissions nobody can explain. That problem involved hundreds of identities. Agents make it tens of thousands, except these identities read mail, move money, and write to systems of record.</p>
+        <p>The delegation chain is the part that keeps me up. An agent acts on behalf of a person. It spawns a sub-agent, which calls a tool that acts with the original person&rsquo;s authority, three hops from anything that authenticated. When that person changes roles, what happens at hop three? Today the honest answer at most organizations is: nothing. The credential still works.</p>
+        <div class="gen-wrap">
+          <svg class="gen-svg" viewBox="0 0 940 200" role="img"
+               aria-label="A delegation chain: a person delegates to an agent, which spawns a sub-agent, which calls a tool, which acts on a system of record. Revocation only reaches the first hop; further down the chain, the credential keeps working.">
+            <rect class="gen-node gen-node-hi" x="10" y="50" width="140" height="56" rx="7"/>
+            <text class="gen-label" x="80" y="73" text-anchor="middle">Person</text>
+            <text class="gen-sub"   x="80" y="91" text-anchor="middle">authenticated once</text>
+            <rect class="gen-node" x="205" y="50" width="140" height="56" rx="7"/>
+            <text class="gen-label" x="275" y="73" text-anchor="middle">Agent</text>
+            <text class="gen-sub"   x="275" y="91" text-anchor="middle">acts for them</text>
+            <rect class="gen-node" x="400" y="50" width="140" height="56" rx="7"/>
+            <text class="gen-label" x="470" y="73" text-anchor="middle">Sub-agent</text>
+            <text class="gen-sub"   x="470" y="91" text-anchor="middle">spawned</text>
+            <rect class="gen-node" x="595" y="50" width="140" height="56" rx="7"/>
+            <text class="gen-label" x="665" y="73" text-anchor="middle">Tool</text>
+            <text class="gen-sub"   x="665" y="91" text-anchor="middle">third-party</text>
+            <rect class="gen-node" x="790" y="50" width="140" height="56" rx="7"/>
+            <text class="gen-label" x="860" y="73" text-anchor="middle">System</text>
+            <text class="gen-sub"   x="860" y="91" text-anchor="middle">the real data</text>
+
+            <path class="gen-arrow" d="M150 78 H205"/>
+            <path class="gen-arrow" d="M199 72 L207 78 L199 84"/>
+            <path class="gen-arrow" d="M345 78 H400"/>
+            <path class="gen-arrow" d="M394 72 L402 78 L394 84"/>
+            <path class="gen-arrow" d="M540 78 H595"/>
+            <path class="gen-arrow" d="M589 72 L597 78 L589 84"/>
+            <path class="gen-arrow" d="M735 78 H790"/>
+            <path class="gen-arrow" d="M784 72 L792 78 L784 84"/>
+
+            <path class="gen-dashed" d="M10 148 H300"/>
+            <path class="gen-dashed" d="M300 142 V154"/>
+            <text class="gen-sub" x="155" y="175" text-anchor="middle">revocation reaches this far</text>
+            <text class="gen-sub" x="665" y="175" text-anchor="middle">out here, the credential still works</text>
+          </svg>
+        </div>
+        <p class="gen-caption">Every hop carries the person&rsquo;s authority. The kill switch only knows about the first one.</p>
+        <p>The frameworks are starting to price this in. Excessive agency just climbed to third on OWASP&rsquo;s LLM Top 10, and identity is where excessive agency lives or dies: every standing credential, every over-broad scope, every delegation nobody can trace is privilege waiting for an injection to spend it.</p>
+        <p>What good looks like is knowable, even if almost nobody has built it. Issue credentials per task rather than per agent, short-lived enough that theft has a shelf life. Bind each agent&rsquo;s identity to the delegating human, so authority dies when theirs does. Make expiry the default instead of standing access, and make delegation depth an explicit policy rather than an emergent property. Then treat offboarding an agent as a first-class, tested process, the way it is for a departing employee: the agent knew things and could do things, and both need to end on purpose.</p>
+        <p>The time to build this is now, while agent counts are small. The alternative is discovering the problem the way service accounts were discovered, in the middle of an incident.</p>
+        <div class="approach">
+          <div class="approach-label">How I Approach It</div>
+          <p>The first artifact I build with a client is a delegation map: every path authority takes from a human to an action, and the mechanism that is supposed to kill each link. Most of the identity fixes fall straight out of that map. Drawing it truthfully is the hard part, and it has never once matched the picture the organization had of who can do what.</p>
+        </div>
+      </article>
+
+      <article class="essay" id="poisoned-context">
+        <div class="essay-eye">No. 03 &middot; Data Integrity</div>
+        <h2 class="essay-title">Poisoned Context That Outlives the Session</h2>
+        <p class="essay-lede">A corrupted memory or retrieved document persists, shaping decisions days later with no obvious link back to the injection that caused them. That distance between where harm surfaces and where it entered is the whole problem.</p>
+        <p>Most prompt-injection discussion assumes a single-turn shape: malicious input arrives, the model does something bad, the session ends. Evaluation is built around that shape too: red-team the prompt, score the response, report the rate.</p>
+        <p>Persistence changes the shape. Agents keep memory. Retrieval pipelines index documents into vector stores. Context accumulates across sessions by design, because that accumulation is the feature. A poisoned document does not have to trigger anything on arrival. It sits in the store, gets retrieved next Tuesday, and nudges a decision that looks locally reasonable to everyone involved, including the agent.</p>
+        <div class="gen-wrap">
+          <svg class="gen-svg" viewBox="0 0 940 200" role="img"
+               aria-label="A timeline: in session one a poisoned document is written to a memory or retrieval store, where it waits. Days later, in session ten, the agent reads it and acts. Nothing in the logs connects the two events.">
+            <rect class="gen-node" x="10" y="55" width="230" height="64" rx="7"/>
+            <text class="gen-label" x="125" y="81" text-anchor="middle">Session one</text>
+            <text class="gen-sub"   x="125" y="100" text-anchor="middle">a poisoned document is written</text>
+            <rect class="gen-node gen-node-hi" x="355" y="55" width="230" height="64" rx="7"/>
+            <text class="gen-label" x="470" y="81" text-anchor="middle">Memory / RAG store</text>
+            <text class="gen-sub"   x="470" y="100" text-anchor="middle">it waits</text>
+            <rect class="gen-node" x="700" y="55" width="230" height="64" rx="7"/>
+            <text class="gen-label" x="815" y="81" text-anchor="middle">Session ten</text>
+            <text class="gen-sub"   x="815" y="100" text-anchor="middle">the agent reads it and acts</text>
+
+            <path class="gen-arrow" d="M240 87 H355"/>
+            <path class="gen-arrow" d="M349 81 L357 87 L349 93"/>
+            <path class="gen-arrow" d="M585 87 H700"/>
+            <path class="gen-arrow" d="M694 81 L702 87 L694 93"/>
+            <text class="gen-sub" x="642" y="75" text-anchor="middle">days later</text>
+
+            <path class="gen-leak" d="M125 140 V158 H815 V140"/>
+            <text class="gen-sub" x="470" y="182" text-anchor="middle">nothing in the logs connects these two</text>
+          </svg>
+        </div>
+        <p class="gen-caption">Stored injections do their damage later, and later is what breaks the investigation.</p>
+        <p>Web security drew this exact distinction twenty years ago: reflected cross-site scripting versus stored. Stored was always the worse one, because it waits, and because it reaches users who never saw the injection happen. We are rebuilding that distinction around a new persistence layer, agent memory and retrieval stores, except this layer routinely gets less care than any production database even though an agent will act on what it reads there.</p>
+        <p>The operational problem is the distance. When harm surfaces days after the poisoning, nothing in the logs connects the bad decision to the document that shaped it. The trace shows an agent retrieving &ldquo;context&rdquo; and acting on it, all of it procedurally normal. The write that planted the poison looked like an ordinary write. Incident response becomes an exercise in reconstructing context lineage, and almost nobody logs enough to do it.</p>
+        <p>The defenses are unglamorous, which may be why they are rare. Tag every piece of context with provenance: where it came from, when, and how much it is trusted. Verify at write time, not just read time, so the store is defended at its front door. Expire memory so it ages out instead of accumulating indefinitely. Put change control on any store an agent reads before acting, with the same discipline a production database gets. And run evaluations across sessions rather than within one: inject in session one, measure in session ten. A test suite that only scores single turns cannot see this failure class at all.</p>
+        <div class="approach">
+          <div class="approach-label">How I Approach It</div>
+          <p>The list above is public knowledge. The engagement question is which store to defend first, and that ranking comes from a single variable: which decisions your agent takes unsupervised. I trace those decisions back to the stores that feed them and defend in that order, and the order comes out differently in every deployment I have run it on.</p>
+        </div>
+      </article>
+
+      <article class="essay" id="tool-provenance">
+        <div class="essay-eye">No. 04 &middot; Supply Chain</div>
+        <h2 class="essay-title">Tool Provenance Is a Supply Chain</h2>
+        <p class="essay-lede">An agent&rsquo;s capability surface is now effectively a package manifest. Every connected tool is code you did not write, executing with your users&rsquo; authority against your real systems, and the ecosystem ships far faster than any review process has kept up with.</p>
+        <p>Software already learned this lesson at cost. The npm compromises and the build-pipeline attacks taught the industry that you ship everything your dependencies ship, and it answered with lockfiles, signing, and software bills of materials. An agent&rsquo;s tool manifest is the same object with higher stakes: third-party capability, wired directly to a system that acts with your users&rsquo; authority. OWASP&rsquo;s 2026 rankings moved supply chain up the LLM list and widened the entry to cover model artifacts that are not what they claim to be, which is the same trust failure one layer down.</p>
+        <p>Two things make tools sharper than packages. First, a malicious library still has to find its way into a code path before it runs. A malicious tool just has to be connected; the agent will find reasons to call it. Second, a tool&rsquo;s description is itself input to the model. The metadata is instructions. A tool that describes itself deceptively is not just misdocumented, it is actively steering the agent, which makes the manifest a prompt-injection surface before a single call is made.</p>
+        <div class="gen-wrap">
+          <svg class="gen-svg" viewBox="0 0 940 250" role="img"
+               aria-label="A tool manifest of three tools feeds an agent that acts with your users' authority against your systems. Tools A and C were reviewed. A vendor ships an update to tool B after review, and no review re-runs.">
+            <rect class="gen-zone" x="10" y="40" width="280" height="190" rx="10"/>
+            <text class="gen-zone-t" x="150" y="28" text-anchor="middle">Tool Manifest</text>
+            <rect class="gen-node" x="30" y="58" width="240" height="44" rx="7"/>
+            <text class="gen-label" x="150" y="79" text-anchor="middle">Tool A</text>
+            <text class="gen-sub"   x="150" y="95" text-anchor="middle">reviewed</text>
+            <rect class="gen-node gen-node-hi" x="30" y="113" width="240" height="44" rx="7"/>
+            <text class="gen-label" x="150" y="134" text-anchor="middle">Tool B</text>
+            <text class="gen-sub"   x="150" y="150" text-anchor="middle">updated since review</text>
+            <rect class="gen-node" x="30" y="168" width="240" height="44" rx="7"/>
+            <text class="gen-label" x="150" y="189" text-anchor="middle">Tool C</text>
+            <text class="gen-sub"   x="150" y="205" text-anchor="middle">reviewed</text>
+
+            <text class="gen-sub" x="380" y="30" text-anchor="middle">vendor ships an update,</text>
+            <text class="gen-sub" x="380" y="46" text-anchor="middle">review does not re-run</text>
+            <path class="gen-dashed" d="M380 54 V135 H278"/>
+            <path class="gen-arrow" d="M286 129 L278 135 L286 141"/>
+
+            <rect class="gen-node" x="440" y="113" width="170" height="56" rx="7"/>
+            <text class="gen-label" x="525" y="136" text-anchor="middle">Agent</text>
+            <text class="gen-sub"   x="525" y="154" text-anchor="middle">your users&rsquo; authority</text>
+            <rect class="gen-node" x="700" y="113" width="230" height="56" rx="7"/>
+            <text class="gen-label" x="815" y="136" text-anchor="middle">Your systems</text>
+            <text class="gen-sub"   x="815" y="154" text-anchor="middle">mail, code, money, records</text>
+
+            <path class="gen-arrow" d="M290 141 H440"/>
+            <path class="gen-arrow" d="M434 135 L442 141 L434 147"/>
+            <path class="gen-arrow" d="M610 141 H700"/>
+            <path class="gen-arrow" d="M694 135 L702 141 L694 147"/>
+          </svg>
+        </div>
+        <p class="gen-caption">The manifest was reviewed once. The tools behind it keep moving, which is why the runtime has to bound what any one of them can do.</p>
+        <p>Versioning makes it worse. A tool that was safe at review time is not the tool running today; remote tool servers update on the provider&rsquo;s schedule, not yours, and nothing re-triggers your review when they do. The trust decision was made once, against a version that no longer exists.</p>
+        <p>Meanwhile the velocity mismatch is structural. Enterprise security review was built for quarterly vendor onboarding. The tool ecosystem ships daily. Any governance that requires a human meeting per tool has already lost the race, which is how organizations end up with capability surfaces nobody has actually read.</p>
+        <p>The response has two halves. The supply-chain half is familiar: pinned versions, allowlists, signed manifests, and review that covers tool descriptions as carefully as tool code, because the description is the part the model obeys. The architectural half is the honest admission that review will never fully keep up, so the runtime has to bound the damage: each tool scoped to the least agency it needs, returned data fenced so the model treats it as information rather than instruction, and blast radius per tool as an explicit design number. You cannot audit your way out of a fast-moving ecosystem. You can decide in advance how much any one compromised tool is allowed to cost you.</p>
+        <div class="approach">
+          <div class="approach-label">How I Approach It</div>
+          <p>I run tool review as a capability budget rather than an audit queue. Every connected tool gets a number for the worst afternoon it can cause, and a name attached to accepting that number. Setting those budgets takes a workshop, not a quarter, and the answers change what the runtime has to enforce.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="wrap">
+      <h2 class="cta-title">If This Maps to Something You&rsquo;re Building</h2>
+      <p class="cta-body">These notes are the shape of my approach, not the whole of it. The specifics depend on your architecture, your data, and what your agents are allowed to touch, and working through that together is the actual engagement.</p>
+      <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=sareegpt@gmail.com&su=Agent%20Security" class="cta-btn" target="_blank" rel="noopener">Start a Conversation</a>
+    </div>
+  </section>
+
+  <!-- BACK -->
+  <section class="back-section">
+    <div class="wrap">
+      <a class="back-link" href="index.html">&larr; Back to Portfolio</a>
+    </div>
+  </section>
+
+</body>
+</html>
